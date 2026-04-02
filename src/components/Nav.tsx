@@ -38,7 +38,7 @@ export default function Nav() {
         </div>
 
         {/* Nav links — hidden on mobile */}
-        <div className="hidden md:flex items-center gap-8 text-[13px] text-text-muted">
+        <div className="hidden md2:flex items-center gap-8 text-[13px] text-text-muted">
           <a href="#blueprint" className="transition-colors duration-150 hover:text-text">The Blueprint</a>
           <a href="#how-it-works" className="transition-colors duration-150 hover:text-text">How It Works</a>
           <a href="#work" className="transition-colors duration-150 hover:text-text">Our Work</a>

@@ -28,7 +28,7 @@ export default function Hero() {
       />
 
       <div className="w-full max-w-[1160px] mx-auto px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_520px] gap-[80px] items-center relative z-[1]">
+        <div className="grid grid-cols-1 md2:grid-cols-[1fr_520px] gap-12 md2:gap-[80px] items-center relative z-[1]">
           {/* Left — Copy */}
           <div>
             {/* Badge */}
@@ -37,7 +37,7 @@ export default function Hero() {
               Now accepting new projects
             </div>
 
-            <h1 className="font-[family-name:var(--font-syne-var)] text-[62px] font-extrabold leading-[1.05] tracking-[-2px] mb-6">
+            <h1 className="font-[family-name:var(--font-syne-var)] text-[44px] md2:text-[62px] font-extrabold leading-[1.05] tracking-[-2px] mb-6">
               Where Tech<br />Founders<br /><em className="not-italic text-amber">Start.</em>
             </h1>
 
@@ -70,7 +70,7 @@ export default function Hero() {
           </div>
 
           {/* Right — Blueprint Preview Card */}
-          <div className="blueprint-preview">
+          <div className="blueprint-preview max-md2:order-[-1]">
             <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-amber mb-4 flex items-center gap-2">
               The Blueprint — delivered before you commit
               <span className="flex-1 h-px bg-border" />

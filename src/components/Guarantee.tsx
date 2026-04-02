@@ -1,7 +1,7 @@
 export default function Guarantee() {
   return (
     <div className="bg-amber py-7 px-10">
-      <div className="max-w-[1160px] mx-auto flex items-center justify-between gap-6 flex-wrap max-md:flex-col max-md:text-center">
+      <div className="max-w-[1160px] mx-auto flex items-center justify-between gap-6 flex-wrap max-md2:flex-col max-md2:text-center">
         <div>
           <h3 className="font-[family-name:var(--font-syne-var)] text-[22px] font-extrabold text-[#0E0E0D] mb-1">
             30-Day Money-Back Guarantee

@@ -12,7 +12,7 @@ export default function BuildLaunchGrow() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-12">
+        <div className="grid grid-cols-1 md2:grid-cols-3 gap-5 mt-12">
           {/* Build — Primary (amber) */}
           <div className="rounded-[16px] p-8 relative overflow-hidden bg-amber border border-amber reveal">
             <div className="text-[11px] font-bold tracking-[0.1em] uppercase mb-4" style={{ color: 'rgba(14,14,13,0.6)' }}>

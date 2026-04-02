@@ -41,7 +41,7 @@ export default function Blueprint() {
   return (
     <section className="py-24 bg-bg-2" id="blueprint">
       <div className="max-w-[1160px] mx-auto px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 md2:grid-cols-2 gap-20 items-center">
           {/* Left — Copy */}
           <div className="reveal">
             <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">The Blueprint</div>
@@ -78,7 +78,7 @@ export default function Blueprint() {
           </div>
 
           {/* Right — 3x2 Screen Grid */}
-          <div className="grid grid-cols-3 gap-3 reveal reveal-delay-2 max-lg:order-[-1]">
+          <div className="grid grid-cols-3 gap-3 reveal reveal-delay-2 max-md2:order-[-1]">
             {screens.map((s, i) => (
               <div
                 key={i}

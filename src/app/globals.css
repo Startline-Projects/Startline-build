@@ -27,6 +27,8 @@
 
   --font-syne: var(--font-syne-var), sans-serif;
   --font-epilogue: var(--font-epilogue-var), sans-serif;
+
+  --breakpoint-md2: 900px;
 }
 
 :root {
@@ -64,3 +66,8 @@ body {
   50% { opacity: 0.6; transform: scale(0.8); }
 }
 .pulse-dot { animation: pulse-dot 2s infinite; }
+
+/* Mobile padding reduction */
+@media (max-width: 640px) {
+  .px-10 { padding-left: 20px; padding-right: 20px; }
+}

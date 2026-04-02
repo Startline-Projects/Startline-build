@@ -46,7 +46,7 @@ export default function IntakeForm() {
   return (
     <section className="py-24 bg-bg-2 border-t border-border" id="start">
       <div className="max-w-[1160px] mx-auto px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 md2:grid-cols-2 gap-20 items-start">
           {/* Left — Copy */}
           <div className="reveal">
             <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">Start Here</div>
