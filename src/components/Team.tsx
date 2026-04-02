@@ -70,8 +70,8 @@ export default function Team() {
               <p className="text-[13px] text-text-muted leading-[1.75] mb-4">{m.bio}</p>
               <div className="flex flex-col gap-1.5">
                 {m.creds.map((cred, j) => (
-                  <div key={j} className="flex items-start gap-[7px] text-xs text-text-dim text-left">
-                    <div className="w-1 h-1 rounded-full bg-amber shrink-0 mt-1.5" />
+                  <div key={j} className="flex items-center gap-[7px] text-xs text-text-dim text-left">
+                    <div className="w-1 h-1 rounded-full bg-amber shrink-0" />
                     {cred}
                   </div>
                 ))}

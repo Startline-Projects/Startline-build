@@ -1,9 +1,13 @@
 'use client'
+import { ReactNode } from 'react'
 import { useNDA } from '@/context/NDAContext'
+import {
+  StaffVAPreview, InterviewPreview, EstateVaultPreview, PeoplesFirmPreview,
+  MetaHealthPreview, AlHikmaPreview, ChairlyPreview, MuslimGuiderPreview,
+} from './CardPreviews'
 
 interface Project {
-  emoji: string
-  imgBg: string
+  preview: ReactNode
   imgBlur: string
   tag: string
   redactedTitle: string
@@ -19,8 +23,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    emoji: '🏪',
-    imgBg: '#1C1B1A',
+    preview: <StaffVAPreview />,
     imgBlur: '1px',
     tag: 'Our Platform · Talent Marketplace',
     redactedTitle: 'StaffVA',
@@ -32,8 +35,7 @@ const projects: Project[] = [
     link: { url: 'https://staffva.com', text: 'View Platform ↗', external: true },
   },
   {
-    emoji: '🤖',
-    imgBg: '#0a1520',
+    preview: <InterviewPreview />,
     imgBlur: '1px',
     tag: 'Our Platform · AI SaaS',
     redactedTitle: 'StaffVA AI Interview',
@@ -45,8 +47,7 @@ const projects: Project[] = [
     link: { url: 'https://interview.staffva.com', text: 'View Platform ↗', external: true },
   },
   {
-    emoji: '🏦',
-    imgBg: '#0d1e35',
+    preview: <EstateVaultPreview />,
     imgBlur: '1px',
     tag: 'Estate Planning · SaaS',
     redactedTitle: '████████████',
@@ -58,8 +59,7 @@ const projects: Project[] = [
     link: { url: 'https://estatevault.us', text: 'View Live Site ↗', external: true },
   },
   {
-    emoji: '⚖️',
-    imgBg: '#061c14',
+    preview: <PeoplesFirmPreview />,
     imgBlur: '1px',
     tag: 'Legal Services · Web',
     redactedTitle: '████████████',
@@ -71,8 +71,7 @@ const projects: Project[] = [
     link: { url: 'https://thepeoplesfirmpllc.com', text: 'View Live Site ↗', external: true },
   },
   {
-    emoji: '🏥',
-    imgBg: '#0a1520',
+    preview: <MetaHealthPreview />,
     imgBlur: '2px',
     tag: 'Healthcare · Mobile',
     redactedTitle: '████████████',
@@ -82,11 +81,10 @@ const projects: Project[] = [
     descColor: 'var(--color-text-dim)',
     value: 'Live · Client identity protected',
     hasLiveBadge: true,
-    link: { url: '/meta-health', text: 'View Case Study →', external: false },
+    link: { url: '/meta-health', text: 'View Project Details →', external: false },
   },
   {
-    emoji: '🎓',
-    imgBg: '#0d1a2e',
+    preview: <AlHikmaPreview />,
     imgBlur: '2px',
     tag: 'Education · SaaS',
     redactedTitle: '████████████',
@@ -95,11 +93,10 @@ const projects: Project[] = [
     desc: 'Full school operating system. 9 modules.',
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · May 2026',
-    link: { url: '/alhikma', text: 'View Case Study →', external: false },
+    link: { url: '/alhikma', text: 'View Project Details →', external: false },
   },
   {
-    emoji: '💈',
-    imgBg: '#0E0E0D',
+    preview: <ChairlyPreview />,
     imgBlur: '2px',
     tag: 'Consumer · Mobile App',
     redactedTitle: '████████████',
@@ -109,11 +106,10 @@ const projects: Project[] = [
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · June 2026',
     hasBorderBottom: true,
-    link: { url: '/chairly', text: 'View Case Study →', external: false },
+    link: { url: '/chairly', text: 'View Project Details →', external: false },
   },
   {
-    emoji: '🕌',
-    imgBg: '#041510',
+    preview: <MuslimGuiderPreview />,
     imgBlur: '2px',
     tag: 'Religious Tech · Mobile',
     redactedTitle: '████████████',
@@ -122,7 +118,7 @@ const projects: Project[] = [
     desc: 'Live audio broadcasting. Smart TV.',
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · July 2026',
-    link: { url: '/muslim-guider', text: 'View Case Study →', external: false },
+    link: { url: '/muslim-guider', text: 'View Project Details →', external: false },
   },
 ]
 
@@ -178,20 +174,19 @@ export default function Portfolio() {
           {projects.map((p, i) => (
             <div
               key={i}
-              className="bg-bg-3 border border-border rounded-[16px] overflow-hidden transition-colors duration-200 hover:border-border-2"
+              className="bg-bg-3 border border-border rounded-[16px] overflow-hidden transition-colors duration-200 hover:border-border-2 flex flex-col"
             >
-              {/* Image area */}
+              {/* Image area — CSS mini preview */}
               <div
-                className="h-[140px] flex items-center justify-center text-4xl relative transition-[filter] duration-400 ease-in-out"
+                className="h-[140px] relative overflow-hidden transition-[filter] duration-400 ease-in-out"
                 style={{
-                  background: p.imgBg,
                   filter: hasAccess ? 'none' : `blur(${p.imgBlur})`,
                   borderBottom: p.hasBorderBottom ? '1px solid var(--color-border)' : undefined,
                 }}
               >
                 {p.hasLiveBadge && (
                   <div
-                    className="absolute top-2.5 right-2.5 flex items-center gap-1 text-[9px] font-bold py-[3px] px-2 rounded-[20px]"
+                    className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1 text-[9px] font-bold py-[3px] px-2 rounded-[20px]"
                     style={{
                       color: 'var(--color-green)',
                       background: 'rgba(34,197,94,0.1)',
@@ -202,61 +197,64 @@ export default function Portfolio() {
                     Live
                   </div>
                 )}
-                {p.emoji}
+                {p.preview}
               </div>
 
               {/* Body */}
-              <div className="p-[18px]">
+              <div className="p-[18px] flex flex-col flex-1">
                 <div className="text-[10px] font-bold tracking-[0.08em] uppercase text-amber mb-1.5">{p.tag}</div>
                 <div
                   className={`font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px] transition-all duration-300 ${p.titleBlur && !hasAccess ? 'blur-sm select-none' : ''}`}
                 >
                   {hasAccess ? p.realTitle : p.redactedTitle}
                 </div>
-                <p className="text-xs leading-[1.6] mb-3" style={{ color: p.descColor }}>{p.desc}</p>
+                <p className="text-xs leading-[1.6] mb-3 flex-1" style={{ color: p.descColor }}>{p.desc}</p>
 
-                {/* Lock button — shown when locked */}
-                {!hasAccess && (
-                  <button
-                    onClick={openNDA}
-                    className="inline-flex items-center gap-[5px] text-xs text-text-muted font-medium cursor-pointer py-[5px] px-3 rounded-[20px] border border-border transition-all duration-150 hover:border-amber hover:text-amber"
-                    style={{ background: 'var(--color-bg-4)' }}
-                  >
-                    🔒 Request Access
-                  </button>
-                )}
-
-                {/* Links — shown when unlocked */}
-                {hasAccess && p.link && (
-                  p.link.external ? (
-                    <a
-                      href={p.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
-                      style={{
-                        color: '#92400e',
-                        background: 'rgba(200,104,26,0.06)',
-                        borderColor: 'rgba(200,104,26,0.3)',
-                      }}
-                      onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.12)' }}
-                      onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.06)' }}
+                {/* Button + status — always at bottom */}
+                <div className="mt-auto">
+                  {/* Lock button — shown when locked */}
+                  {!hasAccess && (
+                    <button
+                      onClick={openNDA}
+                      className="inline-flex items-center gap-[5px] text-xs text-text-muted font-medium cursor-pointer py-[5px] px-3 rounded-[20px] border border-border transition-all duration-150 hover:border-amber hover:text-amber"
+                      style={{ background: 'var(--color-bg-4)' }}
                     >
-                      {p.link.text}
-                    </a>
-                  ) : (
-                    <a
-                      href={p.link.url}
-                      target="_blank"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border-2 transition-colors hover:border-amber hover:text-amber"
-                      style={{ background: 'var(--color-bg)' }}
-                    >
-                      {p.link.text}
-                    </a>
-                  )
-                )}
+                      🔒 Request Access
+                    </button>
+                  )}
 
-                <div className="text-[11px] text-text-dim mt-1.5">{p.value}</div>
+                  {/* Links — shown when unlocked */}
+                  {hasAccess && p.link && (
+                    p.link.external ? (
+                      <a
+                        href={p.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
+                        style={{
+                          color: '#92400e',
+                          background: 'rgba(200,104,26,0.06)',
+                          borderColor: 'rgba(200,104,26,0.3)',
+                        }}
+                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.12)' }}
+                        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.06)' }}
+                      >
+                        {p.link.text}
+                      </a>
+                    ) : (
+                      <a
+                        href={p.link.url}
+                        target="_blank"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border-2 transition-colors hover:border-amber hover:text-amber"
+                        style={{ background: 'var(--color-bg)' }}
+                      >
+                        {p.link.text}
+                      </a>
+                    )
+                  )}
+
+                  <div className="text-[11px] text-text-dim mt-1.5">{p.value}</div>
+                </div>
               </div>
             </div>
           ))}
