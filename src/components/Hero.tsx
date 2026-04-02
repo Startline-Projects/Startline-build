@@ -1,5 +1,6 @@
 'use client'
 import { useNDA } from '@/context/NDAContext'
+import BlueprintScreens from './BlueprintScreens'
 
 export default function Hero() {
   const { openNDA } = useNDA()
@@ -89,111 +90,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Three screen previews */}
-              <div className="flex gap-2.5 mb-5">
-                {[0, 1, 2].map((i) => (
-                  <div key={i} className="flex-1 rounded-[10px] overflow-hidden border border-border bg-bg-4">
-                    <div className="h-7 flex items-center px-2.5 gap-[5px]" style={{ background: 'var(--color-bg-5)' }}>
-                      <div className="w-[5px] h-[5px] rounded-full" style={{ background: '#ff5f57' }} />
-                      <div className="w-[5px] h-[5px] rounded-full" style={{ background: '#febc2e' }} />
-                      <div className="w-[5px] h-[5px] rounded-full" style={{ background: '#28c840' }} />
-                    </div>
-                    <div className="p-2.5 flex flex-col gap-[5px]">
-                      {i === 0 && (
-                        <>
-                          <div className="h-1 rounded-sm w-[60%]" style={{ background: 'rgba(245,166,35,.3)' }} />
-                          <div className="h-1 rounded-sm w-full bg-border-2" />
-                          <div className="h-1 rounded-sm w-[70%] bg-border-2" />
-                          <div className="rounded-md p-1.5" style={{ background: 'var(--color-bg-5)' }}>
-                            <div className="h-1 rounded-sm w-[60%] mb-1" style={{ background: 'rgba(245,166,35,.4)' }} />
-                            <div className="h-1 rounded-sm w-[80%] bg-border" />
-                          </div>
-                        </>
-                      )}
-                      {i === 1 && (
-                        <>
-                          <div className="h-1 rounded-sm w-full bg-border-2" />
-                          <div className="h-1 rounded-sm w-[60%]" style={{ background: 'rgba(245,166,35,.3)' }} />
-                          <div className="rounded-md p-1.5" style={{ background: 'var(--color-bg-5)' }}>
-                            <div className="h-1 rounded-sm w-full mb-1" style={{ background: 'rgba(245,166,35,.3)' }} />
-                            <div className="h-1 rounded-sm w-[40%] bg-border" />
-                          </div>
-                          <div className="h-1 rounded-sm w-[70%] bg-border-2" />
-                        </>
-                      )}
-                      {i === 2 && (
-                        <>
-                          <div className="h-1 rounded-sm w-[60%]" style={{ background: 'rgba(245,166,35,.3)' }} />
-                          <div className="h-1 rounded-sm w-[40%] bg-border-2" />
-                          <div className="rounded-md p-1.5" style={{ background: 'var(--color-bg-5)' }}>
-                            <div className="h-1 rounded-sm w-[80%] mb-1" style={{ background: 'rgba(245,166,35,.25)' }} />
-                            <div className="h-1 rounded-sm w-full bg-border" />
-                          </div>
-                          <div className="h-1 rounded-sm w-[70%] bg-border-2" />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* More screens row */}
-              <div className="flex gap-2 mb-4">
-                {[
-                  { a: true, w2: '100%', w3: '70%' },
-                  { a: false, w1: '100%', aIdx: 2, w3: '80%' },
-                  { a: true, w2: '60%', w3: '100%' },
-                  { a: false, w1: '80%', aIdx: 2, w3: '50%' },
-                ].map((screen, idx) => (
-                  <div key={idx} className="flex-1 rounded-lg overflow-hidden border border-border bg-bg-4">
-                    <div className="h-5 flex items-center px-[7px] gap-[3px]" style={{ background: 'var(--color-bg-5)' }}>
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#ff5f57' }} />
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#febc2e' }} />
-                    </div>
-                    <div className="p-[7px] flex flex-col gap-1">
-                      {idx === 0 && (
-                        <>
-                          <div className="h-[3px] rounded-sm w-[55%]" style={{ background: 'rgba(245,166,35,.25)' }} />
-                          <div className="h-[3px] rounded-sm w-full bg-border-2" />
-                          <div className="h-[3px] rounded-sm w-[70%] bg-border-2" />
-                        </>
-                      )}
-                      {idx === 1 && (
-                        <>
-                          <div className="h-[3px] rounded-sm w-full bg-border-2" />
-                          <div className="h-[3px] rounded-sm w-[55%]" style={{ background: 'rgba(245,166,35,.25)' }} />
-                          <div className="h-[3px] rounded-sm w-[80%] bg-border-2" />
-                        </>
-                      )}
-                      {idx === 2 && (
-                        <>
-                          <div className="h-[3px] rounded-sm w-[55%]" style={{ background: 'rgba(245,166,35,.25)' }} />
-                          <div className="h-[3px] rounded-sm w-[60%] bg-border-2" />
-                          <div className="h-[3px] rounded-sm w-full bg-border-2" />
-                        </>
-                      )}
-                      {idx === 3 && (
-                        <>
-                          <div className="h-[3px] rounded-sm w-[80%] bg-border-2" />
-                          <div className="h-[3px] rounded-sm w-[55%]" style={{ background: 'rgba(245,166,35,.25)' }} />
-                          <div className="h-[3px] rounded-sm w-[50%] bg-border-2" />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Approval state */}
-              <div className="flex items-center gap-2.5 p-3 rounded-[9px] border" style={{ background: 'rgba(200,104,26,0.08)', borderColor: 'rgba(245,166,35,0.2)' }}>
-                <div className="w-6 h-6 rounded-full bg-amber flex items-center justify-center shrink-0 text-xs text-[#0E0E0D] font-bold">
-                  ✓
-                </div>
-                <div>
-                  <div className="text-xs text-text font-medium">Blueprint approved — build starts</div>
-                  <div className="text-[11px] text-text-muted mt-px">You sign the agreement. Team kicks off in 7 days.</div>
-                </div>
-              </div>
+              <BlueprintScreens />
             </div>
           </div>
         </div>
