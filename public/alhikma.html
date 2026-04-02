@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Al-Hikma School Platform — Project Details — Startline</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F6FA;--bg2:#EAEFF7;--bg3:#FFFFFF;--bg4:#E0E6F0;
+  --navy:#0B2545;--navy2:#112D57;--navy3:#1A3A6A;
+  --gold:#B8921A;--gold2:rgba(184,146,26,0.1);--gold3:rgba(184,146,26,0.06);
+  --sage:#1A6B5A;--sage2:rgba(26,107,90,0.1);
+  --text:#0B2545;--muted:#445070;--dim:#8090B0;--faint:#C0CCE0;
+  --border:#D4DCF0;--border2:#C0CCE0;
+}
+body{font-family:'Epilogue',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV — navy */
+.sl-nav{position:sticky;top:0;z-index:200;background:rgba(11,37,69,0.97);border-bottom:1px solid var(--navy3);backdrop-filter:blur(12px)}
+.sl-nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;max-width:1160px;margin:0 auto}
+.sl-logo{display:flex;align-items:center;gap:9px}
+.sl-mark{width:26px;height:26px;background:#C8681A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sl-brand{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#fff}
+.sl-brand em{font-style:normal;color:#C8681A}
+.sl-back{font-size:13px;color:rgba(255,255,255,.5);transition:color .15s}
+.sl-back:hover{color:#fff}
+.sl-cta{background:var(--gold);color:#0B2545;padding:8px 20px;border-radius:7px;font-size:13px;font-weight:700}
+
+/* BREADCRUMB */
+.breadcrumb{padding:16px 40px;font-size:12px;color:var(--dim);display:flex;align-items:center;gap:7px;max-width:1160px;margin:0 auto}
+.breadcrumb a{color:var(--muted);transition:color .15s}
+.breadcrumb a:hover{color:var(--gold)}
+
+/* HEADER — navy background */
+.proj-header-bg{background:var(--navy);padding-bottom:52px}
+.proj-header{max-width:1160px;margin:0 auto;padding:32px 40px 0}
+.proj-tags{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.proj-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;border:1px solid var(--navy3);color:rgba(255,255,255,.4)}
+.proj-tag.inprog{border-color:rgba(184,146,26,.4);color:var(--gold);background:rgba(184,146,26,.1)}
+.proj-h1{font-family:'Syne',sans-serif;font-size:60px;font-weight:800;letter-spacing:-1.8px;line-height:1.0;margin-bottom:16px;color:#fff}
+.proj-h1 em{font-style:normal;color:var(--gold)}
+.proj-desc{font-size:18px;color:rgba(255,255,255,.55);max-width:600px;line-height:1.7;margin-bottom:36px;font-weight:300}
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--navy3);border-radius:14px;overflow:hidden;background:var(--navy2)}
+.stat-b{padding:22px 26px;border-right:1px solid var(--navy3)}
+.stat-b:last-child{border-right:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);line-height:1}
+.stat-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px}
+
+/* APP EMBED */
+.app-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:52px 40px;margin:0 0 0}
+.app-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;max-width:1160px;margin-left:auto;margin-right:auto}
+.app-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.app-inner{max-width:1160px;margin:0 auto}
+
+/* CONTENT */
+.content{max-width:1160px;margin:0 auto;padding:0 40px}
+.cs{padding:56px 0;border-top:1px solid var(--border)}
+.cs-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.cs-title{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.6px;line-height:1.1;margin-bottom:14px;color:var(--navy)}
+.cs-body{font-size:15px;color:var(--muted);line-height:1.8;max-width:580px}
+.cs-body strong{color:var(--navy);font-weight:600}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.module-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
+.mod-card{background:#fff;border:1px solid var(--border);border-radius:11px;padding:18px;border-top:3px solid var(--gold)}
+.mod-icon{font-size:20px;margin-bottom:8px}
+.mod-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.mod-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.nda-notice{background:rgba(184,146,26,.06);border:1px solid rgba(184,146,26,.2);border-radius:10px;padding:14px 18px;margin-top:32px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}
+
+/* FOOTER — navy */
+.sl-footer{background:var(--navy);padding:36px 40px}
+.sl-footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:28px;border-bottom:1px solid var(--navy3);flex-wrap:wrap}
+.sl-footer-close{text-align:center;padding-top:24px;font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(255,255,255,.05);letter-spacing:-.5px;max-width:1160px;margin:0 auto}
+
+/* AL-HIKMA APP */
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B2545;--navy2:#112D57;--navy3:#1A3A6A;
+  --gold:#B8921A;--gold-bg:#FBF5E4;--gold-border:#E8D090;--gold-text:#7A5E10;
+  --sage:#1A6B5A;--sage-bg:#E6F4F0;--sage-border:#90D4C0;
+  --slate:#F0F2F6;--slate2:#E4E8F0;
+  --t1:#0B2545;--t2:#445070;--t3:#8090B0;
+  --bdr:#DCE2EE;--white:#FFFFFF;
+  --ok:#1A6B4A;--okbg:#E6F4EE;--okb:#90D4B0;
+  --warn:#8A5A08;--warnbg:#FBF2E0;--warnb:#E8C880;
+  --red:#A02020;--redbg:#FAE8E8;--redb:#E8A0A0;
+  --purple:#4A28A0;--purplebg:#EEEAFB;
+}
+.wrap{background:var(--color-background-secondary);border-radius:16px;padding:0;overflow:hidden;font-family:var(--font-sans,-apple-system,sans-serif)}
+.brand-bar{background:var(--navy);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.brand-left{display:flex;align-items:center;gap:10px}
+.brand-logo{width:34px;height:34px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:var(--navy);font-family:Georgia,serif}
+.brand-name{font-size:15px;font-weight:500;color:#fff}
+.brand-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+.pal{display:flex;gap:6px;align-items:center}
+.dot{width:18px;height:18px;border-radius:50%}
+.pal-lbl{font-size:11px;color:rgba(255,255,255,0.4)}
+.nav-strip{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;gap:2px;padding:0 16px;flex-wrap:wrap}
+.ns-btn{padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.5);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.ns-btn.on{color:#fff;border-bottom-color:var(--gold)}
+.platform{display:flex;min-height:580px}
+.sidebar{width:200px;background:var(--navy);flex-shrink:0;padding:16px 0}
+.sb-section{font-size:10px;color:rgba(255,255,255,0.3);padding:14px 16px 6px;letter-spacing:.5px;text-transform:uppercase}
+.sb-item{display:flex;align-items:center;gap:9px;padding:9px 16px;font-size:13px;color:rgba(255,255,255,0.55);cursor:pointer;border-left:3px solid transparent}
+.sb-item.on{color:#fff;background:rgba(255,255,255,0.07);border-left-color:var(--gold)}
+.sb-item .ic{font-size:14px;width:16px;text-align:center}
+.sb-badge{margin-left:auto;font-size:10px;background:rgba(184,146,26,0.2);color:var(--gold);padding:1px 6px;border-radius:20px}
+.content{flex:1;background:var(--slate);overflow-x:hidden;padding:0}
+.screen{display:none;padding:20px;flex-direction:column;gap:16px}
+.screen.on{display:flex}
+.page-hdr{display:flex;justify-content:space-between;align-items:flex-start}
+.page-title{font-size:18px;font-weight:500;color:var(--t1)}
+.page-sub{font-size:12px;color:var(--t3);margin-top:3px}
+.prim-btn{background:var(--navy);color:#fff;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;border:none}
+.sec-btn{background:var(--white);color:var(--t1);border:0.5px solid var(--bdr);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+.gold-btn{background:var(--gold);color:#fff;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;border:none}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{background:var(--white);border-radius:12px;border:0.5px solid var(--bdr);padding:14px}
+.metric-v{font-size:24px;font-weight:500;color:var(--t1)}
+.metric-l{font-size:11px;color:var(--t3);margin-top:3px}
+.metric-d{font-size:11px;margin-top:6px;font-weight:500}
+.metric-d.up{color:var(--ok)}
+.metric-d.warn{color:var(--warn)}
+.card{background:var(--white);border-radius:12px;border:0.5px solid var(--bdr);padding:16px}
+.card-title{font-size:14px;font-weight:500;color:var(--t1);margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-size:11px;font-weight:500;color:var(--t3);padding:0 12px 8px;border-bottom:0.5px solid var(--bdr)}
+.tbl td{padding:10px 12px;border-bottom:0.5px solid var(--bdr);color:var(--t2);vertical-align:middle}
+.tbl tr:last-child td{border:none}
+.tbl tr:hover td{background:var(--slate)}
+.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
+.av.navy{background:#E6EBF4;color:var(--navy)}
+.av.gold{background:var(--gold-bg);color:var(--gold-text)}
+.av.sage{background:var(--sage-bg);color:var(--sage)}
+.pill{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap;display:inline-block}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.pill.warn{background:var(--warnbg);color:var(--warn)}
+.pill.red{background:var(--redbg);color:var(--red)}
+.pill.blue{background:#E6F1FB;color:#185FA5}
+.pill.purple{background:var(--purplebg);color:var(--purple)}
+.pill.gold{background:var(--gold-bg);color:var(--gold-text)}
+.pill.gray{background:var(--slate2);color:var(--t3)}
+.grade-bar{height:6px;border-radius:3px;background:var(--slate2)}
+.grade-fill{height:6px;border-radius:3px}
+.attend-row{display:flex;gap:3px;margin-bottom:4px}
+.attend-cell{height:18px;flex:1;border-radius:3px}
+.attend-cell.p{background:var(--ok)}
+.attend-cell.a{background:var(--red)}
+.attend-cell.l{background:var(--warn)}
+.attend-cell.w{background:var(--slate2)}
+.form-row{margin-bottom:14px}
+.form-label{font-size:12px;color:var(--t2);margin-bottom:5px;display:block;font-weight:500}
+.form-input{background:var(--white);border:0.5px solid var(--bdr);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--t1);width:100%}
+.form-input:focus{outline:none;border-color:var(--navy)}
+.form-select{background:var(--white);border:0.5px solid var(--bdr);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--t1);width:100%}
+.progress-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(var(--ok) 87%,var(--slate2) 0);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:var(--t1)}
+.progress-ring .inner{width:60px;height:60px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--t1)}
+.msg-item{display:flex;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.msg-item:last-child{border:none}
+.msg-body{flex:1}
+.msg-name{font-size:13px;font-weight:500;color:var(--t1)}
+.msg-prev{font-size:12px;color:var(--t3);margin-top:2px}
+.msg-time{font-size:11px;color:var(--t3);flex-shrink:0}
+.ann-item{padding:10px 14px;border-radius:10px;border-left:3px solid;margin-bottom:8px}
+.ann-item.urgent{border-left-color:var(--red);background:var(--redbg)}
+.ann-item.info{border-left-color:var(--navy);background:#F0F4FA}
+.ann-item.ok{border-left-color:var(--ok);background:var(--okbg)}
+.ann-title{font-size:13px;font-weight:500;color:var(--t1)}
+.ann-body{font-size:12px;color:var(--t2);margin-top:3px}
+.ann-meta{font-size:11px;color:var(--t3);margin-top:5px}
+.timeline-item{display:flex;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.timeline-item:last-child{border:none}
+.timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--navy);flex-shrink:0;margin-top:4px}
+.timeline-dot.gold{background:var(--gold)}
+.timeline-dot.green{background:var(--ok)}
+.timeline-dot.red{background:var(--red)}
+.fee-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.fee-row:last-child{border:none}
+.step-bar{display:flex;gap:0;margin-bottom:20px}
+.step{flex:1;text-align:center;padding:10px 0;font-size:12px;color:var(--t3);border-bottom:2px solid var(--bdr);position:relative}
+.step.on{color:var(--navy);border-bottom-color:var(--navy);font-weight:500}
+.step.done{color:var(--ok);border-bottom-color:var(--ok)}
+.ai-bubble{padding:12px 14px;border-radius:12px;font-size:13px;margin-bottom:8px;line-height:1.5}
+.ai-bubble.ai{background:#F0F4FA;border:0.5px solid var(--bdr);border-top-left-radius:3px;color:var(--t1)}
+.ai-bubble.user{background:var(--navy);color:#fff;border-top-right-radius:3px;align-self:flex-end;max-width:80%}
+.ai-chat{display:flex;flex-direction:column;gap:8px}
+.subject-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:var(--slate);margin-bottom:6px}
+.subject-name{font-size:13px;font-weight:500;color:var(--t1)}
+.score-badge{font-size:13px;font-weight:500}
+
+</style>
+</head>
+<body>
+
+<nav class="sl-nav">
+  <div class="sl-nav-inner">
+    <a href="https://startline.build" class="sl-logo">
+      <div class="sl-mark"><svg width="11" height="12" viewBox="0 0 11 13" fill="none"><path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="#0B2545"/></svg></div>
+      <div class="sl-brand">start<em>line</em></div>
+    </a>
+    <a class="sl-back" href="https://startline.build/#work">← Back to Our Work</a>
+    <a class="sl-cta" href="https://startline.build/#start">Start Your Project</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://startline.build">Startline</a><span style="color:var(--faint)">›</span>
+  <a href="https://startline.build/#work">Our Work</a><span style="color:var(--faint)">›</span>
+  <span>Al-Hikma School Platform</span>
+</div>
+
+<div class="proj-header-bg">
+  <div class="proj-header">
+    <div class="proj-tags">
+      <span class="proj-tag">Education · SaaS</span>
+      <span class="proj-tag">Project Details</span>
+      <span class="proj-tag inprog">⚙ In Progress · May 2026</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.3);margin-left:auto">Confidential — NDA required</span>
+    </div>
+    <h1 class="proj-h1">Al-Hikma<br><em>School Platform</em></h1>
+    <p class="proj-desc">A complete school operating system — enrollment, attendance, gradebook, parent portal, fees, and AI assistant — all in one platform built for a private Islamic school.</p>
+    <div class="stat-strip">
+      <div class="stat-b"><div class="stat-n">9</div><div class="stat-l">Platform modules</div></div>
+      <div class="stat-b"><div class="stat-n">4</div><div class="stat-l">User roles</div></div>
+      <div class="stat-b"><div class="stat-n">1</div><div class="stat-l">Unified login</div></div>
+      <div class="stat-b"><div class="stat-n">May '26</div><div class="stat-l">Delivery</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="app-section">
+  <div class="app-label">Interactive Platform Walkthrough — 9 Modules</div>
+  <div class="app-inner"><div class="wrap">
+
+  <div class="brand-bar">
+    <div class="brand-left">
+      <div class="brand-logo">A</div>
+      <div><div class="brand-name">Al-Hikma School</div><div class="brand-sub">Learning Management System</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="pal">
+        <div class="dot" style="background:#0B2545"></div>
+        <div class="dot" style="background:#B8921A"></div>
+        <div class="dot" style="background:#1A6B5A"></div>
+        <div class="dot" style="background:#1A6B4A"></div>
+        <div class="dot" style="background:#F0F2F6"></div>
+        <span class="pal-lbl">Navy · Gold · Sage · Success · Slate</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#fff">SA</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6)">Safwan A.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-strip">
+    <div class="ns-btn on" onclick="swA('admin-dash',this)">Admin dashboard</div>
+    <div class="ns-btn" onclick="swA('enrollment',this)">Enrollment</div>
+    <div class="ns-btn" onclick="swA('students',this)">Students</div>
+    <div class="ns-btn" onclick="swA('teacher-dash',this)">Teacher view</div>
+    <div class="ns-btn" onclick="swA('gradebook',this)">Gradebook</div>
+    <div class="ns-btn" onclick="swA('attendance',this)">Attendance</div>
+    <div class="ns-btn" onclick="swA('parent-portal',this)">Parent portal</div>
+    <div class="ns-btn" onclick="swA('fees',this)">Fees & billing</div>
+    <div class="ns-btn" onclick="swA('ai-assistant',this)">AI assistant</div>
+  </div>
+
+  <div class="platform">
+
+    <div class="sidebar">
+      <div class="sb-section">Main</div>
+      <div class="sb-item on"><span class="ic">&#9632;</span> Dashboard</div>
+      <div class="sb-item"><span class="ic">&#128100;</span> Students<span class="sb-badge">142</span></div>
+      <div class="sb-item"><span class="ic">&#9998;</span> Teachers</div>
+      <div class="sb-item"><span class="ic">&#128202;</span> Reports</div>
+      <div class="sb-section">Academics</div>
+      <div class="sb-item"><span class="ic">&#128218;</span> Curriculum</div>
+      <div class="sb-item"><span class="ic">&#9989;</span> Assignments</div>
+      <div class="sb-item"><span class="ic">&#128203;</span> Gradebook</div>
+      <div class="sb-item"><span class="ic">&#128197;</span> Attendance</div>
+      <div class="sb-section">Finance</div>
+      <div class="sb-item"><span class="ic">&#128176;</span> Fees & Billing</div>
+      <div class="sb-item"><span class="ic">&#128196;</span> Enrollment<span class="sb-badge">8</span></div>
+      <div class="sb-section">Communication</div>
+      <div class="sb-item"><span class="ic">&#128172;</span> Messages<span class="sb-badge">3</span></div>
+      <div class="sb-item"><span class="ic">&#128276;</span> Announcements</div>
+      <div class="sb-item"><span class="ic">&#129302;</span> AI Assistant</div>
+    </div>
+
+    <div class="content">
+
+      <!-- ADMIN DASHBOARD -->
+      <div id="s-admin-dash" class="screen on">
+        <div class="page-hdr">
+          <div><div class="page-title">Good morning, Safwan</div><div class="page-sub">Al-Hikma School · Spring 2026 · Tuesday, April 1</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">Export report</div><div class="prim-btn">+ Add student</div></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="metric-v">142</div><div class="metric-l">Enrolled students</div><div class="metric-d up">+8 this semester</div></div>
+          <div class="metric"><div class="metric-v">91.4%</div><div class="metric-l">Avg attendance rate</div><div class="metric-d up">Above 90% target</div></div>
+          <div class="metric"><div class="metric-v">$84,200</div><div class="metric-l">Fees collected</div><div class="metric-d warn">$12,600 outstanding</div></div>
+          <div class="metric"><div class="metric-v">8</div><div class="metric-l">Pending enrollments</div><div class="metric-d up">3 approved today</div></div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Pending enrollments</div>
+            <table class="tbl">
+              <thead><tr><th>Student</th><th>Grade</th><th>Applied</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av navy">YA</div>Youssef Al-Amin</div></td><td>Grade 3</td><td>Mar 28</td><td><span class="pill blue">Under review</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av gold">LH</div>Layla Hassan</div></td><td>Grade 1</td><td>Mar 30</td><td><span class="pill ok">Approved</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av sage">KR</div>Khalid Rahimi</div></td><td>Grade 5</td><td>Apr 1</td><td><span class="pill warn">Docs needed</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av navy">NS</div>Noor Saleh</div></td><td>Grade 2</td><td>Apr 1</td><td><span class="pill gray">New</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-title">Today's activity</div>
+            <div class="timeline-item"><div class="timeline-dot green"></div><div><div style="font-size:13px;color:var(--t1)">Layla Hassan enrollment approved</div><div style="font-size:11px;color:var(--t3)">9:14 AM · Admin action</div></div></div>
+            <div class="timeline-item"><div class="timeline-dot gold"></div><div><div style="font-size:13px;color:var(--t1)">$2,400 fee payment received</div><div style="font-size:11px;color:var(--t3)">8:55 AM · Ahmed Al-Rashid</div></div></div>
+            <div class="timeline-item"><div class="timeline-dot"></div><div><div style="font-size:13px;color:var(--t1)">Grade 4 attendance marked</div><div style="font-size:11px;color:var(--t3)">8:30 AM · Ms. Fatima Nasser</div></div></div>
+            <div class="timeline-item"><div class="timeline-dot red"></div><div><div style="font-size:13px;color:var(--t1)">3 absences flagged for follow-up</div><div style="font-size:11px;color:var(--t3)">8:30 AM · System</div></div></div>
+            <div class="timeline-item"><div class="timeline-dot green"></div><div><div style="font-size:13px;color:var(--t1)">AI assistant: 12 student queries answered</div><div style="font-size:11px;color:var(--t3)">8:00 AM – 9:30 AM</div></div></div>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title">Grade performance overview</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Grade 1</span><span style="font-size:12px;font-weight:500;color:var(--ok)">92%</span></div><div class="grade-bar"><div class="grade-fill" style="width:92%;background:var(--ok)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Grade 2</span><span style="font-size:12px;font-weight:500;color:var(--ok)">88%</span></div><div class="grade-bar"><div class="grade-fill" style="width:88%;background:var(--ok)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Grade 3</span><span style="font-size:12px;font-weight:500;color:var(--warn)">76%</span></div><div class="grade-bar"><div class="grade-fill" style="width:76%;background:var(--warn)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Grade 4</span><span style="font-size:12px;font-weight:500;color:var(--ok)">84%</span></div><div class="grade-bar"><div class="grade-fill" style="width:84%;background:var(--ok)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Grade 5</span><span style="font-size:12px;font-weight:500;color:var(--ok)">89%</span></div><div class="grade-bar"><div class="grade-fill" style="width:89%;background:var(--ok)"></div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Outstanding fees by grade</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Grade 1 — 2 families</span><span style="font-size:13px;font-weight:500;color:var(--red)">$3,200</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Grade 2 — 1 family</span><span style="font-size:13px;font-weight:500;color:var(--warn)">$1,600</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Grade 3 — 3 families</span><span style="font-size:13px;font-weight:500;color:var(--red)">$4,800</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Grade 4 — 1 family</span><span style="font-size:13px;font-weight:500;color:var(--warn)">$1,600</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Grade 5 — 1 family</span><span style="font-size:13px;font-weight:500;color:var(--warn)">$1,400</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Recent announcements</div>
+            <div class="ann-item urgent"><div class="ann-title">Spring field trip — permission slips</div><div class="ann-body">Permission forms due by April 8</div><div class="ann-meta">Posted today · All grades</div></div>
+            <div class="ann-item info"><div class="ann-title">Parent-teacher conferences</div><div class="ann-body">Schedule for April 15–16 now open</div><div class="ann-meta">Posted Mar 30 · All parents</div></div>
+            <div class="ann-item ok"><div class="ann-title">Spring enrollment open</div><div class="ann-body">2026–27 re-enrollment now live</div><div class="ann-meta">Posted Mar 28</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENROLLMENT PORTAL -->
+      <div id="s-enrollment" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Enrollment portal</div><div class="page-sub">2026–27 academic year · 8 applications pending</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">Export list</div><div class="gold-btn">New application</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:16px">
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <div class="card-title">New application</div>
+              <div class="step-bar"><div class="step done">1 Family</div><div class="step done">2 Student</div><div class="step on">3 Documents</div><div class="step">4 Payment</div></div>
+              <div class="form-row"><label class="form-label">Upload birth certificate</label><div style="background:var(--slate);border:1px dashed var(--bdr);border-radius:8px;padding:20px;text-align:center;font-size:12px;color:var(--t3)">Drop file here or click to upload<br><span style="font-size:11px">PDF, JPG up to 10MB</span></div></div>
+              <div class="form-row"><label class="form-label">Previous school records</label><div style="background:var(--okbg);border:0.5px solid var(--okb);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--ok);display:flex;align-items:center;gap:8px">&#10003; report_card_2025.pdf uploaded</div></div>
+              <div class="form-row"><label class="form-label">Immunization records</label><div style="background:var(--slate);border:1px dashed var(--bdr);border-radius:8px;padding:16px;text-align:center;font-size:12px;color:var(--t3)">Required — not yet uploaded</div></div>
+              <div style="display:flex;gap:8px;margin-top:4px"><div class="sec-btn" style="flex:1;text-align:center">Save draft</div><div class="prim-btn" style="flex:1;text-align:center;opacity:.5">Next: Payment</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">All applications</div>
+            <table class="tbl">
+              <thead><tr><th>Student</th><th>Grade</th><th>Parent</th><th>Applied</th><th>Docs</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">YA</div>Youssef Al-Amin</div></td><td>Gr 3</td><td>Ibrahim Al-Amin</td><td>Mar 28</td><td><span class="pill ok">Complete</span></td><td><span class="pill blue">Under review</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Review</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">LH</div>Layla Hassan</div></td><td>Gr 1</td><td>Mariam Hassan</td><td>Mar 30</td><td><span class="pill ok">Complete</span></td><td><span class="pill ok">Approved</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">View</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av sage">KR</div>Khalid Rahimi</div></td><td>Gr 5</td><td>Omar Rahimi</td><td>Apr 1</td><td><span class="pill warn">Missing 1</span></td><td><span class="pill warn">Docs needed</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Remind</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">NS</div>Noor Saleh</div></td><td>Gr 2</td><td>Fatima Saleh</td><td>Apr 1</td><td><span class="pill gray">Pending</span></td><td><span class="pill gray">New</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Open</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">AJ</div>Adam Jabri</div></td><td>Gr 4</td><td>Hana Jabri</td><td>Mar 25</td><td><span class="pill ok">Complete</span></td><td><span class="pill ok">Approved</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">View</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDENTS -->
+      <div id="s-students" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Students</div><div class="page-sub">142 enrolled · Spring 2026</div></div>
+          <div style="display:flex;gap:8px">
+            <select class="form-select" style="width:auto;padding:8px 12px;font-size:13px"><option>All grades</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option></select>
+            <div class="prim-btn">+ Add student</div>
+          </div>
+        </div>
+        <div class="card">
+          <table class="tbl">
+            <thead><tr><th>Student</th><th>Grade</th><th>Attendance</th><th>GPA</th><th>Fees</th><th>Last active</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av navy">ZA</div><div><div style="font-size:13px;color:var(--t1);font-weight:500">Zara Ahmed</div><div style="font-size:11px;color:var(--t3)">ID: STU-2241</div></div></div></td><td>Grade 3</td><td><span class="pill ok">97%</span></td><td><span style="font-weight:500;color:var(--ok)">3.8</span></td><td><span class="pill ok">Paid</span></td><td>Today</td><td><span class="pill ok">Active</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av gold">MA</div><div><div style="font-size:13px;color:var(--t1);font-weight:500">Mohammed Al-Farsi</div><div style="font-size:11px;color:var(--t3)">ID: STU-2198</div></div></div></td><td>Grade 4</td><td><span class="pill warn">78%</span></td><td><span style="font-weight:500;color:var(--warn)">2.9</span></td><td><span class="pill warn">Partial</span></td><td>Yesterday</td><td><span class="pill warn">At risk</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av sage">SH</div><div><div style="font-size:13px;color:var(--t1);font-weight:500">Sara Hassan</div><div style="font-size:11px;color:var(--t3)">ID: STU-2156</div></div></div></td><td>Grade 2</td><td><span class="pill ok">100%</span></td><td><span style="font-weight:500;color:var(--ok)">4.0</span></td><td><span class="pill ok">Paid</span></td><td>Today</td><td><span class="pill ok">Active</span></td></div></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av navy">KO</div><div><div style="font-size:13px;color:var(--t1);font-weight:500">Kareem Omar</div><div style="font-size:11px;color:var(--t3)">ID: STU-2089</div></div></div></td><td>Grade 5</td><td><span class="pill red">62%</span></td><td><span style="font-weight:500;color:var(--red)">2.1</span></td><td><span class="pill red">Overdue</span></td><td>Mar 28</td><td><span class="pill red">Alert</span></td></tr>
+              <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="av gold">LJ</div><div><div style="font-size:13px;color:var(--t1);font-weight:500">Lina Jabri</div><div style="font-size:11px;color:var(--t3)">ID: STU-2034</div></div></div></td><td>Grade 1</td><td><span class="pill ok">94%</span></td><td><span style="font-weight:500;color:var(--ok)">3.6</span></td><td><span class="pill ok">Paid</span></td><td>Today</td><td><span class="pill ok">Active</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TEACHER DASHBOARD -->
+      <div id="s-teacher-dash" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Good morning, Ms. Fatima</div><div class="page-sub">Grade 3 · 24 students · Tuesday April 1</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">View schedule</div><div class="prim-btn">Mark attendance</div></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="metric-v">24</div><div class="metric-l">Students today</div><div class="metric-d warn">2 absent so far</div></div>
+          <div class="metric"><div class="metric-v">3</div><div class="metric-l">Lessons today</div><div class="metric-d up">1 completed</div></div>
+          <div class="metric"><div class="metric-v">8</div><div class="metric-l">Assignments to grade</div><div class="metric-d warn">Due this week</div></div>
+          <div class="metric"><div class="metric-v">2</div><div class="metric-l">Parent messages</div><div class="metric-d up">Unread</div></div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Today's schedule</div>
+            <table class="tbl">
+              <thead><tr><th>Time</th><th>Subject</th><th>Room</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td style="color:var(--t3)">8:00 – 8:45</td><td style="font-weight:500">Islamic Studies</td><td>Room 3A</td><td><span class="pill ok">Completed</span></td></tr>
+                <tr><td style="color:var(--t3)">9:00 – 9:45</td><td style="font-weight:500">Arabic Language</td><td>Room 3A</td><td><span class="pill blue">In progress</span></td></tr>
+                <tr><td style="color:var(--t3)">10:00 – 10:45</td><td style="font-weight:500">Mathematics</td><td>Room 3A</td><td><span class="pill gray">Upcoming</span></td></tr>
+                <tr><td style="color:var(--t3)">11:00 – 11:45</td><td style="font-weight:500">English Language</td><td>Room 3A</td><td><span class="pill gray">Upcoming</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-title">Students needing attention</div>
+            <table class="tbl">
+              <thead><tr><th>Student</th><th>Issue</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">MA</div>Mohammed A.</div></td><td><span class="pill warn">3 absences</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Message parent</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av sage">RA</div>Rayan Al-Amin</div></td><td><span class="pill red">Below 70% avg</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Schedule meeting</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">HS</div>Huda Salem</div></td><td><span class="pill warn">Assignment missing</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Send reminder</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADEBOOK -->
+      <div id="s-gradebook" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Gradebook — Grade 3</div><div class="page-sub">Spring 2026 · Ms. Fatima Nasser · 24 students</div></div>
+          <div style="display:flex;gap:8px">
+            <select class="form-select" style="width:auto;padding:8px 12px;font-size:13px"><option>All subjects</option><option>Mathematics</option><option>Arabic</option><option>Islamic Studies</option></select>
+            <div class="prim-btn">+ Enter grades</div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="overflow-x:auto">
+            <table class="tbl" style="min-width:700px">
+              <thead><tr><th style="min-width:160px">Student</th><th>Islamic</th><th>Arabic</th><th>Math</th><th>English</th><th>Science</th><th>GPA</th><th>Trend</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">ZA</div>Zara Ahmed</div></td><td><span class="pill ok">95</span></td><td><span class="pill ok">98</span></td><td><span class="pill ok">92</span></td><td><span class="pill ok">96</span></td><td><span class="pill ok">90</span></td><td><strong>3.8</strong></td><td style="color:var(--ok)">+0.2</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">MA</div>Mohammed A.</div></td><td><span class="pill warn">72</span></td><td><span class="pill warn">68</span></td><td><span class="pill ok">82</span></td><td><span class="pill warn">70</span></td><td><span class="pill warn">74</span></td><td><strong style="color:var(--warn)">2.9</strong></td><td style="color:var(--red)">-0.3</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av sage">SH</div>Sara Hassan</div></td><td><span class="pill ok">100</span></td><td><span class="pill ok">99</span></td><td><span class="pill ok">98</span></td><td><span class="pill ok">97</span></td><td><span class="pill ok">100</span></td><td><strong>4.0</strong></td><td style="color:var(--ok)">+0.1</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">RA</div>Rayan Al-Amin</div></td><td><span class="pill warn">65</span></td><td><span class="pill red">58</span></td><td><span class="pill warn">70</span></td><td><span class="pill warn">66</span></td><td><span class="pill warn">72</span></td><td><strong style="color:var(--red)">2.1</strong></td><td style="color:var(--red)">-0.5</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">LJ</div>Lina Jabri</div></td><td><span class="pill ok">88</span></td><td><span class="pill ok">90</span></td><td><span class="pill ok">86</span></td><td><span class="pill ok">92</span></td><td><span class="pill ok">85</span></td><td><strong>3.6</strong></td><td style="color:var(--ok)">+0.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTENDANCE -->
+      <div id="s-attendance" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Attendance — Grade 3</div><div class="page-sub">Today: April 1, 2026 · 22 present · 2 absent</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">Export report</div><div class="prim-btn">Save attendance</div></div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Today's register</div>
+            <table class="tbl">
+              <thead><tr><th>Student</th><th>Status</th><th>Time in</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">ZA</div>Zara Ahmed</div></td><td><span class="pill ok">Present</span></td><td>7:58 AM</td><td></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">MA</div>Mohammed A.</div></td><td><span class="pill red">Absent</span></td><td>—</td><td style="font-size:11px;color:var(--t3)">Parent notified</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av sage">SH</div>Sara Hassan</div></td><td><span class="pill ok">Present</span></td><td>8:02 AM</td><td></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av navy">RA</div>Rayan Al-Amin</div></td><td><span class="pill warn">Late</span></td><td>8:34 AM</td><td style="font-size:11px;color:var(--t3)">Traffic</td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:7px"><div class="av gold">LJ</div>Lina Jabri</div></td><td><span class="pill ok">Present</span></td><td>7:55 AM</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-title">Monthly attendance — March 2026</div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:10px;display:flex;gap:14px"><span style="color:var(--ok)">&#9632; Present</span><span style="color:var(--red)">&#9632; Absent</span><span style="color:var(--warn)">&#9632; Late</span><span style="color:var(--slate2)">&#9632; Weekend</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:5px">Zara Ahmed — 97%</div><div class="attend-row"><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell a"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div></div></div>
+              <div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:5px">Mohammed A. — 78%</div><div class="attend-row"><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell a"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell a"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell l"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell a"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell a"></div><div class="attend-cell w"></div><div class="attend-cell w"></div></div></div>
+              <div><div style="font-size:12px;font-weight:500;color:var(--t1);margin-bottom:5px">Sara Hassan — 100%</div><div class="attend-row"><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell p"></div><div class="attend-cell w"></div><div class="attend-cell w"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARENT PORTAL -->
+      <div id="s-parent-portal" class="screen">
+        <div style="background:var(--navy);border-radius:12px;padding:20px;margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div><div style="font-size:13px;color:rgba(255,255,255,0.6)">Welcome back</div><div style="font-size:20px;font-weight:500;color:#fff;margin-top:3px">Mariam Hassan</div><div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px">Parent of Layla Hassan · Grade 1</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:rgba(255,255,255,0.5)">Next payment</div><div style="font-size:20px;font-weight:500;color:var(--gold);margin-top:3px">$1,600</div><div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px">Due May 1, 2026</div></div>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="metric-v">96%</div><div class="metric-l">Attendance this term</div><div class="metric-d up">Excellent</div></div>
+          <div class="metric"><div class="metric-v">3.7</div><div class="metric-l">Current GPA</div><div class="metric-d up">Top of class</div></div>
+          <div class="metric"><div class="metric-v">2</div><div class="metric-l">Messages unread</div><div class="metric-d">From teachers</div></div>
+          <div class="metric"><div class="metric-v">1</div><div class="metric-l">Assignment due</div><div class="metric-d warn">Tomorrow</div></div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Layla's grades — Spring 2026</div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <div class="subject-bar"><div><div class="subject-name">Islamic Studies</div><div style="font-size:11px;color:var(--t3)">Ms. Fatima · Grade 1</div></div><div><span class="score-badge" style="color:var(--ok)">97 / 100</span></div></div>
+              <div class="subject-bar"><div><div class="subject-name">Arabic Language</div><div style="font-size:11px;color:var(--t3)">Mr. Khaled · Grade 1</div></div><div><span class="score-badge" style="color:var(--ok)">93 / 100</span></div></div>
+              <div class="subject-bar"><div><div class="subject-name">Mathematics</div><div style="font-size:11px;color:var(--t3)">Ms. Fatima · Grade 1</div></div><div><span class="score-badge" style="color:var(--ok)">88 / 100</span></div></div>
+              <div class="subject-bar"><div><div class="subject-name">English Language</div><div style="font-size:11px;color:var(--t3)">Ms. Sarah · Grade 1</div></div><div><span class="score-badge" style="color:var(--ok)">91 / 100</span></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Messages from school</div>
+            <div class="msg-item"><div class="av navy" style="flex-shrink:0">FN</div><div class="msg-body"><div class="msg-name">Ms. Fatima Nasser</div><div class="msg-prev">Layla had a wonderful week — she led the morning Quran recitation today!</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Today 9:15 AM</div></div></div>
+            <div class="msg-item"><div class="av gold" style="flex-shrink:0">SA</div><div class="msg-body"><div class="msg-name">School Admin</div><div class="msg-prev">Parent-teacher conferences are scheduled for April 15. Please book your slot.</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Yesterday</div></div></div>
+            <div style="margin-top:12px"><div class="prim-btn" style="width:100%;text-align:center">Send a message</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEES -->
+      <div id="s-fees" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">Fees and billing</div><div class="page-sub">Spring 2026 · $84,200 collected · $12,600 outstanding</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">Export statement</div><div class="gold-btn">Record payment</div></div>
+        </div>
+        <div class="grid2">
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <div class="card-title">Fee structure — 2025–26</div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Annual tuition</span><span style="font-size:14px;font-weight:500;color:var(--t1)">$9,600</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Registration fee</span><span style="font-size:14px;font-weight:500;color:var(--t1)">$250</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Materials fee</span><span style="font-size:14px;font-weight:500;color:var(--t1)">$180</span></div>
+              <div class="fee-row"><span style="font-size:13px;color:var(--t2)">Activity fee</span><span style="font-size:14px;font-weight:500;color:var(--t1)">$120</span></div>
+              <div style="background:var(--slate);border-radius:8px;padding:10px 12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:500;color:var(--t1)">Total per student</span><span style="font-size:16px;font-weight:500;color:var(--navy)">$10,150</span></div>
+            </div>
+            <div class="card">
+              <div class="card-title">Make a payment</div>
+              <div class="form-row"><label class="form-label">Family / student</label><input class="form-input" placeholder="Search by name or ID"></div>
+              <div class="form-row"><label class="form-label">Payment amount</label><input class="form-input" placeholder="$0.00"></div>
+              <div class="form-row"><label class="form-label">Payment method</label><select class="form-select"><option>Stripe — credit or debit card</option><option>Bank transfer</option><option>ESA voucher</option></select></div>
+              <div class="form-row"><label class="form-label">Reference note</label><input class="form-input" placeholder="e.g. Spring 2026 term 2"></div>
+              <div class="gold-btn" style="width:100%;text-align:center">Process payment</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Outstanding balances</div>
+            <table class="tbl">
+              <thead><tr><th>Family</th><th>Student</th><th>Balance</th><th>Due date</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight:500">Al-Rashid</td><td>Kareem O.</td><td style="font-weight:500;color:var(--red)">$3,200</td><td style="color:var(--red)">Mar 1 overdue</td><td><span class="pill red">Overdue 31d</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Remind</span></td></tr>
+                <tr><td style="font-weight:500">Ibrahim A.</td><td>Youssef A.</td><td style="font-weight:500;color:var(--red)">$3,200</td><td style="color:var(--red)">Mar 15 overdue</td><td><span class="pill red">Overdue 17d</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Remind</span></td></tr>
+                <tr><td style="font-weight:500">Omar R.</td><td>Khalid R.</td><td style="font-weight:500;color:var(--warn)">$1,600</td><td style="color:var(--warn)">Apr 15</td><td><span class="pill warn">Due soon</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">View</span></td></tr>
+                <tr><td style="font-weight:500">Nadia H.</td><td>Rayan A.</td><td style="font-weight:500;color:var(--warn)">$2,400</td><td style="color:var(--warn)">Apr 1</td><td><span class="pill warn">Due today</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">Collect</span></td></tr>
+                <tr><td style="font-weight:500">Fatima S.</td><td>Noor S.</td><td style="font-weight:500;color:var(--warn)">$1,600</td><td>Apr 20</td><td><span class="pill gold">Partial paid</span></td><td><span style="font-size:12px;color:var(--navy);cursor:pointer;font-weight:500">View</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI ASSISTANT -->
+      <div id="s-ai-assistant" class="screen">
+        <div class="page-hdr">
+          <div><div class="page-title">AI curriculum assistant</div><div class="page-sub">Powered by Gemini · Al-Hikma curriculum knowledge base · Grade 3</div></div>
+          <div style="display:flex;gap:8px"><div class="sec-btn">View history</div><div class="prim-btn">Manage knowledge base</div></div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Ask the curriculum assistant</div>
+            <div class="ai-chat">
+              <div class="ai-bubble ai"><div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><div style="width:22px;height:22px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff">AI</div><span style="font-size:12px;font-weight:500;color:var(--t1)">Al-Hikma AI</span></div>Hello! I can help you understand any topic from the Grade 3 curriculum. What would you like to learn today?</div>
+              <div style="align-self:flex-end"><div class="ai-bubble user">Can you explain the five pillars of Islam in a way that's easy for me to remember?</div></div>
+              <div class="ai-bubble ai">Of course! The five pillars are the foundation of Islam. Think of them as five things every Muslim does:<br><br><strong>1. Shahada</strong> — saying "There is no god but Allah"<br><strong>2. Salah</strong> — praying five times a day<br><strong>3. Zakat</strong> — giving to those in need<br><strong>4. Sawm</strong> — fasting during Ramadan<br><strong>5. Hajj</strong> — the pilgrimage to Mecca<br><br>Would you like a quiz to test your memory?</div>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:8px"><input class="form-input" placeholder="Ask about any lesson or topic..." style="flex:1"><div class="prim-btn">Ask</div></div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <div class="card-title">Knowledge base coverage</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Islamic Studies</span><span style="font-size:12px;font-weight:500;color:var(--ok)">100%</span></div><div class="grade-bar"><div class="grade-fill" style="width:100%;background:var(--ok)"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Arabic Language</span><span style="font-size:12px;font-weight:500;color:var(--ok)">94%</span></div><div class="grade-bar"><div class="grade-fill" style="width:94%;background:var(--ok)"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Mathematics</span><span style="font-size:12px;font-weight:500;color:var(--ok)">100%</span></div><div class="grade-bar"><div class="grade-fill" style="width:100%;background:var(--ok)"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">English Language</span><span style="font-size:12px;font-weight:500;color:var(--warn)">72%</span></div><div class="grade-bar"><div class="grade-fill" style="width:72%;background:var(--warn)"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--t2)">Science</span><span style="font-size:12px;font-weight:500;color:var(--warn)">68%</span></div><div class="grade-bar"><div class="grade-fill" style="width:68%;background:var(--warn)"></div></div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Today's AI activity</div>
+              <div class="timeline-item"><div class="timeline-dot green"></div><div><div style="font-size:13px;color:var(--t1)">47 student queries answered</div><div style="font-size:11px;color:var(--t3)">8:00 AM – now · 100% resolved</div></div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div><div style="font-size:13px;color:var(--t1)">3 queries flagged for teacher review</div><div style="font-size:11px;color:var(--t3)">Content safety filter triggered</div></div></div>
+              <div class="timeline-item"><div class="timeline-dot"></div><div><div style="font-size:13px;color:var(--t1)">Most asked: Pillars of Islam (12)</div><div style="font-size:11px;color:var(--t3)">Grade 3 · Islamic Studies unit 4</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div></div>
+</div>
+
+<div class="content">
+  <div class="cs">
+    <div class="two-col">
+      <div>
+        <div class="cs-eyebrow">The Brief</div>
+        <h2 class="cs-title">One school. Nine separate systems. All broken.</h2>
+        <p class="cs-body">The client was running a private Islamic school with student records in spreadsheets, fees tracked manually, and parent communication over WhatsApp. Staff were spending hours every week on administration that should take minutes. <strong>They needed a single platform their entire school could run on</strong> — from the principal's dashboard to the parent's phone.</p>
+      </div>
+      <div>
+        <div class="cs-eyebrow">The Scope</div>
+        <h2 class="cs-title">A full school OS. Nine modules. One login.</h2>
+        <p class="cs-body">We scoped and built a complete school administration and learning management system. Four user roles — admin, teacher, parent, and student — each with their own dashboard and permissions. Every module connects. Data flows between them automatically. <strong>No integrations, no third-party tools, no workarounds.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs">
+    <div class="cs-eyebrow">What We Built</div>
+    <h2 class="cs-title">Nine modules. Every one connected.</h2>
+    <div class="module-grid">
+      <div class="mod-card"><div class="mod-icon">🏫</div><div class="mod-title">Admin Dashboard</div><div class="mod-desc">School-wide overview. Enrollment counts, attendance rates, fee collection, and alerts — all in one view.</div></div>
+      <div class="mod-card"><div class="mod-icon">📋</div><div class="mod-title">Enrollment</div><div class="mod-desc">Online application flow. Document collection, approval workflow, and waitlist management.</div></div>
+      <div class="mod-card"><div class="mod-icon">👤</div><div class="mod-title">Student Records</div><div class="mod-desc">Full student profiles. Academic history, attendance record, parent contacts, and documents in one place.</div></div>
+      <div class="mod-card"><div class="mod-icon">📊</div><div class="mod-title">Gradebook</div><div class="mod-desc">Assignment creation, grading, and automated report card generation. Teachers grade once — parents see instantly.</div></div>
+      <div class="mod-card"><div class="mod-icon">✅</div><div class="mod-title">Attendance</div><div class="mod-desc">Daily attendance with one click per student. Automatic parent notification on absence. Monthly reports auto-generated.</div></div>
+      <div class="mod-card"><div class="mod-icon">👨‍👩‍👧</div><div class="mod-title">Parent Portal</div><div class="mod-desc">Parents see grades, attendance, announcements, and fee status in real time. No more chasing teachers over WhatsApp.</div></div>
+      <div class="mod-card"><div class="mod-icon">💳</div><div class="mod-title">Fees & Billing</div><div class="mod-desc">Tuition schedules, payment tracking, receipts, and overdue alerts. Parents pay online. Finance sees everything.</div></div>
+      <div class="mod-card"><div class="mod-icon">🤖</div><div class="mod-title">AI Assistant</div><div class="mod-desc">Built-in AI that answers staff questions, generates report summaries, and drafts parent communications.</div></div>
+      <div class="mod-card"><div class="mod-icon">📅</div><div class="mod-title">Teacher Dashboard</div><div class="mod-desc">Teacher's daily view — their classes, today's attendance, pending grades, and upcoming deadlines.</div></div>
+    </div>
+    <div class="nda-notice">
+      <span style="font-size:14px;flex-shrink:0">🔒</span>
+      <span>This project is under NDA. Client name and school identity are not disclosed. You are viewing this page because you have signed Startline's confidentiality agreement.</span>
+    </div>
+  </div>
+</div>
+
+<footer class="sl-footer">
+  <div class="sl-footer-inner">
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:26px;height:26px;background:#C8681A;border-radius:6px;display:flex;align-items:center;justify-content:center"><svg width="11" height="12" viewBox="0 0 11 13" fill="none"><path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="#0B2545"/></svg></div>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#fff">start<em style="font-style:normal;color:#C8681A">line</em></span>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:3px">Where Tech Founders Start · by Global Staffing</div>
+    </div>
+    <div style="display:flex;gap:20px;font-size:12px">
+      <a href="https://startline.build/#work" style="color:rgba(255,255,255,.4)">Our Work</a>
+      <a href="https://startline.build/#start" style="color:rgba(255,255,255,.4)">Start Your Project</a>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,.25);text-align:right;line-height:1.7">3 Parklane Blvd, Suite 1210W<br>Dearborn, MI 48126<br>info@staffva.com</div>
+  </div>
+  <div class="sl-footer-close">Where Tech Founders Start.</div>
+</footer>
+
+<script>
+function swA(id,btn){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  document.getElementById('s-'+id).classList.add('on');
+  document.querySelectorAll('.ns-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Medical Scribe for Nurses — Project Details — Startline</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0F1A;--bg2:#0E1422;--bg3:#121A2E;--bg4:#1A2440;
+  --blue:#2563EB;--blue2:rgba(37,99,235,0.12);--blue3:rgba(37,99,235,0.06);
+  --blue-lt:#60A5FA;--hipaa:#059669;--hipaa2:rgba(5,150,105,0.1);
+  --text:#E8EEF8;--muted:#4A6080;--dim:#1E3050;--faint:#162040;
+  --border:#1A2440;--border2:#243060;
+}
+body{font-family:'Epilogue',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.sl-nav{position:sticky;top:0;z-index:200;background:rgba(10,15,26,0.97);border-bottom:1px solid var(--border2);backdrop-filter:blur(12px)}
+.sl-nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;max-width:1160px;margin:0 auto}
+.sl-logo{display:flex;align-items:center;gap:9px}
+.sl-mark{width:26px;height:26px;background:#C8681A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sl-brand{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text)}
+.sl-brand em{font-style:normal;color:#C8681A}
+.sl-back{font-size:13px;color:var(--muted);transition:color .15s}
+.sl-back:hover{color:var(--text)}
+.sl-cta{background:var(--blue);color:#fff;padding:8px 20px;border-radius:7px;font-size:13px;font-weight:700}
+
+/* BREADCRUMB */
+.breadcrumb{padding:16px 40px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;max-width:1160px;margin:0 auto}
+.breadcrumb a{color:var(--muted);transition:color .15s}
+.breadcrumb a:hover{color:var(--blue-lt)}
+
+/* HEADER */
+.proj-header{max-width:1160px;margin:0 auto;padding:32px 40px 48px}
+.proj-tags{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.proj-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;border:1px solid var(--border2);color:var(--muted)}
+.proj-tag.live{border-color:rgba(5,150,105,.3);color:#34D399;background:rgba(5,150,105,.08)}
+.proj-tag.protected{border-color:rgba(37,99,235,.3);color:var(--blue-lt);background:rgba(37,99,235,.08)}
+.proj-h1{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;letter-spacing:-1.6px;line-height:1.0;margin-bottom:16px;color:var(--text)}
+.proj-h1 em{font-style:normal;color:var(--blue-lt)}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.badge{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 12px;border-radius:20px;background:var(--blue2);color:var(--blue-lt);border:1px solid rgba(37,99,235,.25)}
+.badge.hipaa{background:var(--hipaa2);color:#34D399;border-color:rgba(5,150,105,.25)}
+.proj-desc{font-size:17px;color:var(--muted);max-width:640px;line-height:1.75;margin-bottom:20px;font-weight:300}
+.client-protected{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.2);border-radius:10px;padding:12px 16px;margin-bottom:28px;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border2);border-radius:14px;overflow:hidden;background:var(--bg3)}
+.stat-b{padding:22px 26px;border-right:1px solid var(--border2)}
+.stat-b:last-child{border-right:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--blue-lt);line-height:1}
+.stat-l{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* APP SECTION */
+.app-section{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:52px 0;margin:0}
+.app-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:16px;display:flex;align-items:center;gap:10px;max-width:1160px;margin-left:auto;margin-right:auto;padding:0 40px}
+.app-label::after{content:'';flex:1;height:1px;background:var(--border2)}
+.app-inner{max-width:1160px;margin:0 auto;padding:0 40px}
+
+/* CONTENT */
+.content{max-width:1160px;margin:0 auto;padding:0 40px}
+.cs{padding:56px 0;border-top:1px solid var(--border2)}
+.cs-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:12px}
+.cs-title{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.6px;line-height:1.1;margin-bottom:14px;color:var(--text)}
+.cs-body{font-size:15px;color:var(--muted);line-height:1.8;max-width:580px}
+.cs-body strong{color:var(--text);font-weight:500}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
+.feat-card{background:var(--bg3);border:1px solid var(--border2);border-radius:11px;padding:18px}
+.feat-icon{font-size:20px;margin-bottom:8px}
+.feat-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.feat-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.nda-notice{background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.18);border-radius:10px;padding:14px 18px;margin-top:32px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}
+
+/* FOOTER */
+.sl-footer{background:var(--bg);border-top:1px solid var(--border2);padding:36px 40px}
+.sl-footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:28px;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.sl-footer-close{text-align:center;padding-top:24px;font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(37,99,235,.06);letter-spacing:-.5px;max-width:1160px;margin:0 auto}
+
+/* MEDICAL SCRIBE APP */
+
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .hero { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #10b981 100%); color: white; padding: 80px 40px; text-align: center; }
+  .hero h1 { font-size: 3em; margin-bottom: 12px; font-weight: 700; }
+  .hero p { font-size: 1.25em; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin: 4px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 60px 0; }
+  .section-title { font-size: 1.8em; font-weight: 700; margin-bottom: 8px; color: var(--primary-dark); }
+  .section-subtitle { color: var(--muted); font-size: 1.1em; margin-bottom: 32px; }
+  .page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+  @media (max-width: 768px) { .page-grid { grid-template-columns: 1fr; } }
+  .page-card { background: var(--card); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid var(--border); }
+  .page-card .screen { background: #1e293b; padding: 24px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
+  .page-card .screen-mobile { max-width: 260px; margin: 0 auto; background: #0f172a; border-radius: 24px; padding: 16px; border: 2px solid #334155; }
+  .page-card .info { padding: 20px 24px; }
+  .page-card .info h3 { font-size: 1.15em; margin-bottom: 6px; }
+  .page-card .info p { color: var(--muted); font-size: 0.92em; }
+  .role-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; margin-right: 4px; }
+  .role-nurse { background: #dbeafe; color: #1e40af; }
+  .role-qa { background: #fce7f3; color: #9d174d; }
+  .role-scheduler { background: #d1fae5; color: #065f46; }
+  .role-admin { background: #fef3c7; color: #92400e; }
+  /* Mock UI elements */
+  .mock-bar { background: #334155; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .mock-bar .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .mock-bar .dot.green { background: var(--accent); }
+  .mock-bar .dot.yellow { background: var(--warning); }
+  .mock-bar .dot.red { background: var(--danger); }
+  .mock-bar .dot.blue { background: var(--primary); }
+  .mock-bar .label { color: #94a3b8; font-size: 0.8em; flex: 1; }
+  .mock-bar .value { color: #e2e8f0; font-size: 0.85em; font-weight: 600; }
+  .mock-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .mock-field { background: #334155; border-radius: 6px; padding: 8px 12px; flex: 1; }
+  .mock-field .lbl { color: #64748b; font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.5px; }
+  .mock-field .val { color: #f1f5f9; font-size: 0.85em; font-weight: 500; margin-top: 2px; }
+  .mock-btn { display: inline-block; padding: 6px 16px; border-radius: 8px; font-size: 0.8em; font-weight: 600; }
+  .mock-btn.primary { background: var(--primary); color: white; }
+  .mock-btn.success { background: var(--accent); color: white; }
+  .mock-btn.danger { background: var(--danger); color: white; }
+  .mock-btn.warning { background: var(--warning); color: #1e293b; }
+  .mock-suggestion { background: #1e3a5f; border-left: 3px solid var(--primary); border-radius: 0 8px 8px 0; padding: 8px 12px; margin-bottom: 6px; }
+  .mock-suggestion .src { color: #60a5fa; font-size: 0.7em; }
+  .mock-suggestion .txt { color: #e2e8f0; font-size: 0.82em; margin-top: 2px; }
+  .mock-suggestion .actions { margin-top: 4px; display: flex; gap: 6px; }
+  .mock-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .mock-calendar .day { background: #334155; border-radius: 4px; padding: 4px; text-align: center; color: #94a3b8; font-size: 0.7em; min-height: 32px; }
+  .mock-calendar .day.has-visit { background: #1e3a5f; color: #60a5fa; }
+  .mock-calendar .day.today { border: 1px solid var(--primary); color: white; }
+  .mock-waveform { display: flex; align-items: flex-end; gap: 2px; height: 40px; justify-content: center; margin: 12px 0; }
+  .mock-waveform .bar { width: 3px; background: var(--accent); border-radius: 2px; animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  .mock-body { position: relative; width: 80px; height: 160px; margin: 0 auto; }
+  .mock-body .outline { width: 80px; height: 160px; border: 2px solid #475569; border-radius: 40px 40px 4px 4px; background: #1e293b; }
+  .mock-body .wound-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; }
+  .mock-body .wound-dot.w1 { background: var(--danger); top: 60px; left: 20px; }
+  .mock-body .wound-dot.w2 { background: var(--warning); top: 120px; left: 50px; }
+  .flow-section { background: white; border-radius: 16px; padding: 32px; margin-bottom: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .flow-steps { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .flow-step { background: var(--primary); color: white; padding: 10px 18px; border-radius: 10px; font-size: 0.9em; font-weight: 600; }
+  .flow-arrow { color: var(--muted); font-size: 1.4em; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .stat-card .num { font-size: 2em; font-weight: 700; color: var(--primary); }
+  .stat-card .lbl { color: var(--muted); font-size: 0.85em; }
+  .feature-list { list-style: none; padding: 0; }
+  .feature-list li { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .feature-list li:last-child { border: none; }
+  .feature-list .check { color: var(--accent); font-weight: bold; font-size: 1.1em; }
+  .full-width { grid-column: 1 / -1; }
+  .footer { background: #1e293b; color: #94a3b8; padding: 40px; text-align: center; }
+  .footer a { color: #60a5fa; text-decoration: none; }
+  .toc { background: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .toc h2 { margin-bottom: 16px; font-size: 1.2em; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; }
+  .toc a { color: var(--primary); text-decoration: none; font-size: 0.95em; padding: 4px 0; display: block; }
+  .toc a:hover { text-decoration: underline; }
+  .hipaa-badge { background: #dc2626; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7em; font-weight: 700; vertical-align: middle; margin-left: 6px; }
+
+</style>
+</head>
+<body>
+
+<nav class="sl-nav">
+  <div class="sl-nav-inner">
+    <a href="https://startline.build" class="sl-logo">
+      <div class="sl-mark"><svg width="11" height="12" viewBox="0 0 11 13" fill="none"><path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="white"/></svg></div>
+      <div class="sl-brand">start<em>line</em></div>
+    </a>
+    <a class="sl-back" href="https://startline.build/#work">← Back to Our Work</a>
+    <a class="sl-cta" href="https://startline.build/#start">Start Your Project</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://startline.build">Startline</a><span style="color:var(--dim)">›</span>
+  <a href="https://startline.build/#work">Our Work</a><span style="color:var(--dim)">›</span>
+  <span>Medical Scribe for Nurses</span>
+</div>
+
+<div class="proj-header">
+  <div class="proj-tags">
+    <span class="proj-tag">Healthcare · Mobile</span>
+    <span class="proj-tag">Project Details</span>
+    <span class="proj-tag live">● Live</span>
+    <span class="proj-tag protected">🔒 Client identity protected</span>
+    <span style="font-size:11px;color:var(--dim);margin-left:auto">Confidential — NDA required</span>
+  </div>
+  <h1 class="proj-h1">Medical Scribe<br><em>for Nurses</em></h1>
+  <div class="badge-row">
+    <span class="badge hipaa">HIPAA Compliant</span>
+    <span class="badge">Real-Time AI</span>
+    <span class="badge">Voice-First</span>
+    <span class="badge">Multi-Role</span>
+  </div>
+  <p class="proj-desc">An AI-powered clinical documentation platform for home health nurses — voice recording, AI-assisted charting, QA review, and real-time streaming. Built to eliminate the documentation burden that's burning out the nursing workforce.</p>
+  <div class="client-protected">
+    <span style="font-size:15px;flex-shrink:0">🔒</span>
+    <span>Client identity is protected under a separate NDA. The client name, organization, and logo are not disclosed at any stage — including to signed NDA holders.</span>
+  </div>
+  <div class="stat-strip">
+    <div class="stat-b"><div class="stat-n">89</div><div class="stat-l">API endpoints</div></div>
+    <div class="stat-b"><div class="stat-n">4</div><div class="stat-l">User roles</div></div>
+    <div class="stat-b"><div class="stat-n">18</div><div class="stat-l">Platform screens</div></div>
+    <div class="stat-b"><div class="stat-n">Live</div><div class="stat-l">Production deployed</div></div>
+  </div>
+</div>
+
+<div class="app-section">
+  <div class="app-label">Platform Walkthrough — 18 Screens</div>
+  <div class="app-inner"><!-- Hero -->
+</div>
+
+
+
+<!-- Stats -->
+
+    <div class="stat-card"><div class="num">4</div><div class="lbl">User Roles</div></div>
+    <div class="stat-card"><div class="num">3</div><div class="lbl">Visit Templates</div></div>
+    <div class="stat-card"><div class="num">7</div><div class="lbl">Security Layers</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+</div>
+
+<!-- Visit Lifecycle Flow -->
+<div class="flow-section">
+  <h3 style="margin-bottom: 16px; color: var(--primary-dark);">Visit Lifecycle</h3>
+  <div class="flow-steps">
+    <div class="flow-step">Scheduled</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">Start Visit</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">Record + Chart</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">AI Suggestions</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">Sign Note</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">QA Review</div><span class="flow-arrow">&rarr;</span>
+    <div class="flow-step" style="background: var(--accent);">Billing</div>
+  </div>
+</div>
+
+<!-- Page 1: Login -->
+<div class="section" id="login">
+  <h2 class="section-title">1. Login &amp; Authentication</h2>
+  <p class="section-subtitle">Secure multi-method authentication with HIPAA-grade protections</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen">
+        <div class="screen-mobile">
+          <div style="text-align:center; padding: 20px 0;">
+            <div style="font-size: 1.8em; font-weight: 700; color: #60a5fa; margin-bottom: 16px;">Medical Scribe for Nurses</div>
+            <div class="mock-field" style="margin-bottom: 8px;"><div class="lbl">Email</div><div class="val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="37594245445277545b5e595e541954585a">[email&#160;protected]</a></div></div>
+            <div class="mock-field" style="margin-bottom: 16px;"><div class="lbl">Password</div><div class="val">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div></div>
+            <div class="mock-btn primary" style="width: 100%; text-align: center;">Sign In</div>
+            <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: center;">
+              <div class="mock-btn" style="background: #334155; color: white; font-size: 0.75em;">Google</div>
+              <div class="mock-btn" style="background: #334155; color: white; font-size: 0.75em;">Apple</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Login Screen</h3>
+        <p>Email/password + Google/Apple social login. JWT or OAuth2 token pair. Argon2 password hashing. Account lockout after 5 failed attempts (1 hour cooldown).</p>
+        <div style="margin-top: 8px;">
+          <span class="role-badge role-nurse">Nurse</span>
+          <span class="role-badge role-qa">QA / Head Nurse</span>
+          <span class="role-badge role-scheduler">Scheduler</span>
+          <span class="role-badge role-admin">Admin</span>
+        </div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 32px;">
+        <h3 style="color: #60a5fa; margin-bottom: 16px;">Security Features</h3>
+        <ul class="feature-list">
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">JWT + OAuth2 dual token support</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Google &amp; Apple social login (PKCE)</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Token rotation on refresh</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">12-char minimum password (HIPAA)</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Brute-force protection (django-axes)</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Rate limiting: 5/min login, 300/min API</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Field-level encryption (Fernet AES-128)</span></li>
+        </ul>
+      </div>
+      <div class="info">
+        <h3>HIPAA Security Stack</h3>
+        <p>Encryption at rest and in transit. Immutable audit logging. Argon2 hashing. HTTPS enforced. Session blacklisting on logout.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 2: Nurse Home -->
+<div class="section" id="home">
+  <h2 class="section-title">2. Nurse Home &mdash; 10-Day View</h2>
+  <p class="section-subtitle">At-a-glance view of upcoming, in-progress, and pending visits</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #94a3b8; font-size: 0.8em; margin-bottom: 12px;">TODAY &mdash; March 29, 2026</div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">Dorothy M. &mdash; SN Routine</div><div class="value">9:00 AM</div><div class="mock-btn success" style="font-size: 0.7em;">Start</div></div>
+        <div class="mock-bar"><div class="dot blue"></div><div class="label">Robert K. &mdash; HHA Visit</div><div class="value">11:30 AM</div><div class="mock-btn primary" style="font-size: 0.7em;">Start</div></div>
+        <div class="mock-bar"><div class="dot yellow"></div><div class="label">Evelyn S. &mdash; SN Routine</div><div class="value">2:00 PM</div><span class="mock-btn warning" style="font-size: 0.7em;">Reschedule</span></div>
+        <div style="color: #94a3b8; font-size: 0.8em; margin: 12px 0 8px;">TOMORROW &mdash; March 30</div>
+        <div class="mock-bar"><div class="dot blue"></div><div class="label">John P. &mdash; Homemaker</div><div class="value">10:00 AM</div></div>
+        <div class="mock-bar"><div class="dot blue"></div><div class="label">Mary T. &mdash; SN Routine</div><div class="value">1:00 PM</div></div>
+      </div>
+      <div class="info">
+        <h3>10-Day Rolling View</h3>
+        <p>Shows all assigned visits for the next 10 days. Color-coded status badges: green (ready), blue (upcoming), amber (overdue &lt;4h), red (missed &gt;4h / past 6pm). Resume banner if visit is in progress. Quick actions: Start Visit, Request Reschedule, Report Missed.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 3: Schedule -->
+<div class="section" id="schedule">
+  <h2 class="section-title">3. Schedule &mdash; Calendar Views</h2>
+  <p class="section-subtitle">Day, week, and month views with discipline-coded visit cards</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 6px; margin-bottom: 12px;">
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Day</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Week</div>
+          <div class="mock-btn primary" style="font-size: 0.75em;">Month</div>
+        </div>
+        <div class="mock-calendar">
+          <div class="day">M</div><div class="day">T</div><div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div><div class="day">S</div>
+          <div class="day">1</div><div class="day has-visit">2</div><div class="day">3</div><div class="day has-visit">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+          <div class="day has-visit">8</div><div class="day">9</div><div class="day has-visit">10</div><div class="day">11</div><div class="day has-visit">12</div><div class="day">13</div><div class="day">14</div>
+          <div class="day">15</div><div class="day has-visit">16</div><div class="day">17</div><div class="day today has-visit">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Month View</h3>
+        <p>Calendar with visit count per day. Tap a day to see visit cards. Color-coded by discipline: RN (rose), HHA (amber), Homemaker (violet).</p>
+        <span class="role-badge role-nurse">Nurse</span>
+        <span class="role-badge role-scheduler">Scheduler</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #94a3b8; font-size: 0.8em; margin-bottom: 8px;">FILTERS</div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">Show: All visits</div></div>
+        <div class="mock-bar"><div class="dot blue"></div><div class="label">Category: SN Routine, HHA, Homemaker</div></div>
+        <div class="mock-bar"><div class="dot yellow"></div><div class="label">Status: Overdue, Missed, Reschedule</div></div>
+        <div style="color: #94a3b8; font-size: 0.8em; margin: 12px 0 8px;">UNASSIGNED VISITS</div>
+        <div class="mock-bar"><div class="dot red"></div><div class="label">Dorothy M. &mdash; SN Routine</div><div class="mock-btn primary" style="font-size: 0.7em;">Assign</div></div>
+        <div class="mock-bar"><div class="dot red"></div><div class="label">Robert K. &mdash; HHA Visit</div><div class="mock-btn primary" style="font-size: 0.7em;">Assign</div></div>
+      </div>
+      <div class="info">
+        <h3>Filters &amp; Unassigned Queue</h3>
+        <p>Multi-select filters by category, status, and discipline. Unassigned visits panel with clinician assignment dropdown. Bulk schedule generation from episode frequency.</p>
+        <span class="role-badge role-scheduler">Scheduler</span>
+        <span class="role-badge role-admin">Admin</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 4: Start Visit -->
+<div class="section" id="start-visit">
+  <h2 class="section-title">4. Start Visit</h2>
+  <p class="section-subtitle">Confirm patient, capture geolocation, begin the visit</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen">
+        <div class="screen-mobile">
+          <div style="padding: 12px 0; text-align: center;">
+            <div style="color: #60a5fa; font-size: 0.8em;">VISIT CONFIRMATION</div>
+            <div style="color: white; font-size: 1.1em; font-weight: 600; margin: 8px 0;">Dorothy Mitchell</div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Date</div><div class="val">March 29, 2026</div></div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Time</div><div class="val">9:00 AM</div></div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Type</div><div class="val">SN Routine Visit</div></div>
+            <div class="mock-field" style="margin-bottom: 12px;"><div class="lbl">Location</div><div class="val">GPS: 29.76, -95.37</div></div>
+            <div class="mock-btn success" style="width: 100%; text-align: center;">Start Visit</div>
+            <div style="margin-top: 8px;">
+              <div class="mock-btn warning" style="width: 100%; text-align: center; font-size: 0.75em;">Request Reschedule</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Visit Setup</h3>
+        <p>Confirms patient and schedule. Auto-captures GPS coordinates for check-in. Records <code>started_at</code> server timestamp. Option to request reschedule or report an issue before starting.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 32px;">
+        <h3 style="color: #60a5fa; margin-bottom: 16px;">On Start Visit</h3>
+        <ul class="feature-list">
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Status: upcoming &rarr; in_progress</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Server timestamp recorded</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">GPS check-in logged</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">12-hour recording window starts</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Previous visit data available for carry-forward</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Audit log entry created</span></li>
+        </ul>
+      </div>
+      <div class="info">
+        <h3>Backend Actions</h3>
+        <p>The <code>POST /start/</code> endpoint handles all state transitions atomically. Geolocation is encrypted at rest.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 5: Recording -->
+<div class="section" id="recording">
+  <h2 class="section-title">5. Voice Recording</h2>
+  <p class="section-subtitle">Capture the nurse-patient conversation for AI processing</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen">
+        <div class="screen-mobile">
+          <div style="text-align: center; padding: 16px 0;">
+            <div style="color: var(--accent); font-size: 0.8em; font-weight: 600;">RECORDING</div>
+            <div style="color: white; font-size: 2em; font-weight: 700; margin: 8px 0;">12:34</div>
+            <div class="mock-waveform">
+              <div class="bar" style="height: 15px; animation-delay: 0s;"></div>
+              <div class="bar" style="height: 28px; animation-delay: 0.1s;"></div>
+              <div class="bar" style="height: 35px; animation-delay: 0.2s;"></div>
+              <div class="bar" style="height: 20px; animation-delay: 0.3s;"></div>
+              <div class="bar" style="height: 40px; animation-delay: 0.4s;"></div>
+              <div class="bar" style="height: 25px; animation-delay: 0.5s;"></div>
+              <div class="bar" style="height: 32px; animation-delay: 0.6s;"></div>
+              <div class="bar" style="height: 18px; animation-delay: 0.7s;"></div>
+              <div class="bar" style="height: 38px; animation-delay: 0.8s;"></div>
+              <div class="bar" style="height: 22px; animation-delay: 0.9s;"></div>
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: center; margin-top: 12px;">
+              <div class="mock-btn warning" style="font-size: 0.8em;">Pause</div>
+              <div class="mock-btn danger" style="font-size: 0.8em;">End</div>
+            </div>
+            <div style="color: #64748b; font-size: 0.7em; margin-top: 12px;">Recording available for 11h 47m</div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Audio Capture</h3>
+        <p>State machine: Ready &rarr; Recording &rarr; Paused &rarr; Completed. Auto-resumes on app reopen. 12-hour recording window from visit start. Segments stored with timestamps.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">LIVE TRANSCRIPT</div>
+        <div style="background: #0f172a; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
+          <div style="color: #94a3b8; font-size: 0.7em;">NURSE</div>
+          <div style="color: #e2e8f0; font-size: 0.85em;">How's your blood pressure been this week?</div>
+        </div>
+        <div style="background: #0f172a; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
+          <div style="color: #94a3b8; font-size: 0.7em;">PATIENT</div>
+          <div style="color: #e2e8f0; font-size: 0.85em;">It's been around 140 over 88. I've been taking the Lisinopril every morning.</div>
+        </div>
+        <div style="background: #0f172a; border-radius: 8px; padding: 12px;">
+          <div style="color: #94a3b8; font-size: 0.7em;">NURSE</div>
+          <div style="color: #e2e8f0; font-size: 0.85em;">Good. Let me check your vitals now...</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Real-Time Transcription</h3>
+        <p>WebSocket live streaming with speaker diarization (nurse vs patient). Google Cloud Speech-to-Text. Transcript segments update in real-time with interim and final results.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 6: Charting -->
+<div class="section" id="charting">
+  <h2 class="section-title">6. Clinical Charting</h2>
+  <p class="section-subtitle">Template-driven form with collapsible sections and AI co-fill</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+          <div class="mock-btn primary" style="font-size: 0.75em;">Vitals</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Neuro</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Respiratory</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Cardiovascular</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Wound</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Medications</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Narrative</div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-field"><div class="lbl">BP Systolic</div><div class="val">140 <span style="color: #60a5fa; font-size: 0.8em;">AI</span></div></div>
+          <div class="mock-field"><div class="lbl">BP Diastolic</div><div class="val">88 <span style="color: #60a5fa; font-size: 0.8em;">AI</span></div></div>
+          <div class="mock-field"><div class="lbl">Heart Rate</div><div class="val">78</div></div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-field"><div class="lbl">SpO2</div><div class="val">97%</div></div>
+          <div class="mock-field"><div class="lbl">Temperature</div><div class="val">98.6 F</div></div>
+          <div class="mock-field"><div class="lbl">Weight</div><div class="val">165 lbs</div></div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-field" style="flex: 2;"><div class="lbl">Pain Score</div><div class="val">3/10 &mdash; Left knee, intermittent</div></div>
+          <div class="mock-field"><div class="lbl">Resp Rate</div><div class="val">18</div></div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Template-Based Forms</h3>
+        <p>3 templates: SN Routine (22 sections), HHA Visit (11 sections), Homemaker (8 sections). Each section has collapsible fields with AI suggestion indicators. Conditional field visibility (e.g., wound fields appear when wound_present=true). Auto-save every 5 seconds. Carry-forward from previous visits.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 7: AI Suggestions -->
+<div class="section" id="ai-suggestions">
+  <h2 class="section-title">7. AI Suggestions &mdash; Noora</h2>
+  <p class="section-subtitle">AI suggests, nurse decides. Every suggestion requires explicit acceptance.</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">AI SUGGESTIONS</div>
+        <div class="mock-suggestion">
+          <div class="src">From transcript &bull; High confidence</div>
+          <div class="txt">BP Systolic: <strong>140</strong></div>
+          <div class="actions">
+            <div class="mock-btn success" style="font-size: 0.65em;">Accept</div>
+            <div class="mock-btn danger" style="font-size: 0.65em;">Reject</div>
+            <div class="mock-btn" style="background: #475569; color: white; font-size: 0.65em;">Modify</div>
+          </div>
+        </div>
+        <div class="mock-suggestion">
+          <div class="src">From transcript &bull; Medium confidence</div>
+          <div class="txt">Weight: <strong>165 lbs</strong></div>
+          <div class="actions">
+            <div class="mock-btn success" style="font-size: 0.65em;">Accept</div>
+            <div class="mock-btn danger" style="font-size: 0.65em;">Reject</div>
+            <div class="mock-btn" style="background: #475569; color: white; font-size: 0.65em;">Modify</div>
+          </div>
+        </div>
+        <div class="mock-suggestion" style="border-left-color: var(--warning);">
+          <div class="src" style="color: var(--warning);">Clarification needed</div>
+          <div class="txt">Patient mentioned pain &mdash; which location?</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Suggestion Cards</h3>
+        <p>Each suggestion shows: extracted value, source text, confidence level (high/medium/low), and accept/reject/modify buttons. AI never auto-fills &mdash; all suggestions are "pending" until nurse acts.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">CLINICAL ALERTS</div>
+        <div class="mock-bar" style="border-left: 3px solid var(--danger);">
+          <div class="dot red"></div>
+          <div class="label" style="color: #fca5a5;">HARD STOP: SpO2 &lt; 90% &mdash; Contact physician immediately</div>
+        </div>
+        <div class="mock-bar" style="border-left: 3px solid var(--warning);">
+          <div class="dot yellow"></div>
+          <div class="label" style="color: #fcd34d;">Weight gain 4 lbs since last visit &mdash; possible fluid retention</div>
+        </div>
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin: 16px 0 12px;">TRIGGERS</div>
+        <div class="mock-bar" style="border-left: 3px solid #a78bfa;">
+          <div class="dot" style="background: #a78bfa;"></div>
+          <div class="label" style="color: #c4b5fd;">Physician notification: New medication documented &mdash; update EMR</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Alerts &amp; Triggers</h3>
+        <p>Deterministic safety checks: vital sign thresholds, cross-field inconsistencies. AI-enhanced risk detection. Triggers for real-world actions: physician notification, EMR updates, care plan changes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 8: Wound -->
+<div class="section" id="wound">
+  <h2 class="section-title">8. Wound Documentation <span class="hipaa-badge">PHI</span></h2>
+  <p class="section-subtitle">Interactive body diagram, clinical assessment, and HIPAA-compliant photo capture</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <div class="mock-body">
+            <div class="outline"></div>
+            <div class="wound-dot w1"></div>
+            <div class="wound-dot w2"></div>
+          </div>
+          <div style="flex: 1;">
+            <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 8px;">WOUND 1</div>
+            <div class="mock-field" style="margin-bottom: 4px;"><div class="lbl">Location</div><div class="val">Left heel</div></div>
+            <div class="mock-field" style="margin-bottom: 4px;"><div class="lbl">Type</div><div class="val">Pressure Ulcer</div></div>
+            <div class="mock-field" style="margin-bottom: 4px;"><div class="lbl">Stage</div><div class="val">II</div></div>
+            <div class="mock-row">
+              <div class="mock-field"><div class="lbl">L</div><div class="val">3.5</div></div>
+              <div class="mock-field"><div class="lbl">W</div><div class="val">2.0</div></div>
+              <div class="mock-field"><div class="lbl">D</div><div class="val">0.5</div></div>
+            </div>
+            <div class="mock-field" style="margin-top: 4px;"><div class="lbl">Progress</div><div class="val" style="color: #fca5a5;">New &mdash; Physician notified</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Body Diagram &amp; Wound Assessment</h3>
+        <p>Tap on body diagram to mark wound location (max 4). Full clinical fields: type, stage, size (L&times;W&times;D), undermining, tunneling, drainage, surrounding tissue. Progress tracking (new/changed/same). Physician notification flag.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">WOUND PHOTOS</div>
+        <div style="background: #0f172a; border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 12px;">
+          <div style="width: 120px; height: 90px; background: #1e293b; border-radius: 8px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed #475569;">
+            <div style="color: #475569; font-size: 2em;">&#128247;</div>
+          </div>
+          <div style="color: #94a3b8; font-size: 0.8em;">Left heel pressure ulcer, stage 2</div>
+        </div>
+        <div class="mock-btn primary" style="width: 100%; text-align: center; margin-bottom: 8px;">Take Photo</div>
+        <div style="background: #fef2f2; border-radius: 8px; padding: 10px; border: 1px solid #fca5a5;">
+          <div style="color: #dc2626; font-size: 0.75em; font-weight: 600;">HIPAA NOTICE</div>
+          <div style="color: #991b1b; font-size: 0.8em;">Wound photos are PHI. Patient consent required. No face or identifying marks. Access restricted to care team.</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Wound Photography (PHI-Protected)</h3>
+        <p>Patient consent required before first photo. Care team access only. Encrypted at rest. Full audit trail. PDF export available for clinical records. Camera framing guide to avoid identifying marks.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 9: Medications -->
+<div class="section" id="medications">
+  <h2 class="section-title">9. Medication Management</h2>
+  <p class="section-subtitle">Per-medication change tracking with EMR confirmation hard stop</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">MEDICATIONS</div>
+        <div class="mock-bar" style="border-left: 3px solid var(--accent);"><div class="label" style="color: #e2e8f0;">Lisinopril 10mg &mdash; Daily, Oral</div><div class="value" style="color: var(--accent);">No Change</div></div>
+        <div class="mock-bar" style="border-left: 3px solid var(--primary);"><div class="label" style="color: #e2e8f0;">Metformin 500mg &mdash; BID, Oral</div><div class="value" style="color: #60a5fa;">Dose Changed</div></div>
+        <div class="mock-bar" style="border-left: 3px solid var(--danger);"><div class="label" style="color: #e2e8f0;">Aspirin 81mg &mdash; Daily, Oral</div><div class="value" style="color: #fca5a5;">Discontinued</div></div>
+        <div class="mock-bar" style="border-left: 3px solid var(--warning);"><div class="label" style="color: #e2e8f0;">Amlodipine 5mg &mdash; Daily, Oral</div><div class="value" style="color: #fcd34d;">Added</div></div>
+        <div style="margin-top: 12px;">
+          <div class="mock-btn primary" style="width: 100%; text-align: center;">+ Add New Medication</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Per-Medication Tracking</h3>
+        <p>Each medication tracked individually: no_change, added, discontinued, dose_changed, frequency_changed, route_changed. AI triggers on "new med" keywords. Previous values preserved for comparison.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="background: #fef2f2; border-radius: 8px; padding: 16px; border: 1px solid #fca5a5; margin-bottom: 16px;">
+          <div style="color: #dc2626; font-size: 0.9em; font-weight: 700;">EMR Confirmation Required</div>
+          <div style="color: #991b1b; font-size: 0.85em; margin-top: 4px;">Medication changes detected. You must confirm all changes were added to the EMR before signing this visit note.</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #1e293b; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+          <div style="width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+            <div style="color: var(--accent); font-weight: bold;">&check;</div>
+          </div>
+          <div style="color: #e2e8f0; font-size: 0.9em;">I confirmed all changes were added to the EMR</div>
+        </div>
+        <div class="mock-btn success" style="width: 100%; text-align: center;">Sign Visit Note</div>
+      </div>
+      <div class="info">
+        <h3>EMR Hard Stop</h3>
+        <p>When medication or wound changes exist, the sign button is blocked until the nurse confirms EMR updates. Backend enforces this &mdash; <code>sign()</code> returns 400 if <code>emr_update_confirmed</code> is false.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 10: Sign -->
+<div class="section" id="sign">
+  <h2 class="section-title">10. Sign &amp; Submit</h2>
+  <p class="section-subtitle">Immutable signed snapshot with full audit trail</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen">
+        <div class="screen-mobile">
+          <div style="padding: 16px 0; text-align: center;">
+            <div style="color: var(--accent); font-size: 2em; margin-bottom: 8px;">&check;</div>
+            <div style="color: white; font-size: 1.1em; font-weight: 600;">Visit Note Signed</div>
+            <div style="color: #94a3b8; font-size: 0.85em; margin: 8px 0;">March 29, 2026 at 10:45 AM</div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Signer</div><div class="val">Sarah Johnson, RN</div></div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Status</div><div class="val">Signed &rarr; Awaiting QA</div></div>
+            <div class="mock-field"><div class="lbl">Snapshot</div><div class="val">Immutable copy saved</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Sign Visit Note</h3>
+        <p>Creates immutable snapshot of form data. Records signer, timestamp, IP, user agent. Creates VisitSignature record. Self-unlock available within 24 hours; after 24h requires QA approval.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 32px;">
+        <h3 style="color: #60a5fa; margin-bottom: 16px;">Post-Sign Workflows</h3>
+        <ul class="feature-list">
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Self-unlock within 24 hours</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Unlock request after 24 hours (QA approval)</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Addendums (append-only, never overwrite)</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">QA return for corrections</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Lock for billing after QA approval</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Export to Axxess billing system</span></li>
+          <li><span class="check">&check;</span> <span style="color: #e2e8f0;">Revert QA actions (10-second window)</span></li>
+        </ul>
+      </div>
+      <div class="info">
+        <h3>Full Audit Trail</h3>
+        <p>Every action logged: sign, unlock, QA return, QA approve, addendum, lock, export. Immutable version history. Action log with before/after state for undo support.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 11: QA Queue -->
+<div class="section" id="qa">
+  <h2 class="section-title">11. QA Review Queue</h2>
+  <p class="section-subtitle">Head nurse reviews signed visit notes for clinical accuracy</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
+          <div class="mock-btn primary" style="font-size: 0.75em;">Awaiting QA (12)</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Returned (3)</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Approved (28)</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Overdue (2)</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Priority (1)</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Unlock Requested (1)</div>
+        </div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">Dorothy M. &mdash; SN Routine &mdash; signed 2h ago</div><div class="mock-btn primary" style="font-size: 0.7em;">Review</div></div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">Robert K. &mdash; HHA Visit &mdash; signed 4h ago</div><div class="mock-btn primary" style="font-size: 0.7em;">Review</div></div>
+        <div class="mock-bar" style="border-left: 3px solid var(--warning);"><div class="dot yellow"></div><div class="label">Evelyn S. &mdash; SN Routine &mdash; signed 49h ago</div><div class="value" style="color: var(--warning);">OVERDUE</div><div class="mock-btn primary" style="font-size: 0.7em;">Review</div></div>
+      </div>
+      <div class="info">
+        <h3>QA Queue with Filters</h3>
+        <p>Filter by: awaiting QA, returned, approved, overdue (&gt;48h), priority, unlock requested. Sort by oldest/newest. 30-day lookback window, expandable. Visit type and discipline badges. Time-since-signed indicator.</p>
+        <span class="role-badge role-qa">QA / Head Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 12: QA Review Detail -->
+<div class="section" id="qa-review">
+  <h2 class="section-title">12. QA Review Detail</h2>
+  <p class="section-subtitle">Comprehensive review with checklists, tags, and wound issue tracking</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 8px;">QA CHECKLIST</div>
+        <div class="mock-bar"><div style="color: var(--accent);">&check;</div><div class="label" style="color: #e2e8f0;">Homebound status documented</div></div>
+        <div class="mock-bar"><div style="color: var(--accent);">&check;</div><div class="label" style="color: #e2e8f0;">Medical necessity justified</div></div>
+        <div class="mock-bar"><div style="color: var(--danger);">&times;</div><div class="label" style="color: #e2e8f0;">Vitals complete</div></div>
+        <div class="mock-bar"><div style="color: var(--accent);">&check;</div><div class="label" style="color: #e2e8f0;">Wound assessment complete</div></div>
+        <div class="mock-bar"><div style="color: var(--danger);">&times;</div><div class="label" style="color: #e2e8f0;">Medication reconciliation done</div></div>
+        <div style="margin-top: 12px; display: flex; gap: 8px;">
+          <div class="mock-btn success">Approve</div>
+          <div class="mock-btn danger">Return</div>
+          <div class="mock-btn warning">Request Addendum</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Dynamic Checklist &amp; Actions</h3>
+        <p>Template-specific checklists (15-20 items). Return categories: homebound, medical necessity, interventions, missing fields. Wound issue tracking with field-level granularity. Priority flagging with reason.</p>
+        <span class="role-badge role-qa">QA / Head Nurse</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 8px;">RETURN REASON</div>
+        <div class="mock-field" style="margin-bottom: 8px;"><div class="lbl">Category</div><div class="val">Missing Fields</div></div>
+        <div class="mock-field" style="margin-bottom: 8px;"><div class="lbl">Tags</div><div class="val">Vitals, Medication, Narrative</div></div>
+        <div class="mock-field" style="margin-bottom: 8px;"><div class="lbl">Comment</div><div class="val">Please complete BP reading and medication reconciliation section before resubmitting.</div></div>
+        <div class="mock-field"><div class="lbl">Wound Issues</div><div class="val">Wound 1: missing drainage amount (field: drainage_amount)</div></div>
+      </div>
+      <div class="info">
+        <h3>Structured Return Feedback</h3>
+        <p>When returning a note: category + tags + comment + wound-specific issues. Nurse sees exactly what needs fixing. Resubmit triggers another QA cycle. Undo action available within 10 seconds.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 13: Patients -->
+<div class="section" id="patients">
+  <h2 class="section-title">13. Patient Management</h2>
+  <p class="section-subtitle">Encrypted patient records with episodes, documents, and visit history</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div class="mock-field" style="margin-bottom: 12px;"><div class="lbl">Search</div><div class="val">Search by name or MRN...</div></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Mitchell, Dorothy</strong> &mdash; MRN 10045</div><div class="value">3 visits</div></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Kennedy, Robert</strong> &mdash; MRN 10046</div><div class="value">5 visits</div></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Sullivan, Evelyn</strong> &mdash; MRN 10047</div><div class="value">2 visits</div></div>
+      </div>
+      <div class="info">
+        <h3>Patient List</h3>
+        <p>Searchable by name or MRN using HMAC blind indexes (search without decryption). All PII encrypted at rest: name, DOB, phone, address, diagnosis. 13+ encrypted fields per patient.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+        <span class="role-badge role-scheduler">Scheduler</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px;">PATIENT PROFILE</div>
+        <div class="mock-row">
+          <div class="mock-field"><div class="lbl">Name</div><div class="val">Dorothy Mitchell</div></div>
+          <div class="mock-field"><div class="lbl">DOB</div><div class="val">04/15/1942</div></div>
+        </div>
+        <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Diagnosis</div><div class="val">CHF, Hypertension, Type 2 DM</div></div>
+        <div style="color: #94a3b8; font-size: 0.8em; margin: 12px 0 6px;">DOCUMENTS</div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">SOC uploaded Mar 1</div></div>
+        <div class="mock-bar"><div class="dot green"></div><div class="label">POC uploaded Mar 1</div></div>
+        <div class="mock-bar"><div class="dot blue"></div><div class="label">Med List &mdash; Signed Mar 15</div></div>
+      </div>
+      <div class="info">
+        <h3>Patient Detail</h3>
+        <p>Demographics, episodes (one active per patient), documents (SOC, POC, Med List with signing), care events timeline, visit history. Stale data warnings for uploaded documents.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 14: Admin Dashboard -->
+<div class="section" id="admin">
+  <h2 class="section-title">14. Admin Dashboard</h2>
+  <p class="section-subtitle">Real-time operational metrics for agency management</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 16px;">
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Visits Today</div><div class="val" style="font-size: 1.4em; color: #60a5fa;">24</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">QA Pending</div><div class="val" style="font-size: 1.4em; color: var(--warning);">7</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Unassigned</div><div class="val" style="font-size: 1.4em; color: var(--danger);">3</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">In Progress</div><div class="val" style="font-size: 1.4em; color: var(--accent);">5</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Missed</div><div class="val" style="font-size: 1.4em; color: var(--danger);">1</div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Active Users</div><div class="val">12</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">QA Returned</div><div class="val">2</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Unlock Requests</div><div class="val">1</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Reschedule</div><div class="val">2</div></div>
+          <div class="mock-field" style="text-align: center;"><div class="lbl">Draft Overdue</div><div class="val">4</div></div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Dashboard Counters</h3>
+        <p>Real-time metrics: visits today, QA pending, unassigned, in-progress, missed, active users, reschedule requests, unlock requests, draft overdue. Configurable thresholds via Admin Settings.</p>
+        <span class="role-badge role-admin">Admin</span>
+        <span class="role-badge role-qa">Head Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 15: Users -->
+<div class="section" id="users">
+  <h2 class="section-title">15. User &amp; Staff Management</h2>
+  <p class="section-subtitle">CRUD clinicians, assign roles, manage access</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Sarah Johnson</strong> &mdash; RN</div><div class="value" style="color: var(--accent);">Active</div><span class="role-badge role-nurse" style="margin-left: 8px;">Nurse</span></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Maria Garcia</strong> &mdash; HHA</div><div class="value" style="color: var(--accent);">Active</div><span class="role-badge role-nurse" style="margin-left: 8px;">Nurse</span></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>James Anderson</strong> &mdash; RN</div><div class="value" style="color: var(--accent);">Active</div><span class="role-badge role-qa" style="margin-left: 8px;">QA</span></div>
+        <div class="mock-bar"><div class="label" style="color: #e2e8f0;"><strong>Lisa Smith</strong></div><div class="value" style="color: var(--accent);">Active</div><span class="role-badge role-scheduler" style="margin-left: 8px;">Scheduler</span></div>
+        <div style="margin-top: 12px; display: flex; gap: 8px;">
+          <div class="mock-btn primary">+ Create User</div>
+          <div class="mock-btn" style="background: #475569; color: white;">Reset Password</div>
+          <div class="mock-btn" style="background: #475569; color: white;">Toggle Active</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Clinician Management</h3>
+        <p>Create users, assign roles (nurse/head_nurse/scheduler/admin) and disciplines (RN/PT/OT/SLP/MSW/HHA/Homemaker). Reset passwords, toggle active status. Filter by role, discipline, active status.</p>
+        <span class="role-badge role-admin">Admin</span>
+        <span class="role-badge role-qa">Head Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 16: Reports -->
+<div class="section" id="reports">
+  <h2 class="section-title">16. Reports</h2>
+  <p class="section-subtitle">Operational, QA, staffing, and patient/service reports</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+          <div class="mock-btn primary" style="font-size: 0.75em;">Operational</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">QA Performance</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Staffing</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Patient / Service</div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-field"><div class="lbl">Date Range</div><div class="val">Last 30 days</div></div>
+          <div class="mock-field"><div class="lbl">Group By</div><div class="val">Clinician</div></div>
+          <div class="mock-field"><div class="lbl">Visit Type</div><div class="val">All</div></div>
+        </div>
+        <div style="margin-top: 12px; background: #0f172a; border-radius: 8px; padding: 12px;">
+          <div style="color: #94a3b8; font-size: 0.75em; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 8px;">
+            <div>Clinician</div><div>Visits</div><div>Signed</div><div>QA Rate</div><div>Avg Time</div>
+          </div>
+          <div style="color: #e2e8f0; font-size: 0.85em; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <div>Sarah Johnson, RN</div><div>24</div><div>22</div><div>95%</div><div>45 min</div>
+          </div>
+          <div style="color: #e2e8f0; font-size: 0.85em; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 8px; margin-top: 4px;">
+            <div>Maria Garcia, HHA</div><div>18</div><div>18</div><div>100%</div><div>32 min</div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Report Builder</h3>
+        <p>4 report families: Operational, QA, Staffing, Patient/Service. Configurable date range, filters, grouping, and sorting. Summary metrics with totals and averages. CSV export and print support.</p>
+        <span class="role-badge role-admin">Admin</span>
+        <span class="role-badge role-qa">Head Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 17: Live Streaming -->
+<div class="section" id="live">
+  <h2 class="section-title">17. Live Streaming &mdash; Real-Time AI</h2>
+  <p class="section-subtitle">WebSocket audio streaming with instant AI suggestions as the nurse talks</p>
+  <div class="page-grid">
+    <div class="page-card full-width">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 20px;">
+          <div style="flex: 1;">
+            <div style="color: var(--accent); font-size: 0.85em; font-weight: 600; margin-bottom: 8px;">LIVE TRANSCRIPT</div>
+            <div style="background: #0f172a; border-radius: 8px; padding: 10px; margin-bottom: 6px;">
+              <span style="color: #94a3b8; font-size: 0.7em;">NURSE:</span>
+              <span style="color: #e2e8f0; font-size: 0.85em;"> Blood pressure today is 140 over 88.</span>
+            </div>
+            <div style="background: #0f172a; border-radius: 8px; padding: 10px; margin-bottom: 6px;">
+              <span style="color: #94a3b8; font-size: 0.7em;">PATIENT:</span>
+              <span style="color: #e2e8f0; font-size: 0.85em;"> I've been feeling short of breath going up stairs.</span>
+            </div>
+            <div style="background: #0f172a; border-radius: 8px; padding: 10px; border: 1px dashed #475569;">
+              <span style="color: #475569; font-size: 0.85em; font-style: italic;">Listening...</span>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 8px;">REAL-TIME SUGGESTIONS</div>
+            <div class="mock-suggestion">
+              <div class="src">Just extracted &bull; High</div>
+              <div class="txt">BP: <strong>140/88</strong></div>
+              <div class="actions">
+                <div class="mock-btn success" style="font-size: 0.65em;">Accept</div>
+                <div class="mock-btn danger" style="font-size: 0.65em;">Reject</div>
+              </div>
+            </div>
+            <div class="mock-suggestion" style="border-left-color: var(--warning);">
+              <div class="src" style="color: var(--warning);">Clarification</div>
+              <div class="txt">Shortness of breath &mdash; at rest or exertion only?</div>
+            </div>
+            <div class="mock-bar" style="border-left: 3px solid var(--warning); margin-top: 8px;">
+              <div class="dot yellow"></div>
+              <div class="label" style="color: #fcd34d; font-size: 0.8em;">Alert: SOB documented &mdash; check SpO2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Real-Time AI Pipeline</h3>
+        <p>WebSocket connection streams audio in real-time. Google Cloud Speech-to-Text with speaker diarization. AI pipeline triggers every 2-second silence gap or every 60 seconds. Suggestions, alerts, and clarifications appear as the conversation happens. Session reconnection on network drops.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 18: Feedback -->
+<div class="section" id="feedback">
+  <h2 class="section-title">18. App Feedback &amp; AI Chat</h2>
+  <p class="section-subtitle">In-app feedback collection and AI assistant with multiple modes</p>
+  <div class="page-grid">
+    <div class="page-card">
+      <div class="screen">
+        <div class="screen-mobile">
+          <div style="padding: 12px 0;">
+            <div style="color: #60a5fa; font-size: 0.85em; font-weight: 600; margin-bottom: 12px; text-align: center;">SUBMIT FEEDBACK</div>
+            <div class="mock-field" style="margin-bottom: 6px;"><div class="lbl">Category</div><div class="val">Bug / Feature / Improvement / Other</div></div>
+            <div class="mock-field" style="margin-bottom: 6px; min-height: 60px;"><div class="lbl">Message</div><div class="val">Describe the issue or suggestion...</div></div>
+            <div class="mock-field" style="margin-bottom: 12px;"><div class="lbl">Screen</div><div class="val">visit-workflow</div></div>
+            <div class="mock-btn primary" style="width: 100%; text-align: center;">Submit</div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>App Feedback</h3>
+        <p>Users submit bug reports, feature requests, and improvement suggestions. Head nurses see all feedback; nurses see their own. Categorized for triage.</p>
+        <span class="role-badge role-nurse">All Roles</span>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="screen" style="padding: 20px;">
+        <div style="display: flex; gap: 6px; margin-bottom: 12px;">
+          <div class="mock-btn primary" style="font-size: 0.75em;">Clinical</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">App Help</div>
+          <div class="mock-btn" style="background: #475569; color: white; font-size: 0.75em;">Docs</div>
+        </div>
+        <div style="background: #0f172a; border-radius: 8px; padding: 10px; margin-bottom: 6px;">
+          <div style="color: #94a3b8; font-size: 0.7em;">YOU</div>
+          <div style="color: #e2e8f0; font-size: 0.85em;">What medications is this patient on?</div>
+        </div>
+        <div style="background: #1e3a5f; border-radius: 8px; padding: 10px;">
+          <div style="color: #60a5fa; font-size: 0.7em;">NOORA</div>
+          <div style="color: #e2e8f0; font-size: 0.85em;">Based on the patient context, Dorothy is currently on: Lisinopril 10mg daily, Metformin 500mg BID, and Furosemide 40mg daily.</div>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Noora &mdash; AI Chat Assistant</h3>
+        <p>3 modes: <strong>Clinical</strong> (visit context, patient history via RAG), <strong>App Help</strong> (how to use the app), <strong>Docs</strong> (clinical guidelines and protocols). Maintains conversation history.</p>
+        <span class="role-badge role-nurse">Nurse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<div class="footer">
+  <p><strong>Medical Scribe for Nurses</strong> &mdash; AI-Powered Clinical Documentation for Home Health</p>
+  <p style="margin-top: 8px;">89 API endpoints &bull; 4 user roles &bull; HIPAA compliant &bull; Real-time AI &bull; Field-level encryption</p>
+  <p styl</div>
+</div>
+
+<div class="content">
+  <div class="cs">
+    <div class="two-col">
+      <div>
+        <div class="cs-eyebrow">The Brief</div>
+        <h2 class="cs-title">Nurses spending more time documenting than with patients.</h2>
+        <p class="cs-body">Home health nurses were spending 2–3 hours per shift on clinical documentation — writing SOAP notes, charting vitals, documenting wound care — on paper or in clunky EHR systems not built for mobile. <strong>The client needed a voice-first AI platform that reduced documentation time by 70%</strong> while maintaining full HIPAA compliance.</p>
+      </div>
+      <div>
+        <div class="cs-eyebrow">The Scope</div>
+        <h2 class="cs-title">Voice in. Clinical note out. QA reviewed. Submitted.</h2>
+        <p class="cs-body">A full clinical documentation workflow — nurse starts a visit, speaks into the app, AI transcribes and structures the note, supervisor reviews in the QA queue, and the note is submitted to the EHR. <strong>Four roles: nurse, supervisor, admin, and patient.</strong> 89 API endpoints. Real-time AI. Full audit trail for compliance.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs">
+    <div class="cs-eyebrow">What We Built</div>
+    <h2 class="cs-title">Every step of the clinical workflow. End to end.</h2>
+    <div class="feature-grid">
+      <div class="feat-card"><div class="feat-icon">🎙</div><div class="feat-title">Voice Recording</div><div class="feat-desc">Nurse speaks during the visit. App records and transcribes in real time. No typing required in the field.</div></div>
+      <div class="feat-card"><div class="feat-icon">🤖</div><div class="feat-title">AI Clinical Charting</div><div class="feat-desc">AI converts voice transcription into structured SOAP notes, automatically categorizing clinical findings.</div></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><div class="feat-title">QA Review Queue</div><div class="feat-desc">Supervisor reviews all completed notes before submission. Approve, request revision, or flag for compliance.</div></div>
+      <div class="feat-card"><div class="feat-icon">💊</div><div class="feat-title">Medication Management</div><div class="feat-desc">Full medication list per patient. Nurse documents administration during visit. Discrepancies flagged automatically.</div></div>
+      <div class="feat-card"><div class="feat-icon">🩹</div><div class="feat-title">Wound Documentation</div><div class="feat-desc">Structured wound assessment form with photo capture, measurement tracking, and healing progression over time.</div></div>
+      <div class="feat-card"><div class="feat-icon">📅</div><div class="feat-title">10-Day Schedule View</div><div class="feat-desc">Nurse sees their full visit schedule across 10 days. Start visit, log mileage, and manage their day from one screen.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔴</div><div class="feat-title">Live Streaming AI</div><div class="feat-desc">Real-time AI assistance during the visit. Nurse asks questions mid-visit — AI responds with clinically relevant guidance.</div></div>
+      <div class="feat-card"><div class="feat-icon">👥</div><div class="feat-title">Patient Management</div><div class="feat-desc">Full patient record — diagnosis, care plan, visit history, assigned nurses, and insurance in one place.</div></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Admin Dashboard</div><div class="feat-desc">Agency-wide view. Staff management, visit completion rates, compliance status, and billing-ready report export.</div></div>
+    </div>
+    <div class="nda-notice">
+      <span style="font-size:14px;flex-shrink:0">🔒</span>
+      <span>This project is under NDA. Client name and organizational identity are not disclosed at any stage — including to signed NDA holders. You are viewing this page because you have signed Startline's confidentiality agreement.</span>
+    </div>
+  </div>
+</div>
+
+<footer class="sl-footer">
+  <div class="sl-footer-inner">
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:26px;height:26px;background:#C8681A;border-radius:6px;display:flex;align-items:center;justify-content:center"><svg width="11" height="12" viewBox="0 0 11 13" fill="none"><path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="white"/></svg></div>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--text)">start<em style="font-style:normal;color:#C8681A">line</em></span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Where Tech Founders Start · by Global Staffing</div>
+    </div>
+    <div style="display:flex;gap:20px;font-size:12px">
+      <a href="https://startline.build/#work" style="color:var(--muted)">Our Work</a>
+      <a href="https://startline.build/#start" style="color:var(--muted)">Start Your Project</a>
+    </div>
+    <div style="font-size:11px;color:var(--dim);text-align:right;line-height:1.7">3 Parklane Blvd, Suite 1210W<br>Dearborn, MI 48126<br>info@staffva.com</div>
+  </div>
+  <div class="sl-footer-close">Where Tech Founders Start.</div>
+</footer>
+
+</body>
+</html>

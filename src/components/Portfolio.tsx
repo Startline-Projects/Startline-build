@@ -1,96 +1,128 @@
 'use client'
 import { useNDA } from '@/context/NDAContext'
 
-const projects = [
+interface Project {
+  emoji: string
+  imgBg: string
+  imgBlur: string
+  tag: string
+  redactedTitle: string
+  realTitle: string
+  titleBlur: boolean
+  desc: string
+  descColor: string
+  value: string
+  hasLiveBadge?: boolean
+  hasBorderBottom?: boolean
+  link?: { url: string; text: string; external: boolean }
+}
+
+const projects: Project[] = [
   {
     emoji: '🏪',
     imgBg: '#1C1B1A',
     imgBlur: '1px',
     tag: 'Our Platform · Talent Marketplace',
-    title: 'StaffVA',
+    redactedTitle: 'StaffVA',
+    realTitle: 'StaffVA',
     titleBlur: false,
     desc: 'Professional offshore talent marketplace. Launching to candidates April 6 · Launching to clients April 20.',
     descColor: 'var(--color-text-muted)',
     value: 'Live · Our Platform',
+    link: { url: 'https://staffva.com', text: 'View Platform ↗', external: true },
   },
   {
     emoji: '🤖',
     imgBg: '#0a1520',
     imgBlur: '1px',
     tag: 'Our Platform · AI SaaS',
-    title: 'StaffVA AI Interview',
+    redactedTitle: 'StaffVA AI Interview',
+    realTitle: 'StaffVA AI Interview',
     titleBlur: false,
     desc: 'AI-powered voice interview platform for candidate screening. White-label. Launching to clients April 20.',
     descColor: 'var(--color-text-muted)',
     value: 'Live · White-label available',
+    link: { url: 'https://interview.staffva.com', text: 'View Platform ↗', external: true },
   },
   {
     emoji: '🏦',
     imgBg: '#0d1e35',
     imgBlur: '1px',
     tag: 'Estate Planning · SaaS',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'Estate Vault',
     titleBlur: true,
     desc: 'White-label estate planning platform.',
     descColor: 'var(--color-text-dim)',
     value: 'Delivered',
+    link: { url: 'https://estatevault.us', text: 'View Live Site ↗', external: true },
   },
   {
     emoji: '⚖️',
     imgBg: '#061c14',
     imgBlur: '1px',
     tag: 'Legal Services · Web',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'The People\u2019s Firm',
     titleBlur: true,
     desc: 'Law firm website and client portal.',
     descColor: 'var(--color-text-dim)',
     value: 'Delivered',
+    link: { url: 'https://thepeoplesfirmpllc.com', text: 'View Live Site ↗', external: true },
   },
   {
     emoji: '🏥',
     imgBg: '#0a1520',
     imgBlur: '2px',
     tag: 'Healthcare · Mobile',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'Meta Medical Scribe',
     titleBlur: true,
     desc: 'HIPAA-compliant clinical platform. Client identity protected under their NDA — not disclosed upon access.',
     descColor: 'var(--color-text-dim)',
     value: 'Live · Client identity protected',
     hasLiveBadge: true,
+    link: { url: '/meta-health', text: 'View Case Study →', external: false },
   },
   {
     emoji: '🎓',
     imgBg: '#0d1a2e',
     imgBlur: '2px',
     tag: 'Education · SaaS',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'Al-Hikma School Platform',
     titleBlur: true,
     desc: 'Full school operating system. 9 modules.',
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · May 2026',
+    link: { url: '/alhikma', text: 'View Case Study →', external: false },
   },
   {
     emoji: '💈',
     imgBg: '#0E0E0D',
     imgBlur: '2px',
     tag: 'Consumer · Mobile App',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'Chairly',
     titleBlur: true,
     desc: 'Two-sided barber marketplace.',
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · June 2026',
     hasBorderBottom: true,
+    link: { url: '/chairly', text: 'View Case Study →', external: false },
   },
   {
     emoji: '🕌',
     imgBg: '#041510',
     imgBlur: '2px',
     tag: 'Religious Tech · Mobile',
-    title: '████████████',
+    redactedTitle: '████████████',
+    realTitle: 'Muslim Guider Pro',
     titleBlur: true,
     desc: 'Live audio broadcasting. Smart TV.',
     descColor: 'var(--color-text-dim)',
     value: 'In Progress · July 2026',
+    link: { url: '/muslim-guider', text: 'View Case Study →', external: false },
   },
 ]
 
@@ -177,12 +209,13 @@ export default function Portfolio() {
               <div className="p-[18px]">
                 <div className="text-[10px] font-bold tracking-[0.08em] uppercase text-amber mb-1.5">{p.tag}</div>
                 <div
-                  className="font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px] transition-[filter] duration-400 ease-in-out"
-                  style={p.titleBlur && !hasAccess ? { filter: 'blur(3px)', userSelect: 'none' } : undefined}
+                  className={`font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px] transition-all duration-300 ${p.titleBlur && !hasAccess ? 'blur-sm select-none' : ''}`}
                 >
-                  {p.title}
+                  {hasAccess ? p.realTitle : p.redactedTitle}
                 </div>
                 <p className="text-xs leading-[1.6] mb-3" style={{ color: p.descColor }}>{p.desc}</p>
+
+                {/* Lock button — shown when locked */}
                 {!hasAccess && (
                   <button
                     onClick={openNDA}
@@ -192,6 +225,37 @@ export default function Portfolio() {
                     🔒 Request Access
                   </button>
                 )}
+
+                {/* Links — shown when unlocked */}
+                {hasAccess && p.link && (
+                  p.link.external ? (
+                    <a
+                      href={p.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
+                      style={{
+                        color: '#92400e',
+                        background: 'rgba(200,104,26,0.06)',
+                        borderColor: 'rgba(200,104,26,0.3)',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.12)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.06)' }}
+                    >
+                      {p.link.text}
+                    </a>
+                  ) : (
+                    <a
+                      href={p.link.url}
+                      target="_blank"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border-2 transition-colors hover:border-amber hover:text-amber"
+                      style={{ background: 'var(--color-bg)' }}
+                    >
+                      {p.link.text}
+                    </a>
+                  )
+                )}
+
                 <div className="text-[11px] text-text-dim mt-1.5">{p.value}</div>
               </div>
             </div>
