@@ -95,7 +95,7 @@ const projects = [
 ]
 
 export default function Portfolio() {
-  const { openNDA } = useNDA()
+  const { openNDA, hasAccess } = useNDA()
 
   return (
     <section className="py-24 bg-bg-2" id="work">
@@ -110,19 +110,36 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* NDA gate banner */}
-        <div className="bg-bg-3 border border-border rounded-[16px] py-6 px-7 mt-10 mb-5 flex items-center justify-between flex-wrap gap-4 reveal">
-          <div>
-            <div className="text-[15px] font-bold text-text mb-1">All projects require a signed agreement to view.</div>
-            <div className="text-[13px] text-text-muted">NDA and non-compete. Takes 60 seconds. Access granted immediately.</div>
+        {/* NDA gate banner — hidden when unlocked */}
+        {!hasAccess && (
+          <div className="bg-bg-3 border border-border rounded-[16px] py-6 px-7 mt-10 mb-5 flex items-center justify-between flex-wrap gap-4 reveal">
+            <div>
+              <div className="text-[15px] font-bold text-text mb-1">All projects require a signed agreement to view.</div>
+              <div className="text-[13px] text-text-muted">NDA and non-compete. Takes 60 seconds. Access granted immediately.</div>
+            </div>
+            <button
+              onClick={openNDA}
+              className="bg-amber text-white px-7 py-3.5 rounded-[9px] text-[15px] font-semibold transition-all duration-150 hover:opacity-90 hover:-translate-y-px cursor-pointer border-none font-[family-name:var(--font-epilogue-var)]"
+            >
+              Request Portfolio Access →
+            </button>
           </div>
-          <button
-            onClick={openNDA}
-            className="bg-amber text-white px-7 py-3.5 rounded-[9px] text-[15px] font-semibold transition-all duration-150 hover:opacity-90 hover:-translate-y-px cursor-pointer border-none font-[family-name:var(--font-epilogue-var)]"
-          >
-            Request Portfolio Access →
-          </button>
-        </div>
+        )}
+
+        {/* Unlocked banner — shown when access granted */}
+        {hasAccess && (
+          <div className="flex items-center gap-3 rounded-[16px] p-4 mt-10 mb-5" style={{ background: 'rgba(22,163,74,0.06)', border: '1px solid rgba(22,163,74,0.2)' }}>
+            <div className="w-7 h-7 rounded-full bg-green flex items-center justify-center text-white text-sm font-bold shrink-0">
+              ✓
+            </div>
+            <div>
+              <div className="text-sm font-semibold" style={{ color: '#15803d' }}>Portfolio access granted</div>
+              <div className="text-xs mt-0.5" style={{ color: '#16a34a' }}>
+                You&rsquo;re viewing all Startline projects. A signed copy of your NDA has been recorded.
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* All 8 projects — 4-column grid */}
         <div className="grid grid-cols-2 md2:grid-cols-4 gap-4 reveal">
@@ -133,10 +150,10 @@ export default function Portfolio() {
             >
               {/* Image area */}
               <div
-                className="h-[140px] flex items-center justify-center text-4xl relative"
+                className="h-[140px] flex items-center justify-center text-4xl relative transition-[filter] duration-400 ease-in-out"
                 style={{
                   background: p.imgBg,
-                  filter: `blur(${p.imgBlur})`,
+                  filter: hasAccess ? 'none' : `blur(${p.imgBlur})`,
                   borderBottom: p.hasBorderBottom ? '1px solid var(--color-border)' : undefined,
                 }}
               >
@@ -160,28 +177,32 @@ export default function Portfolio() {
               <div className="p-[18px]">
                 <div className="text-[10px] font-bold tracking-[0.08em] uppercase text-amber mb-1.5">{p.tag}</div>
                 <div
-                  className="font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px]"
-                  style={p.titleBlur ? { filter: 'blur(3px)', userSelect: 'none' } : undefined}
+                  className="font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px] transition-[filter] duration-400 ease-in-out"
+                  style={p.titleBlur && !hasAccess ? { filter: 'blur(3px)', userSelect: 'none' } : undefined}
                 >
                   {p.title}
                 </div>
                 <p className="text-xs leading-[1.6] mb-3" style={{ color: p.descColor }}>{p.desc}</p>
-                <button
-                  onClick={openNDA}
-                  className="inline-flex items-center gap-[5px] text-xs text-text-muted font-medium cursor-pointer py-[5px] px-3 rounded-[20px] border border-border transition-all duration-150 hover:border-amber hover:text-amber"
-                  style={{ background: 'var(--color-bg-4)' }}
-                >
-                  🔒 Request Access
-                </button>
+                {!hasAccess && (
+                  <button
+                    onClick={openNDA}
+                    className="inline-flex items-center gap-[5px] text-xs text-text-muted font-medium cursor-pointer py-[5px] px-3 rounded-[20px] border border-border transition-all duration-150 hover:border-amber hover:text-amber"
+                    style={{ background: 'var(--color-bg-4)' }}
+                  >
+                    🔒 Request Access
+                  </button>
+                )}
                 <div className="text-[11px] text-text-dim mt-1.5">{p.value}</div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center py-5 text-[13px] text-text-dim">
-          Access requires a signed NDA and non-compete. Takes 60 seconds.
-        </div>
+        {!hasAccess && (
+          <div className="text-center py-5 text-[13px] text-text-dim">
+            Access requires a signed NDA and non-compete. Takes 60 seconds.
+          </div>
+        )}
       </div>
     </section>
   )

@@ -4,45 +4,53 @@ import { useNDA } from '@/context/NDAContext'
 import SignaturePad, { SignaturePadRef } from './SignaturePad'
 
 export default function NDAPanel() {
-  const { isOpen, closeNDA } = useNDA()
+  const { isOpen, closeNDA, unlockPortfolio } = useNDA()
   const sigRef = useRef<SignaturePadRef>(null)
   const [name, setName] = useState('')
   const [company, setCompany] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [hasAgreed, setHasAgreed] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
 
   const handleSubmit = async () => {
-    if (!name.trim() || !email.trim()) {
-      alert('Please fill in your name and email.')
+    if (!name.trim() || !email.trim() || !phone.trim()) {
+      alert('Please fill in all required fields.')
+      return
+    }
+    if (!hasAgreed) {
+      alert('You must confirm the accuracy of your information before signing.')
       return
     }
     if (!sigRef.current?.hasSig()) {
-      alert('Please add your signature.')
+      alert('Please add your signature to continue.')
       return
     }
 
-    setSubmitting(true)
-    try {
-      await fetch('/api/nda', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name.trim(),
-          company: company.trim(),
-          email: email.trim(),
-          signatureDataURL: sigRef.current.toDataURL(),
-          timestamp: new Date().toISOString(),
-        }),
-      })
-    } catch {
-      // Still show success — email delivery is best-effort
-    }
-    setSubmitting(false)
+    // Unlock portfolio immediately — don't wait for API
+    unlockPortfolio()
     setSubmitted(true)
+
+    // Fire-and-forget — send email notification in background
+    fetch('/api/nda', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name.trim(),
+        company: company.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        hasAgreed: true,
+        signatureDataURL: sigRef.current.toDataURL(),
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(() => { /* best-effort */ })
   }
 
   if (!isOpen) return null
+
+  const inputClass = "w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
+  const inputBg = { background: 'var(--color-bg-4)' }
 
   return (
     <div
@@ -64,42 +72,29 @@ export default function NDAPanel() {
           <>
             <div className="font-[family-name:var(--font-syne-var)] text-[22px] font-bold mb-1.5">Request Portfolio Access</div>
             <p className="text-sm text-text-muted mb-6 leading-[1.6]">
-              Our full portfolio is available under NDA and non-compete. Fill in your details, review the agreement, and sign below. Access is granted immediately.
+              Our full portfolio is available under NDA and non-compete. Fill in your details, review the agreement, and sign below. Portfolio unlocks immediately.
             </p>
 
-            {/* Form fields */}
-            <div className="mb-[18px]">
-              <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Full name</label>
-              <input
-                type="text"
-                placeholder="Your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
-                style={{ background: 'var(--color-bg-4)' }}
-              />
+            {/* Form fields — 2-column grid */}
+            <div className="grid grid-cols-2 gap-3.5 mb-[18px]">
+              <div>
+                <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Full name</label>
+                <input type="text" placeholder="Your full name" value={name} onChange={(e) => setName(e.target.value)} className={inputClass} style={inputBg} />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Company</label>
+                <input type="text" placeholder="Your company" value={company} onChange={(e) => setCompany(e.target.value)} className={inputClass} style={inputBg} />
+              </div>
             </div>
-            <div className="mb-[18px]">
-              <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Company</label>
-              <input
-                type="text"
-                placeholder="Your company"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
-                style={{ background: 'var(--color-bg-4)' }}
-              />
-            </div>
-            <div className="mb-[18px]">
-              <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Email</label>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
-                style={{ background: 'var(--color-bg-4)' }}
-              />
+            <div className="grid grid-cols-2 gap-3.5 mb-[18px]">
+              <div>
+                <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Email</label>
+                <input type="email" placeholder="your@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} style={inputBg} />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Phone</label>
+                <input type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={(e) => setPhone(e.target.value)} className={inputClass} style={inputBg} />
+              </div>
             </div>
 
             {/* NDA text */}
@@ -117,6 +112,22 @@ export default function NDAPanel() {
               By signing below, Recipient agrees to be bound by this Agreement. This electronic signature constitutes a legally binding signature.
             </div>
 
+            {/* Truthfulness checkbox */}
+            <div style={{ background: 'rgba(200,104,26,0.06)', border: '1px solid rgba(200,104,26,0.2)', borderRadius: '9px', padding: '14px 16px', display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '16px' }}>
+              <input
+                type="checkbox"
+                id="nda-truthfulness"
+                checked={hasAgreed}
+                onChange={e => setHasAgreed(e.target.checked)}
+                style={{ width: '16px', height: '16px', flexShrink: 0, marginTop: '2px', accentColor: '#C8681A', cursor: 'pointer' }}
+              />
+              <label htmlFor="nda-truthfulness" style={{ fontSize: '13px', color: 'var(--color-text)', lineHeight: '1.6', cursor: 'pointer' }}>
+                I, the undersigned, hereby represent and warrant that all information provided in this form is true, accurate, and complete to the best of my knowledge. I understand that providing{' '}
+                <span style={{ color: '#A85614', fontWeight: 500 }}>false or misleading information</span>
+                {' '}in connection with this Agreement may constitute fraud and could result in immediate termination of portfolio access and pursuit of applicable legal remedies by Stafva LLC.
+              </label>
+            </div>
+
             {/* Signature */}
             <div className="text-xs font-semibold text-text-muted mb-2 tracking-[0.04em] uppercase">Signature</div>
             <SignaturePad ref={sigRef} />
@@ -129,13 +140,12 @@ export default function NDAPanel() {
 
             <button
               onClick={handleSubmit}
-              disabled={submitting}
-              className="w-full bg-amber text-white border-none rounded-[9px] py-[13px] text-sm font-bold cursor-pointer font-[family-name:var(--font-epilogue-var)] mt-4 transition-all duration-150 hover:opacity-92 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full bg-amber text-white border-none rounded-[9px] py-[13px] text-sm font-bold cursor-pointer font-[family-name:var(--font-epilogue-var)] mt-4 transition-all duration-150 hover:opacity-92"
             >
-              {submitting ? 'Submitting...' : 'Sign and Access Portfolio →'}
+              Sign and Unlock Portfolio →
             </button>
             <div className="text-[11px] text-text-dim text-center mt-2.5">
-              Timestamp and IP address recorded. A copy will be emailed to you.
+              Timestamp and IP address recorded. A signed copy will be emailed to you for your records.
             </div>
           </>
         ) : (
@@ -144,15 +154,20 @@ export default function NDAPanel() {
             <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3.5 text-2xl" style={{ background: 'rgba(22,163,74,0.08)', color: 'var(--color-green)' }}>
               ✓
             </div>
-            <div className="font-[family-name:var(--font-syne-var)] text-xl font-bold mb-2">Access granted.</div>
+            <div className="font-[family-name:var(--font-syne-var)] text-xl font-bold mb-2">Portfolio unlocked.</div>
             <p className="text-sm text-text-muted leading-[1.6] mb-5">
-              Your signed NDA has been sent to your email. You now have access to our full portfolio. A member of our team will follow up shortly.
+              You now have full access. Scroll up to browse all projects. A signed copy of this agreement has been sent to your email for your records.
             </p>
             <button
-              onClick={closeNDA}
+              onClick={() => {
+                closeNDA()
+                setTimeout(() => {
+                  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }, 200)
+              }}
               className="w-full bg-amber text-white border-none rounded-[9px] py-3.5 text-[15px] font-semibold cursor-pointer font-[family-name:var(--font-epilogue-var)] transition-opacity duration-150 hover:opacity-90"
             >
-              View the Portfolio →
+              Browse the Portfolio →
             </button>
           </div>
         )}

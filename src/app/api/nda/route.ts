@@ -4,9 +4,9 @@ import { Resend } from 'resend'
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const body = await req.json()
-  const { name, company, email, signatureDataURL, timestamp } = body
+  const { name, company, email, phone, signatureDataURL, timestamp } = body
 
-  if (!name || !email || !signatureDataURL) {
+  if (!name || !email || !phone || !signatureDataURL) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Company:</strong> ${company}</p>
       <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
       <p><strong>Timestamp:</strong> ${timestamp}</p>
       <p><strong>IP:</strong> ${ip}</p>
     `,
@@ -35,10 +36,11 @@ export async function POST(req: NextRequest) {
     subject: 'Your Startline Portfolio NDA — Signed Copy',
     html: `
       <h2>Thank you, ${name}.</h2>
-      <p>Your signed NDA has been recorded. A member of our team will follow up with portfolio access shortly.</p>
-      <p>Signed: ${timestamp}</p>
-      <p>If you have questions, reply to this email or reach us at info@staffva.com.</p>
-      <p>— Ahmed Kassem, Startline / Global Staffing</p>
+      <p>This email confirms that your signed NDA and non-compete agreement with Stafva LLC d/b/a Startline has been recorded.</p>
+      <p><strong>Signed:</strong> ${timestamp}</p>
+      <p>You already have full portfolio access — return to startline.build at any time to browse our work.</p>
+      <p>If you have questions, email us at info@staffva.com.</p>
+      <p>— Ahmed Kassem, Startline / Global Staffing<br>3 Parklane Blvd Suite 1210W, Dearborn MI 48126</p>
     `,
   })
 

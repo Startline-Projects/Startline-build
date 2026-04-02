@@ -28,7 +28,7 @@ const SignaturePad = forwardRef<SignaturePadRef>(function SignaturePad(_, ref) {
     if (!ctx) return
 
     ctx.strokeStyle = '#C8681A'
-    ctx.lineWidth = 2
+    ctx.lineWidth = 2.5
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
 
@@ -104,8 +104,8 @@ const SignaturePad = forwardRef<SignaturePadRef>(function SignaturePad(_, ref) {
     <canvas
       ref={canvasRef}
       width={468}
-      height={80}
-      className="w-full h-20 rounded-[9px] border border-border-2 mb-2 cursor-crosshair"
+      height={140}
+      className="w-full h-[140px] rounded-[9px] border border-border-2 mb-2 cursor-crosshair"
       style={{ background: 'var(--color-bg-4)' }}
     />
   )
