@@ -5,6 +5,7 @@ import Blueprint from '@/components/Blueprint'
 import Bench from '@/components/Bench'
 import BuildLaunchGrow from '@/components/BuildLaunchGrow'
 import HowItWorks from '@/components/HowItWorks'
+import Portfolio from '@/components/Portfolio'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Bench />
         <BuildLaunchGrow />
         <HowItWorks />
+        <Portfolio />
       </main>
     </>
   )
