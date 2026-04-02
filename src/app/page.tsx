@@ -6,11 +6,17 @@ import Bench from '@/components/Bench'
 import BuildLaunchGrow from '@/components/BuildLaunchGrow'
 import HowItWorks from '@/components/HowItWorks'
 import Portfolio from '@/components/Portfolio'
+import Team from '@/components/Team'
+import Guarantee from '@/components/Guarantee'
+import IntakeForm from '@/components/IntakeForm'
+import Footer from '@/components/Footer'
 import NDAPanel from '@/components/NDAPanel'
+import RevealProvider from '@/components/RevealProvider'
 
 export default function Home() {
   return (
     <>
+      <RevealProvider />
       <Nav />
       <main>
         <Hero />
@@ -20,7 +26,11 @@ export default function Home() {
         <BuildLaunchGrow />
         <HowItWorks />
         <Portfolio />
+        <Team />
+        <Guarantee />
+        <IntakeForm />
       </main>
+      <Footer />
       <NDAPanel />
     </>
   )
