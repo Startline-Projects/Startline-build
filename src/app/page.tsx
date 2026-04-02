@@ -6,6 +6,7 @@ import Bench from '@/components/Bench'
 import BuildLaunchGrow from '@/components/BuildLaunchGrow'
 import HowItWorks from '@/components/HowItWorks'
 import Portfolio from '@/components/Portfolio'
+import NDAPanel from '@/components/NDAPanel'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <HowItWorks />
         <Portfolio />
       </main>
+      <NDAPanel />
     </>
   )
 }
