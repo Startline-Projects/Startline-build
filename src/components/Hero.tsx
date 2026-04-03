@@ -6,7 +6,7 @@ export default function Hero() {
   const { openNDA } = useNDA()
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden" style={{ padding: '80px 0 80px' }}>
+    <section className="relative overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
       {/* Dot grid background */}
       <div
         className="absolute inset-0 pointer-events-none"

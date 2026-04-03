@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="mt-8 pt-7 text-center" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
         <div
           className="font-[family-name:var(--font-syne-var)] text-4xl font-extrabold tracking-[-0.5px]"
-          style={{ color: 'rgba(255,255,255,0.06)' }}
+          style={{ color: 'rgba(255,255,255,0.07)' }}
         >
           Where Tech Founders Start.
         </div>
