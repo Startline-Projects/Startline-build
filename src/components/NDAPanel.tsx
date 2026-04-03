@@ -49,7 +49,7 @@ export default function NDAPanel() {
 
   if (!isOpen) return null
 
-  const inputClass = "w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
+  const inputClass = "w-full border border-border-2 rounded-lg py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
   const inputBg = { background: 'var(--color-bg-4)' }
 
   return (
@@ -58,7 +58,10 @@ export default function NDAPanel() {
       style={{ background: 'rgba(0,0,0,0.7)' }}
       onClick={(e) => { if (e.target === e.currentTarget) closeNDA() }}
     >
-      <div className="bg-bg-3 border border-border-2 rounded-[16px] w-full max-w-[540px] max-h-[90vh] overflow-y-auto p-9 relative">
+      <div
+        className="bg-bg-3 border border-border-2 rounded-xl w-full max-w-[540px] max-h-[90vh] overflow-y-auto p-9 relative"
+        style={{ animation: 'modalSlideIn 200ms ease-out' }}
+      >
         {/* Close button */}
         <button
           onClick={closeNDA}
@@ -133,7 +136,8 @@ export default function NDAPanel() {
             <SignaturePad ref={sigRef} />
             <button
               onClick={() => sigRef.current?.clear()}
-              className="text-[11px] text-text-dim cursor-pointer bg-transparent border-none font-[family-name:var(--font-epilogue-var)] hover:text-text-muted"
+              className="text-xs cursor-pointer bg-transparent border-none font-[family-name:var(--font-epilogue-var)] no-underline hover:underline"
+              style={{ color: '#9A9080' }}
             >
               Clear signature
             </button>

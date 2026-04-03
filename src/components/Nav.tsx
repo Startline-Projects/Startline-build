@@ -14,9 +14,10 @@ export default function Nav() {
     <nav
       className="fixed top-0 left-0 right-0 z-[200] transition-all duration-300"
       style={scrolled ? {
-        background: 'rgba(248,245,240,0.97)',
+        background: 'rgba(245,240,232,0.85)',
         borderBottom: '1px solid var(--color-border)',
-        backdropFilter: 'blur(16px)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
       } : undefined}
     >
       <div className="flex items-center justify-between px-10 py-[18px] max-w-[1160px] mx-auto">
@@ -37,7 +38,7 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Nav links — hidden on mobile */}
+        {/* Nav links */}
         <div className="hidden md2:flex items-center gap-8 text-[13px] text-text-muted">
           <a href="#blueprint" className="transition-colors duration-150 hover:text-text">The Blueprint</a>
           <a href="#how-it-works" className="transition-colors duration-150 hover:text-text">How It Works</a>
@@ -45,10 +46,10 @@ export default function Nav() {
           <a href="#team" className="transition-colors duration-150 hover:text-text">Meet the Team</a>
         </div>
 
-        {/* CTA */}
+        {/* CTA — matches hero primary */}
         <a
           href="#start"
-          className="bg-dark text-white px-[22px] py-[9px] rounded-lg text-[13px] font-semibold transition-opacity duration-150 hover:opacity-85 font-[family-name:var(--font-epilogue-var)]"
+          className="bg-amber text-white px-[22px] py-[9px] rounded-lg text-[13px] font-semibold transition-all duration-150 hover:opacity-88 hover:-translate-y-0.5 font-[family-name:var(--font-epilogue-var)]"
         >
           Start Your Project →
         </a>

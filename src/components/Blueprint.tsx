@@ -48,30 +48,30 @@ export default function Blueprint() {
             <h2 className="font-[family-name:var(--font-syne-var)] text-[46px] font-extrabold tracking-[-1.2px] leading-[1.08] mb-4">
               See it before<br />we build it.
             </h2>
-            <p className="text-[17px] text-text-muted leading-[1.75] max-w-[580px] font-light">
-              Before you sign a contract or pay a dollar, you receive a <strong className="text-text font-medium">complete screen-by-screen visual</strong> of your product. Every page. Every flow. Every interaction. You approve it. Then the build starts.
+            <p className="text-base text-text-muted leading-[1.65] max-w-[62ch] font-medium">
+              Before you sign a contract or pay a dollar, you receive a <strong className="text-text font-semibold">complete screen-by-screen visual</strong> of your product. Every page. Every flow. Every interaction. You approve it. Then the build starts.
             </p>
 
             <div className="flex flex-col gap-3.5 mt-8">
               <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-[9px] flex items-center justify-center shrink-0 text-base" style={{ background: 'rgba(200,104,26,0.08)' }}>🖥</div>
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">🖥</div>
                 <div>
-                  <h4 className="text-sm font-semibold text-text mb-[3px]">Every screen, every flow</h4>
-                  <p className="text-[13px] text-text-muted leading-[1.6]">Full visual walkthrough of your product exactly as it will be built. No surprises. No &ldquo;that&rsquo;s not what I meant.&rdquo;</p>
+                  <h4 className="text-base font-semibold text-text mb-[3px]">Every screen, every flow</h4>
+                  <p className="text-base text-text-muted leading-[1.65] font-medium">Full visual walkthrough of your product exactly as it will be built. No surprises. No &ldquo;that&rsquo;s not what I meant.&rdquo;</p>
                 </div>
               </div>
               <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-[9px] flex items-center justify-center shrink-0 text-base" style={{ background: 'rgba(200,104,26,0.08)' }}>✍️</div>
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">✍️</div>
                 <div>
-                  <h4 className="text-sm font-semibold text-text mb-[3px]">You approve before anything starts</h4>
-                  <p className="text-[13px] text-text-muted leading-[1.6]">The Blueprint is your protection. You sign off on the visuals. The build reflects what you approved. Changes after approval are quoted separately.</p>
+                  <h4 className="text-base font-semibold text-text mb-[3px]">You approve before anything starts</h4>
+                  <p className="text-base text-text-muted leading-[1.65] font-medium">The Blueprint is your protection. You sign off on the visuals. The build reflects what you approved. Changes after approval are quoted separately.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-[9px] flex items-center justify-center shrink-0 text-base" style={{ background: 'rgba(200,104,26,0.08)' }}>🆓</div>
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">🆓</div>
                 <div>
-                  <h4 className="text-sm font-semibold text-text mb-[3px]">Free. No commitment required.</h4>
-                  <p className="text-[13px] text-text-muted leading-[1.6]">The Blueprint is delivered before the contract. Before payment. You can walk away after seeing it. Most clients don&rsquo;t.</p>
+                  <h4 className="text-base font-semibold text-text mb-[3px]">Free. No commitment required.</h4>
+                  <p className="text-base text-text-muted leading-[1.65] font-medium">The Blueprint is delivered before the contract. Before payment. You can walk away after seeing it. Most clients don&rsquo;t.</p>
                 </div>
               </div>
             </div>

@@ -2,16 +2,14 @@ const steps = [
   {
     num: 1,
     title: 'Fill the intake form',
-    desc: (
-      <>Tell us what you need to build. Takes 5 minutes. No commitment. Our team reviews it before we schedule the call so Ahmed and Sam walk in prepared — not cold.</>
-    ),
+    desc: 'Tell us what you need to build. Takes 5 minutes. No commitment. Our team reviews it before we schedule the call so Ahmed and Sam walk in prepared — not cold.',
     tag: '5 minutes',
   },
   {
     num: 2,
     title: 'Meet Ahmed and Sam',
     desc: (
-      <>45-minute video call. <strong className="text-text font-medium">Ahmed covers business fit and commercial structure.</strong> <strong className="text-text font-medium">Sam covers the technical scope.</strong> You walk out knowing exactly what the product requires and what it will cost to build it.</>
+      <>45-minute video call. <strong className="text-text font-semibold">Ahmed covers business fit and commercial structure.</strong> Sam covers the technical scope. You walk out knowing exactly what the product requires and what it will cost to build it.</>
     ),
     tag: '45-minute call',
   },
@@ -19,7 +17,7 @@ const steps = [
     num: 3,
     title: 'Receive The Blueprint',
     desc: (
-      <>We deliver a <strong className="text-text font-medium">complete screen-by-screen visual of your product.</strong> Every page. Every flow. Every interaction. Free. No contract. No payment. You approve it or you walk away — your choice.</>
+      <>We deliver a <strong className="text-text font-semibold">complete screen-by-screen visual of your product.</strong> Every page. Every flow. Every interaction. Free. No contract. No payment. You approve it or you walk away — your choice.</>
     ),
     tag: 'Free · No commitment',
   },
@@ -27,7 +25,7 @@ const steps = [
     num: 4,
     title: 'Sign and kick off',
     desc: (
-      <>You approve the Blueprint. You sign the agreement. <strong className="text-text font-medium">Team is assembled from the bench in 7 days.</strong> Bi-weekly payments begin. Daily morning huddles start. Sam runs the build.</>
+      <>You approve the Blueprint. You sign the agreement. <strong className="text-text font-semibold">Team is assembled from the bench in 7 days.</strong> Bi-weekly payments begin. Daily morning huddles start. Sam runs the build.</>
     ),
     tag: '7 days to kickoff',
   },
@@ -35,7 +33,7 @@ const steps = [
     num: 5,
     title: 'Launch — you own everything',
     desc: (
-      <>Full handover on delivery. All source code, all accounts, all credentials. <strong className="text-text font-medium">You own 100% of what we built.</strong> Nothing held back. Not happy in the first 30 days? Full refund of everything you&rsquo;ve paid.</>
+      <>Full handover on delivery. All source code, all accounts, all credentials. <strong className="text-text font-semibold">You own 100% of what we built.</strong> Nothing held back. Not happy in the first 30 days? Full refund of everything you&rsquo;ve paid.</>
     ),
     tag: 'Full ownership · 30-day guarantee',
   },
@@ -50,7 +48,7 @@ export default function HowItWorks() {
           <h2 className="font-[family-name:var(--font-syne-var)] text-[46px] font-extrabold tracking-[-1.2px] leading-[1.08] mb-4">
             From idea to<br />shipped product.
           </h2>
-          <p className="text-[17px] text-text-muted leading-[1.75] max-w-[580px] font-light">
+          <p className="text-base text-text-muted leading-[1.65] max-w-[62ch] font-medium">
             Five steps. No ambiguity. No retainers. No surprises.
           </p>
         </div>
@@ -59,24 +57,31 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="grid grid-cols-[60px_1fr] gap-7 py-8 relative reveal"
-              style={i < steps.length - 1 ? { borderBottom: '1px solid var(--color-border)' } : undefined}
+              className="grid grid-cols-[60px_1fr] gap-7 relative reveal"
+              style={{
+                paddingTop: '32px',
+                paddingBottom: '32px',
+                borderBottom: i < steps.length - 1 ? '1px solid rgba(28,26,20,0.08)' : undefined,
+              }}
             >
               {/* Left — number + connector */}
               <div className="flex flex-col items-center">
-                <div className="w-11 h-11 rounded-full border border-border-2 flex items-center justify-center font-[family-name:var(--font-syne-var)] text-base font-bold text-amber shrink-0 bg-bg-2">
+                <div className="w-11 h-11 rounded-full border border-border-2 flex items-center justify-center font-[family-name:var(--font-syne-var)] text-base font-bold text-[#1A1A14] shrink-0 bg-bg-2">
                   {step.num}
                 </div>
                 {i < steps.length - 1 && (
-                  <div className="w-px flex-1 bg-border mt-2" />
+                  <div className="w-px flex-1 mt-2" style={{ background: 'rgba(28,26,20,0.08)' }} />
                 )}
               </div>
 
               {/* Right — content */}
               <div className="pt-2.5">
                 <div className="font-[family-name:var(--font-syne-var)] text-xl font-bold mb-2">{step.title}</div>
-                <p className="text-[15px] text-text-muted leading-[1.7] max-w-[560px]">{step.desc}</p>
-                <div className="inline-block text-[11px] py-[3px] px-2.5 rounded-[20px] font-semibold mt-2.5" style={{ background: 'rgba(200,104,26,0.08)', color: 'var(--color-amber)' }}>
+                <p className="text-base text-text-muted leading-[1.65] max-w-[62ch] font-medium">{step.desc}</p>
+                <div
+                  className="inline-block text-[11px] py-1 px-2.5 rounded-[20px] font-semibold mt-2.5 text-amber"
+                  style={{ border: '1px solid rgba(200,104,26,0.6)' }}
+                >
                   {step.tag}
                 </div>
               </div>

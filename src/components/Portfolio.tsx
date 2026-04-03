@@ -24,7 +24,7 @@ interface Project {
 const projects: Project[] = [
   {
     preview: <StaffVAPreview />,
-    imgBlur: '1px',
+    imgBlur: '12px',
     tag: 'Our Platform · Talent Marketplace',
     redactedTitle: 'StaffVA',
     realTitle: 'StaffVA',
@@ -36,7 +36,7 @@ const projects: Project[] = [
   },
   {
     preview: <InterviewPreview />,
-    imgBlur: '1px',
+    imgBlur: '12px',
     tag: 'Our Platform · AI SaaS',
     redactedTitle: 'StaffVA AI Interview',
     realTitle: 'StaffVA AI Interview',
@@ -48,7 +48,7 @@ const projects: Project[] = [
   },
   {
     preview: <EstateVaultPreview />,
-    imgBlur: '1px',
+    imgBlur: '12px',
     tag: 'Estate Planning · SaaS',
     redactedTitle: '████████████',
     realTitle: 'Estate Vault',
@@ -60,7 +60,7 @@ const projects: Project[] = [
   },
   {
     preview: <PeoplesFirmPreview />,
-    imgBlur: '1px',
+    imgBlur: '12px',
     tag: 'Legal Services · Web',
     redactedTitle: '████████████',
     realTitle: 'The People\u2019s Firm',
@@ -72,7 +72,7 @@ const projects: Project[] = [
   },
   {
     preview: <MetaHealthPreview />,
-    imgBlur: '2px',
+    imgBlur: '12px',
     tag: 'Healthcare · Mobile',
     redactedTitle: '████████████',
     realTitle: 'Meta Medical Scribe',
@@ -85,7 +85,7 @@ const projects: Project[] = [
   },
   {
     preview: <AlHikmaPreview />,
-    imgBlur: '2px',
+    imgBlur: '12px',
     tag: 'Education · SaaS',
     redactedTitle: '████████████',
     realTitle: 'Al-Hikma School Platform',
@@ -97,7 +97,7 @@ const projects: Project[] = [
   },
   {
     preview: <ChairlyPreview />,
-    imgBlur: '2px',
+    imgBlur: '12px',
     tag: 'Consumer · Mobile App',
     redactedTitle: '████████████',
     realTitle: 'Chairly',
@@ -110,7 +110,7 @@ const projects: Project[] = [
   },
   {
     preview: <MuslimGuiderPreview />,
-    imgBlur: '2px',
+    imgBlur: '12px',
     tag: 'Religious Tech · Mobile',
     redactedTitle: '████████████',
     realTitle: 'Muslim Guider Pro',
@@ -174,7 +174,7 @@ export default function Portfolio() {
           {projects.map((p, i) => (
             <div
               key={i}
-              className="bg-bg-3 border border-border rounded-[16px] overflow-hidden transition-colors duration-200 hover:border-border-2 flex flex-col"
+              className="bg-bg-3 border border-border rounded-xl overflow-hidden transition-colors duration-200 hover:border-border-2 flex flex-col"
             >
               {/* Image area — CSS mini preview */}
               <div
@@ -198,6 +198,9 @@ export default function Portfolio() {
                   </div>
                 )}
                 {p.preview}
+                {!hasAccess && (
+                  <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,10,10,0.20)' }} />
+                )}
               </div>
 
               {/* Body */}

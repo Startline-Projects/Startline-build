@@ -53,7 +53,7 @@ export default function IntakeForm() {
             <h2 className="font-[family-name:var(--font-syne-var)] text-[42px] font-extrabold tracking-[-1px] leading-[1.1] mb-4">
               Tell us what<br />you need to build.
             </h2>
-            <p className="text-base text-text-muted leading-[1.75] mb-8 font-light">
+            <p className="text-base text-text-muted leading-[1.65] mb-8 font-medium max-w-[62ch]">
               Fill out the form. Our team reviews it and calls you to schedule a 45-minute discovery call with Ahmed and Sam. No commitment. No pitch. Just a real conversation about your project.
             </p>
             <div className="flex flex-col gap-3">
