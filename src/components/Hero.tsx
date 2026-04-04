@@ -39,13 +39,11 @@ export default function Hero() {
               We design your <strong className="text-text font-medium">complete product visually</strong> — then build it with a dedicated team, daily standups, and a 30-day money-back guarantee.
             </p>
 
-            <div className="text-sm text-text-dim mb-8 flex items-center gap-2 flex-wrap" aria-label="Trust signals">
-              <span className="text-text">✓</span> No contract until you approve
-              <span className="text-text-faint mx-1">·</span>
-              <span className="text-text">✓</span> No retainer
-              <span className="text-text-faint mx-1">·</span>
-              <span className="text-text">✓</span> 30-day guarantee
-            </div>
+            <ul className="flex flex-col gap-2 mb-8 text-sm text-text-muted" aria-label="Trust signals" role="list">
+              <li className="flex items-center gap-2"><span className="text-text" aria-hidden="true">✓</span> No contract until you approve the visuals</li>
+              <li className="flex items-center gap-2"><span className="text-text" aria-hidden="true">✓</span> No retainer — bi-weekly billing only</li>
+              <li className="flex items-center gap-2"><span className="text-text" aria-hidden="true">✓</span> 30-day money-back guarantee</li>
+            </ul>
 
             <div className="flex gap-3 items-center flex-wrap">
               <button
