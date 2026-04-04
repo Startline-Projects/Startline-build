@@ -1,33 +1,39 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Background scale */
   --color-bg: #F8F5F0;
   --color-bg-2: #F0EDE8;
   --color-bg-3: #FFFFFF;
   --color-bg-4: #EAE6E0;
   --color-bg-5: #E0DCD6;
 
+  /* Text hierarchy */
   --color-text: #1C1B1A;
   --color-text-muted: #6B6560;
   --color-text-dim: #9A9590;
   --color-text-faint: #C8C4BC;
 
+  /* Accent — restricted to labels, logo mark, primary CTAs */
   --color-amber: #C8681A;
   --color-amber-light: rgba(200,104,26,0.08);
   --color-amber-text: #A85614;
 
+  /* Borders */
   --color-border: #E4E0D8;
   --color-border-2: #D4D0C8;
   --color-border-3: #C0BCB8;
 
+  /* Semantic */
   --color-dark: #1C1B1A;
-
   --color-green: #16a34a;
   --color-green-light: rgba(22,163,74,0.08);
 
+  /* Fonts */
   --font-syne: var(--font-syne-var), sans-serif;
   --font-epilogue: var(--font-epilogue-var), sans-serif;
 
+  /* Breakpoints */
   --breakpoint-md2: 900px;
 }
 
@@ -37,43 +43,52 @@
 }
 
 html { scroll-behavior: smooth; }
+
 body {
   font-family: var(--font-epilogue-var), sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scroll reveal utility */
+/* ── Scroll reveal ── */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: 60ms; }
-.reveal-delay-2 { transition-delay: 120ms; }
-.reveal-delay-3 { transition-delay: 180ms; }
-.reveal-delay-4 { transition-delay: 240ms; }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
 
-/* Badge pulse animation */
+/* ── Animations ── */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(0.75); }
 }
-.pulse-dot { animation: pulse-dot 2s infinite; }
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
 
-/* Modal slide-in animation */
 @keyframes modalSlideIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile padding reduction */
+/* ── Focus states ── */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Mobile padding ── */
 @media (max-width: 640px) {
   .px-10 { padding-left: 20px; padding-right: 20px; }
 }

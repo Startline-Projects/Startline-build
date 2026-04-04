@@ -1,97 +1,69 @@
 export default function BuildLaunchGrow() {
   return (
-    <section className="py-24 bg-bg-2">
+    <section className="py-24 bg-bg-2" aria-label="How we work — Build, Launch, Grow">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="reveal">
-          <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">How We Work</div>
-          <h2 className="font-[family-name:var(--font-syne-var)] text-[46px] font-extrabold tracking-[-1.2px] leading-[1.08] mb-4">
+          <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-3.5">How We Work</div>
+          <h2 className="font-[family-name:var(--font-syne-var)] text-4xl md2:text-[46px] font-extrabold tracking-tight leading-[1.08] mb-4">
             Build. Launch. Grow.
           </h2>
-          <p className="text-base text-text-muted leading-[1.65] max-w-[62ch] font-medium">
-            Three phases. One team. You decide how far you want to take it.
+          <p className="text-lg text-text-muted leading-relaxed max-w-[48ch]">
+            Three phases. One team. You decide how far to take it.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md2:grid-cols-3 gap-5 mt-12 items-stretch">
-          {/* Build — Primary (white, amber left border) */}
-          <div className="rounded-xl p-6 relative overflow-hidden bg-bg-3 border border-border reveal" style={{ borderLeft: '3px solid var(--color-amber)' }}>
-            <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-amber mb-4">
-              Phase 01
-            </div>
-            <div className="font-[family-name:var(--font-syne-var)] text-[28px] font-extrabold tracking-[-0.5px] mb-3">
-              Build
-            </div>
-            <p className="text-base leading-[1.65] text-text-muted mb-5 font-medium max-w-[62ch]">
-              Sam runs your dev team from day one. Daily morning huddles. Weekly calls with Ahmed. Fixed-price delivery. Bi-weekly payments.
+          {/* Build */}
+          <div className="rounded-xl p-6 bg-bg-3 border border-border reveal" style={{ borderLeft: '3px solid var(--color-amber)' }}>
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-4">Phase 01</div>
+            <div className="font-[family-name:var(--font-syne-var)] text-2xl font-extrabold tracking-tight mb-3">Build</div>
+            <p className="text-base text-text-muted leading-relaxed mb-5 max-w-[48ch]">
+              Sam runs your dev team from day one. <strong className="text-text font-medium">Daily standups, weekly calls with Ahmed, fixed-price delivery.</strong>
             </p>
-            <div className="flex flex-col gap-2">
-              {[
-                'Team assembled from vetted bench in 7 days',
-                'Daily morning huddles with your developers',
-                'Weekly progress calls with Ahmed',
-                'Fixed-price — no scope creep surprises',
-                'Bi-weekly payments only',
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-base text-text-muted font-medium">
-                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" />
+            <ul className="flex flex-col gap-2" role="list">
+              {['Team assembled in 7 days', 'Daily morning standups', 'Weekly progress calls', 'Fixed-price — no surprises', 'Bi-weekly billing only'].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-base text-text-muted">
+                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" aria-hidden="true" />
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Launch */}
-          <div className="rounded-xl p-6 relative overflow-hidden bg-bg-3 border border-border reveal reveal-delay-1">
-            <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-amber mb-4">
-              Phase 02
-            </div>
-            <div className="font-[family-name:var(--font-syne-var)] text-[28px] font-extrabold tracking-[-0.5px] mb-3">
-              Launch
-            </div>
-            <p className="text-base leading-[1.65] text-text-muted mb-5 font-medium max-w-[62ch]">
-              Full handover. You own everything. Code, accounts, documentation, credentials. Nothing held back. Nothing retained.
+          <div className="rounded-xl p-6 bg-bg-3 border border-border reveal reveal-delay-1">
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-4">Phase 02</div>
+            <div className="font-[family-name:var(--font-syne-var)] text-2xl font-extrabold tracking-tight mb-3">Launch</div>
+            <p className="text-base text-text-muted leading-relaxed mb-5 max-w-[48ch]">
+              Full handover. <strong className="text-text font-medium">You own everything</strong> — code, accounts, documentation, credentials.
             </p>
-            <div className="flex flex-col gap-2">
-              {[
-                'Complete source code ownership',
-                'All accounts and credentials transferred',
-                'Full technical documentation',
-                '30-day money-back guarantee',
-                'No lock-in. No retainer after delivery.',
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-base text-text-muted font-medium">
-                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" />
+            <ul className="flex flex-col gap-2" role="list">
+              {['Complete source code ownership', 'All accounts transferred', 'Full technical documentation', '30-day money-back guarantee', 'No lock-in after delivery'].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-base text-text-muted">
+                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" aria-hidden="true" />
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Grow — Optional */}
-          <div className="rounded-xl p-6 relative overflow-hidden bg-bg-3 border border-border opacity-70 reveal reveal-delay-2">
-            <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-amber mb-4">
-              Phase 03 — Optional
-            </div>
-            <div className="font-[family-name:var(--font-syne-var)] text-[28px] font-extrabold tracking-[-0.5px] mb-3">
-              Grow
-            </div>
-            <p className="text-base leading-[1.65] text-text-muted mb-5 font-medium max-w-[62ch]">
-              Shelly&rsquo;s marketing team takes over. Paid acquisition, content strategy, SEO. For founders who want to keep the momentum going after launch.
+          {/* Grow */}
+          <div className="rounded-xl p-6 bg-bg-3 border border-border opacity-70 reveal reveal-delay-2">
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-4">Phase 03 — Optional</div>
+            <div className="font-[family-name:var(--font-syne-var)] text-2xl font-extrabold tracking-tight mb-3">Grow</div>
+            <p className="text-base text-text-muted leading-relaxed mb-5 max-w-[48ch]">
+              Shelly&rsquo;s marketing team takes over. Paid acquisition, content strategy, SEO — for founders who want to keep moving after launch.
             </p>
-            <div className="flex flex-col gap-2">
-              {[
-                'Paid acquisition strategy',
-                'Content and SEO',
-                'Growth analytics and reporting',
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-base text-text-muted font-medium">
-                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" />
+            <ul className="flex flex-col gap-2" role="list">
+              {['Paid acquisition strategy', 'Content and SEO', 'Growth analytics and reporting'].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-base text-text-muted">
+                  <div className="w-1 h-1 rounded-full bg-text-dim shrink-0" aria-hidden="true" />
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
-            <div className="inline-block text-[11px] py-[3px] px-2.5 rounded-[20px] border border-border-2 text-text-dim mt-4">
-              Optional — ask about it on the call
+            </ul>
+            <div className="inline-block text-[11px] py-1 px-2.5 rounded-full border border-border-2 text-text-dim mt-4">
+              Optional — ask on the call
             </div>
           </div>
         </div>

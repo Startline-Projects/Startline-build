@@ -18,11 +18,11 @@ const epilogue = Epilogue({
 })
 
 export const metadata: Metadata = {
-  title: 'Startline — Where Tech Founders Start',
-  description: 'We show you the full product before you sign anything. Then we build it fast with a vetted team, daily huddles, and a 30-day money-back guarantee.',
+  title: 'Startline — See every screen before you sign anything',
+  description: 'We design your complete product visually, then build it with a vetted offshore team, daily standups, and a 30-day money-back guarantee. From $10–15/hr.',
   openGraph: {
-    title: 'Startline — Where Tech Founders Start',
-    description: 'We show you the full product before you sign anything. Then we build it fast with a vetted team, daily huddles, and a 30-day money-back guarantee.',
+    title: 'Startline — See every screen before you sign anything',
+    description: 'We design your complete product visually, then build it with a vetted offshore team, daily standups, and a 30-day money-back guarantee.',
     url: 'https://startline.build',
     siteName: 'Startline',
     locale: 'en_US',
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Startline — Where Tech Founders Start',
-    description: 'We show you the full product before you sign anything.',
+    title: 'Startline — See every screen before you sign anything',
+    description: 'Your product, designed screen by screen, before you pay a dollar.',
   },
   metadataBase: new URL('https://startline.build'),
   alternates: { canonical: 'https://startline.build' },

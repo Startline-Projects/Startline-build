@@ -37,93 +37,80 @@ const screens = [
   },
 ]
 
+const features = [
+  {
+    title: 'Every screen, every flow',
+    desc: 'A complete visual walkthrough of your product, exactly as it will be built. No surprises after the contract is signed.',
+  },
+  {
+    title: 'You approve before anything starts',
+    desc: 'The Blueprint is your protection. You sign off on the visuals, and the build reflects what you approved.',
+  },
+  {
+    title: 'Free. No commitment required.',
+    desc: 'Delivered before the contract and before payment. You can walk away after seeing it.',
+  },
+]
+
 export default function Blueprint() {
   return (
-    <section className="py-24 bg-bg-2" id="blueprint">
+    <section className="py-24 bg-bg-2" id="blueprint" aria-label="The Blueprint">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="grid grid-cols-1 md2:grid-cols-2 gap-20 items-center">
-          {/* Left — Copy */}
+          {/* Left */}
           <div className="reveal">
-            <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">The Blueprint</div>
-            <h2 className="font-[family-name:var(--font-syne-var)] text-[46px] font-extrabold tracking-[-1.2px] leading-[1.08] mb-4">
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-3.5">The Blueprint</div>
+            <h2 className="font-[family-name:var(--font-syne-var)] text-4xl md2:text-[46px] font-extrabold tracking-tight leading-[1.08] mb-4">
               See it before<br />we build it.
             </h2>
-            <p className="text-base text-text-muted leading-[1.65] max-w-[62ch] font-medium">
-              Before you sign a contract or pay a dollar, you receive a <strong className="text-text font-semibold">complete screen-by-screen visual</strong> of your product. Every page. Every flow. Every interaction. You approve it. Then the build starts.
+            <p className="text-lg text-text-muted leading-relaxed max-w-[52ch]">
+              Before you pay a dollar, you receive a <strong className="text-text font-medium">complete screen-by-screen visual</strong> of your product. You approve it. Then the build starts.
             </p>
 
-            <div className="flex flex-col gap-3.5 mt-8">
-              <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">🖥</div>
-                <div>
-                  <h4 className="text-base font-semibold text-text mb-[3px]">Every screen, every flow</h4>
-                  <p className="text-base text-text-muted leading-[1.65] font-medium">Full visual walkthrough of your product exactly as it will be built. No surprises. No &ldquo;that&rsquo;s not what I meant.&rdquo;</p>
+            <div className="flex flex-col gap-3 mt-8">
+              {features.map((f, i) => (
+                <div key={i} className="flex items-start gap-3.5 p-4 bg-bg-3 rounded-xl border border-border">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-bg-2 text-text-muted text-sm font-bold font-[family-name:var(--font-syne-var)]">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-text mb-0.5">{f.title}</h4>
+                    <p className="text-base text-text-muted leading-relaxed">{f.desc}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">✍️</div>
-                <div>
-                  <h4 className="text-base font-semibold text-text mb-[3px]">You approve before anything starts</h4>
-                  <p className="text-base text-text-muted leading-[1.65] font-medium">The Blueprint is your protection. You sign off on the visuals. The build reflects what you approved. Changes after approval are quoted separately.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3.5 p-[18px] bg-bg-3 rounded-xl border border-border">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-base bg-bg-2">🆓</div>
-                <div>
-                  <h4 className="text-base font-semibold text-text mb-[3px]">Free. No commitment required.</h4>
-                  <p className="text-base text-text-muted leading-[1.65] font-medium">The Blueprint is delivered before the contract. Before payment. You can walk away after seeing it. Most clients don&rsquo;t.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Right — 3x2 Screen Grid */}
-          <div className="grid grid-cols-3 gap-3 reveal reveal-delay-2 max-md2:order-[-1]">
+          {/* Right — project screen grid */}
+          <div className="grid grid-cols-3 gap-3 reveal reveal-delay-2 max-md2:order-[-1]" role="img" aria-label="Sample Blueprint screens from six different projects">
             {screens.map((s, i) => (
               <div
                 key={i}
-                className="rounded-[16px] overflow-hidden transition-all duration-200 hover:border-amber hover:-translate-y-[3px]"
+                className="rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
                 style={{ background: s.bg, border: `1px solid ${s.border}` }}
               >
-                {/* Header bar */}
                 <div
-                  className="h-9 flex items-center px-3 gap-[5px]"
-                  style={{
-                    background: s.headerBg,
-                    borderBottom: `1px solid ${s.headerBorder || s.border}`,
-                  }}
+                  className="h-9 flex items-center px-3 gap-1.5"
+                  style={{ background: s.headerBg, borderBottom: `1px solid ${s.headerBorder || s.border}` }}
                 >
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#ff5f57' }} />
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#febc2e' }} />
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#28c840' }} />
                 </div>
-                {/* Body */}
                 <div className="p-3 flex flex-col gap-1.5">
-                  <div
-                    className="h-1 rounded-sm"
-                    style={{
-                      background: s.accent,
-                      width: s.lineW,
-                      opacity: s.lineOpacity || 0.7,
-                    }}
-                  />
+                  <div className="h-1 rounded-sm" style={{ background: s.accent, width: s.lineW, opacity: s.lineOpacity || 0.7 }} />
                   <div className="h-1 rounded-sm w-full" style={{ background: s.lineBg }} />
-                  {/* Mini card */}
-                  <div className="rounded-[7px] p-2 mt-1 flex gap-1.5 items-center" style={{ background: s.headerBg }}>
-                    <div className="w-[18px] h-[18px] rounded-full shrink-0" style={{ background: s.accentBg }} />
-                    <div className="flex-1 flex flex-col gap-[3px]">
-                      <div className="h-[3px] rounded-sm" style={{ width: s.miniW1, background: s.lineBg }} />
-                      <div className="h-[3px] rounded-sm" style={{ width: s.miniW2, background: s.lineBg }} />
+                  <div className="rounded-lg p-2 mt-1 flex gap-1.5 items-center" style={{ background: s.headerBg }}>
+                    <div className="w-4 h-4 rounded-full shrink-0" style={{ background: s.accentBg }} />
+                    <div className="flex-1 flex flex-col gap-1">
+                      <div className="h-0.5 rounded-sm" style={{ width: s.miniW1, background: s.lineBg }} />
+                      <div className="h-0.5 rounded-sm" style={{ width: s.miniW2, background: s.lineBg }} />
                     </div>
                   </div>
-                  {/* Tag */}
                   <div
-                    className="text-[9px] py-[2px] px-[7px] rounded-[20px] font-semibold self-start mt-1"
-                    style={{
-                      background: s.accentTag,
-                      color: s.tagColor || s.accent,
-                      border: `1px solid ${s.accentBorder}`,
-                    }}
+                    className="text-[9px] py-0.5 px-1.5 rounded-full font-semibold self-start mt-1"
+                    style={{ background: s.accentTag, color: s.tagColor || s.accent, border: `1px solid ${s.accentBorder}` }}
                   >
                     {s.tag}
                   </div>

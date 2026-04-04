@@ -5,53 +5,54 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-[200] transition-all duration-300"
       style={scrolled ? {
-        background: 'rgba(245,240,232,0.85)',
+        background: 'rgba(245,240,232,0.88)',
         borderBottom: '1px solid var(--color-border)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
       } : undefined}
+      aria-label="Main navigation"
     >
-      <div className="flex items-center justify-between px-10 py-[18px] max-w-[1160px] mx-auto">
+      <div className="flex items-center justify-between px-10 py-4 max-w-[1160px] mx-auto">
         {/* Logo */}
-        <div className="flex items-center gap-2.5">
+        <a href="#" className="flex items-center gap-2.5" aria-label="Startline — home">
           <div className="w-7 h-7 bg-amber rounded-[7px] flex items-center justify-center shrink-0">
-            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" aria-hidden="true">
               <path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="white" />
             </svg>
           </div>
           <div>
-            <div className="font-[family-name:var(--font-syne-var)] font-bold text-lg text-text tracking-[-0.3px]">
+            <div className="font-[family-name:var(--font-syne-var)] font-bold text-lg text-text tracking-tight">
               start<em className="not-italic text-amber">line</em>
             </div>
-            <div className="text-[10px] text-text-dim tracking-[0.04em] font-normal">
-              This is where tech founders start
+            <div className="text-[10px] text-text-dim tracking-wide font-normal">
+              Where tech founders start
             </div>
           </div>
-        </div>
+        </a>
 
         {/* Nav links */}
-        <div className="hidden md2:flex items-center gap-8 text-[13px] text-text-muted">
-          <a href="#blueprint" className="transition-colors duration-150 hover:text-text">The Blueprint</a>
-          <a href="#how-it-works" className="transition-colors duration-150 hover:text-text">How It Works</a>
-          <a href="#work" className="transition-colors duration-150 hover:text-text">Our Work</a>
-          <a href="#team" className="transition-colors duration-150 hover:text-text">Meet the Team</a>
+        <div className="hidden md2:flex items-center gap-8 text-sm text-text-muted">
+          <a href="#blueprint" className="transition-colors duration-150 hover:text-text">Blueprint</a>
+          <a href="#how-it-works" className="transition-colors duration-150 hover:text-text">Process</a>
+          <a href="#work" className="transition-colors duration-150 hover:text-text">Work</a>
+          <a href="#team" className="transition-colors duration-150 hover:text-text">Team</a>
         </div>
 
-        {/* CTA — matches hero primary */}
+        {/* CTA */}
         <a
           href="#start"
-          className="bg-amber text-white px-[22px] py-[9px] rounded-lg text-[13px] font-semibold transition-all duration-150 hover:opacity-88 hover:-translate-y-0.5 font-[family-name:var(--font-epilogue-var)]"
+          className="bg-amber text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-150 hover:opacity-90 hover:-translate-y-px"
         >
-          Start Your Project →
+          Start Your Project
         </a>
       </div>
     </nav>

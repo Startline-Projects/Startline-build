@@ -14,7 +14,7 @@ export default function IntakeForm() {
 
   const handleSubmit = async () => {
     if (!name.trim() || !email.trim() || !whatToBuild.trim()) {
-      alert('Please fill in your name, email, and what you need to build.')
+      alert('Please fill in your name, email, and what you want to build.')
       return
     }
 
@@ -34,76 +34,80 @@ export default function IntakeForm() {
         }),
       })
     } catch {
-      // Still show success — email delivery is best-effort
+      // best-effort
     }
     setSubmitting(false)
     setSubmitted(true)
   }
 
-  const inputClass = "w-full border border-border-2 rounded-[9px] py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)] placeholder:text-text-dim"
-  const inputBg = { background: 'var(--color-bg-4)' }
+  const inputClass = "w-full border border-border-2 rounded-lg py-3 px-4 text-base text-text outline-none transition-colors duration-150 focus:border-amber placeholder:text-text-dim bg-bg-4"
 
   return (
-    <section className="py-24 bg-bg-2 border-t border-border" id="start">
+    <section className="py-24 bg-bg-2 border-t border-border" id="start" aria-label="Project intake form">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="grid grid-cols-1 md2:grid-cols-2 gap-20 items-start">
-          {/* Left — Copy */}
+          {/* Left */}
           <div className="reveal">
-            <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">Start Here</div>
-            <h2 className="font-[family-name:var(--font-syne-var)] text-[42px] font-extrabold tracking-[-1px] leading-[1.1] mb-4">
-              Tell us what<br />you need to build.
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-3.5">Start Here</div>
+            <h2 className="font-[family-name:var(--font-syne-var)] text-4xl md2:text-[42px] font-extrabold tracking-tight leading-[1.1] mb-4">
+              Tell us what you<br />want to build.
             </h2>
-            <p className="text-base text-text-muted leading-[1.65] mb-8 font-medium max-w-[62ch]">
-              Fill out the form. Our team reviews it and calls you to schedule a 45-minute discovery call with Ahmed and Sam. No commitment. No pitch. Just a real conversation about your project.
+            <p className="text-lg text-text-muted leading-relaxed mb-8 max-w-[48ch]">
+              Fill out the form. We&rsquo;ll call you to schedule a 45-minute discovery call with Ahmed and Sam. No commitment, no pitch.
             </p>
-            <div className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3" role="list">
               {[
-                'Blueprint delivered free before you sign anything',
+                'Blueprint delivered free before you sign',
                 'No contract until you approve the visuals',
-                'No retainer — bi-weekly payments only',
-                '30-day full money-back guarantee',
-                'You own everything when it\u2019s done',
+                'Bi-weekly billing — no retainer',
+                '30-day money-back guarantee',
+                'You own everything we build',
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-sm text-text-muted">
-                  <span className="text-amber text-base shrink-0">✓</span>
+                <li key={i} className="flex items-center gap-2.5 text-base text-text-muted">
+                  <span className="text-text shrink-0">✓</span>
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Right — Form */}
+          {/* Right */}
           <div className="reveal reveal-delay-1">
             {!submitted ? (
-              <div className="bg-bg-3 border border-border-2 rounded-[16px] p-8">
-                <div className="grid grid-cols-2 gap-3.5">
-                  <div className="mb-[18px]">
-                    <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Your name</label>
-                    <input type="text" placeholder="Ahmed Kassem" value={name} onChange={(e) => setName(e.target.value)} className={inputClass} style={inputBg} />
+              <form
+                className="bg-bg-3 border border-border-2 rounded-xl p-8"
+                onSubmit={(e) => { e.preventDefault(); handleSubmit() }}
+                aria-label="Project intake"
+              >
+                <div className="grid grid-cols-2 gap-3.5 mb-4">
+                  <div>
+                    <label htmlFor="intake-name" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Your name</label>
+                    <input id="intake-name" type="text" placeholder="Jane Smith" value={name} onChange={(e) => setName(e.target.value)} className={inputClass} required />
                   </div>
-                  <div className="mb-[18px]">
-                    <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Company</label>
-                    <input type="text" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} className={inputClass} style={inputBg} />
+                  <div>
+                    <label htmlFor="intake-company" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Company</label>
+                    <input id="intake-company" type="text" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} className={inputClass} />
                   </div>
                 </div>
-                <div className="mb-[18px]">
-                  <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Email</label>
-                  <input type="email" placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} style={inputBg} />
+                <div className="mb-4">
+                  <label htmlFor="intake-email" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Email</label>
+                  <input id="intake-email" type="email" placeholder="you@company.com" value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} required />
                 </div>
-                <div className="mb-[18px]">
-                  <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">What do you need to build?</label>
+                <div className="mb-4">
+                  <label htmlFor="intake-build" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">What do you want to build?</label>
                   <textarea
-                    placeholder="Describe your idea — what it does, who it's for, what problem it solves. The more detail the better."
+                    id="intake-build"
+                    placeholder="What does it do, who is it for, what problem does it solve?"
                     value={whatToBuild}
                     onChange={(e) => setWhatToBuild(e.target.value)}
-                    className={`${inputClass} resize-y min-h-[100px]`}
-                    style={inputBg}
+                    className={`${inputClass} resize-y min-h-24`}
+                    required
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3.5">
-                  <div className="mb-[18px]">
-                    <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Budget range</label>
-                    <select value={budgetRange} onChange={(e) => setBudgetRange(e.target.value)} className={`${inputClass} cursor-pointer appearance-none`} style={inputBg}>
+                <div className="grid grid-cols-2 gap-3.5 mb-4">
+                  <div>
+                    <label htmlFor="intake-budget" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Budget range</label>
+                    <select id="intake-budget" value={budgetRange} onChange={(e) => setBudgetRange(e.target.value)} className={`${inputClass} cursor-pointer appearance-none`}>
                       <option value="">Select range</option>
                       <option>Under $20,000</option>
                       <option>$20,000 – $50,000</option>
@@ -111,38 +115,38 @@ export default function IntakeForm() {
                       <option>$100,000+</option>
                     </select>
                   </div>
-                  <div className="mb-[18px]">
-                    <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Target launch</label>
-                    <input type="text" placeholder="e.g. Q3 2026" value={targetLaunch} onChange={(e) => setTargetLaunch(e.target.value)} className={inputClass} style={inputBg} />
+                  <div>
+                    <label htmlFor="intake-launch" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Target launch</label>
+                    <input id="intake-launch" type="text" placeholder="e.g. Q3 2026" value={targetLaunch} onChange={(e) => setTargetLaunch(e.target.value)} className={inputClass} />
                   </div>
                 </div>
-                <div className="mb-[18px]">
-                  <label className="block text-xs font-semibold text-text-muted mb-[7px] tracking-[0.04em] uppercase">Do you have wireframes or designs?</label>
-                  <select value={wireframes} onChange={(e) => setWireframes(e.target.value)} className={`${inputClass} cursor-pointer appearance-none`} style={inputBg}>
+                <div className="mb-5">
+                  <label htmlFor="intake-wireframes" className="block text-xs font-semibold text-text-muted mb-1.5 tracking-wide uppercase">Do you have wireframes?</label>
+                  <select id="intake-wireframes" value={wireframes} onChange={(e) => setWireframes(e.target.value)} className={`${inputClass} cursor-pointer appearance-none`}>
                     <option>Yes — I have wireframes or mockups</option>
-                    <option>No — I need The Blueprint from scratch</option>
+                    <option>No — I need the Blueprint from scratch</option>
                     <option>Partial — I have some ideas sketched out</option>
                   </select>
                 </div>
                 <button
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={submitting}
-                  className="w-full bg-amber text-white border-none rounded-[9px] py-[15px] text-[15px] font-bold cursor-pointer font-[family-name:var(--font-epilogue-var)] transition-all duration-150 hover:opacity-92 hover:-translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full bg-amber text-white border-none rounded-lg py-3.5 text-base font-semibold cursor-pointer transition-all duration-150 hover:opacity-90 hover:-translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {submitting ? 'Submitting...' : 'Submit — We\u2019ll Call You to Schedule →'}
+                  {submitting ? 'Sending...' : 'Submit Project Inquiry'}
                 </button>
-                <div className="text-xs text-text-dim text-center mt-3 leading-[1.5]">
-                  We review every submission before scheduling. Expect a call from Ahmed within 1 business day.
-                </div>
-              </div>
+                <p className="text-sm text-text-dim text-center mt-3">
+                  We review every submission. Expect a call within 1 business day.
+                </p>
+              </form>
             ) : (
-              <div className="text-center py-8">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3.5 text-2xl" style={{ background: 'rgba(22,163,74,0.08)', color: 'var(--color-green)' }}>
+              <div className="text-center py-12" role="status">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl bg-green-light text-green">
                   ✓
                 </div>
-                <div className="font-[family-name:var(--font-syne-var)] text-xl font-bold mb-2">We&rsquo;ve got it. Ahmed will call you soon.</div>
-                <p className="text-sm text-text-muted leading-[1.6]">
-                  We review every intake before scheduling so the call with Ahmed and Sam is focused and useful. Expect a call within 1 business day to set the time.
+                <h3 className="font-[family-name:var(--font-syne-var)] text-xl font-bold mb-2">Received. Ahmed will call you soon.</h3>
+                <p className="text-base text-text-muted leading-relaxed max-w-[40ch] mx-auto">
+                  We review every intake before scheduling so the discovery call is focused and useful.
                 </p>
               </div>
             )}
