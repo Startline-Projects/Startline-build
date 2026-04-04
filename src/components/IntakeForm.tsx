@@ -40,10 +40,10 @@ export default function IntakeForm() {
     setSubmitted(true)
   }
 
-  const inputClass = "w-full border border-border-2 rounded-lg py-3 px-4 text-base text-text outline-none transition-colors duration-150 focus:border-amber placeholder:text-text-dim bg-bg-4"
+  const inputClass = "w-full border border-border rounded-lg py-3 px-4 text-base text-text outline-none transition-colors duration-150 focus:border-amber placeholder:text-text-muted bg-bg-input"
 
   return (
-    <section className="py-24 bg-bg-2 border-t border-border" id="start" aria-label="Project intake form">
+    <section className="py-36 bg-bg" id="start" aria-label="Project intake form">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="grid grid-cols-1 md2:grid-cols-2 gap-20 items-start">
           {/* Left */}
@@ -75,7 +75,8 @@ export default function IntakeForm() {
           <div className="reveal reveal-delay-1">
             {!submitted ? (
               <form
-                className="bg-bg-3 border border-border-2 rounded-xl p-8"
+                className="bg-bg-3 rounded-xl p-8"
+                style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.04)' }}
                 onSubmit={(e) => { e.preventDefault(); handleSubmit() }}
                 aria-label="Project intake"
               >
@@ -135,7 +136,7 @@ export default function IntakeForm() {
                 >
                   {submitting ? 'Sending...' : 'Submit Project Inquiry'}
                 </button>
-                <p className="text-sm text-text-dim text-center mt-3">
+                <p className="text-sm text-text-muted text-center mt-3">
                   We review every submission. Expect a call within 1 business day.
                 </p>
               </form>

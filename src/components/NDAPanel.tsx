@@ -49,8 +49,8 @@ export default function NDAPanel() {
 
   if (!isOpen) return null
 
-  const inputClass = "w-full border border-border-2 rounded-lg py-[13px] px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber font-[family-name:var(--font-epilogue-var)]"
-  const inputBg = { background: 'var(--color-bg-4)' }
+  const inputClass = "w-full border border-border rounded-lg py-3 px-4 text-sm text-text outline-none transition-colors duration-150 focus:border-amber"
+  const inputBg = { background: 'var(--color-bg-input)' }
 
   return (
     <div
@@ -59,14 +59,14 @@ export default function NDAPanel() {
       onClick={(e) => { if (e.target === e.currentTarget) closeNDA() }}
     >
       <div
-        className="bg-bg-3 border border-border-2 rounded-xl w-full max-w-[540px] max-h-[90vh] overflow-y-auto p-9 relative"
+        className="bg-bg-3 border border-border rounded-xl w-full max-w-[540px] max-h-[90vh] overflow-y-auto p-9 relative"
         style={{ animation: 'modalSlideIn 200ms ease-out' }}
       >
         {/* Close button */}
         <button
           onClick={closeNDA}
           className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center border-none text-text-muted text-base cursor-pointer"
-          style={{ background: 'var(--color-bg-4)' }}
+          style={{ background: 'var(--color-bg-input)' }}
         >
           ✕
         </button>
@@ -104,7 +104,7 @@ export default function NDAPanel() {
             {/* TODO: Replace with Nick-approved NDA language before launch */}
             <div
               className="border border-border rounded-[9px] p-4 text-xs text-text-muted leading-[1.8] max-h-[180px] overflow-y-auto mb-5"
-              style={{ background: 'var(--color-bg-4)' }}
+              style={{ background: 'var(--color-bg-input)' }}
             >
               <strong className="text-text">CONFIDENTIALITY AND NON-COMPETE AGREEMENT</strong><br /><br />
               This Non-Disclosure Agreement (&ldquo;Agreement&rdquo;) is entered into between Stafva LLC d/b/a Startline (&ldquo;Company&rdquo;) and the undersigned individual or entity (&ldquo;Recipient&rdquo;).<br /><br />
@@ -148,7 +148,7 @@ export default function NDAPanel() {
             >
               Sign and Unlock Portfolio →
             </button>
-            <div className="text-[11px] text-text-dim text-center mt-2.5">
+            <div className="text-[11px] text-text-muted text-center mt-2.5">
               Timestamp and IP address recorded. A signed copy will be emailed to you for your records.
             </div>
           </>

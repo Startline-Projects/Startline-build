@@ -46,20 +46,20 @@ export default function BlueprintScreens() {
                 className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{
                   background: m.done ? 'var(--color-text)' : m.active ? 'var(--color-amber)' : 'var(--color-bg-4)',
-                  color: m.done || m.active ? '#fff' : 'var(--color-text-dim)',
+                  color: m.done || m.active ? '#fff' : 'var(--color-text-muted)',
                 }}
               >
                 {m.done ? '✓' : i + 1}
               </div>
               {i < milestones.length - 1 && (
-                <div className="w-px h-6" style={{ background: 'var(--color-border-2)' }} aria-hidden="true" />
+                <div className="w-px h-6" style={{ background: 'var(--color-border)' }} aria-hidden="true" />
               )}
             </div>
 
             {/* Content */}
             <div className="pt-1 pb-4">
               <div className="text-sm font-semibold text-text">{m.label}</div>
-              <div className="text-xs text-text-dim mt-0.5">{m.sub}</div>
+              <div className="text-xs text-text-muted mt-0.5">{m.sub}</div>
             </div>
           </div>
         ))}
@@ -83,7 +83,7 @@ export default function BlueprintScreens() {
         </div>
         <div>
           <div className="text-sm font-semibold text-text">You approve. Then we build.</div>
-          <div className="text-xs text-text-dim mt-px">No payment until you sign off on the visuals.</div>
+          <div className="text-xs text-text-muted mt-px">No payment until you sign off on the visuals.</div>
         </div>
       </div>
     </div>

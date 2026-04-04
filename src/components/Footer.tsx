@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-dark py-10 px-10" role="contentinfo">
+    <footer className="bg-dark py-16 px-10" role="contentinfo">
       <div className="max-w-[1160px] mx-auto flex items-center justify-between gap-6 flex-wrap">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5" aria-label="Startline — home">

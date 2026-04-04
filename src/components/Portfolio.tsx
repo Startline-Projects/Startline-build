@@ -54,7 +54,7 @@ const projects: Project[] = [
     realTitle: 'Estate Vault',
     titleBlur: true,
     desc: 'White-label estate planning platform.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'Delivered',
     link: { url: 'https://estatevault.us', text: 'View Live Site ↗', external: true },
   },
@@ -66,7 +66,7 @@ const projects: Project[] = [
     realTitle: 'The People\u2019s Firm',
     titleBlur: true,
     desc: 'Law firm website and client portal.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'Delivered',
     link: { url: 'https://thepeoplesfirmpllc.com', text: 'View Live Site ↗', external: true },
   },
@@ -78,7 +78,7 @@ const projects: Project[] = [
     realTitle: 'Meta Medical Scribe',
     titleBlur: true,
     desc: 'HIPAA-compliant clinical platform. Client identity protected under their NDA — not disclosed upon access.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'Live · Client identity protected',
     hasLiveBadge: true,
     link: { url: '/meta-health', text: 'View Project Details →', external: false },
@@ -91,7 +91,7 @@ const projects: Project[] = [
     realTitle: 'Al-Hikma School Platform',
     titleBlur: true,
     desc: 'Full school operating system. 9 modules.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'In Progress · May 2026',
     link: { url: '/alhikma', text: 'View Project Details →', external: false },
   },
@@ -103,7 +103,7 @@ const projects: Project[] = [
     realTitle: 'Chairly',
     titleBlur: true,
     desc: 'Two-sided barber marketplace.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'In Progress · June 2026',
     hasBorderBottom: true,
     link: { url: '/chairly', text: 'View Project Details →', external: false },
@@ -116,7 +116,7 @@ const projects: Project[] = [
     realTitle: 'Muslim Guider Pro',
     titleBlur: true,
     desc: 'Live audio broadcasting. Smart TV.',
-    descColor: 'var(--color-text-dim)',
+    descColor: 'var(--color-text-muted)',
     value: 'In Progress · July 2026',
     link: { url: '/muslim-guider', text: 'View Project Details →', external: false },
   },
@@ -126,7 +126,7 @@ export default function Portfolio() {
   const { openNDA, hasAccess } = useNDA()
 
   return (
-    <section className="py-24 bg-bg-2" id="work">
+    <section className="py-36 bg-bg" id="work">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="reveal">
           <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">Our Work</div>
@@ -140,7 +140,7 @@ export default function Portfolio() {
 
         {/* NDA gate banner — hidden when unlocked */}
         {!hasAccess && (
-          <div className="bg-bg-3 border border-border rounded-[16px] py-6 px-7 mt-10 mb-5 flex items-center justify-between flex-wrap gap-4 reveal">
+          <div className="bg-bg-3 rounded-xl py-6 px-7 mt-10 mb-5 flex items-center justify-between flex-wrap gap-4 reveal" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
             <div>
               <div className="text-[15px] font-bold text-text mb-1">All projects require a signed agreement to view.</div>
               <div className="text-[13px] text-text-muted">NDA and non-compete. Takes 60 seconds. Access granted immediately.</div>
@@ -174,7 +174,7 @@ export default function Portfolio() {
           {projects.map((p, i) => (
             <div
               key={i}
-              className="bg-bg-3 border border-border rounded-xl overflow-hidden transition-colors duration-200 hover:border-border-2 flex flex-col"
+              className="bg-bg-3 rounded-xl overflow-hidden transition-shadow duration-200 hover:shadow-md flex flex-col"
             >
               {/* Image area — CSS mini preview */}
               <div
@@ -248,7 +248,7 @@ export default function Portfolio() {
                       <a
                         href={p.link.url}
                         target="_blank"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border-2 transition-colors hover:border-amber hover:text-amber"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border transition-colors hover:border-amber hover:text-amber"
                         style={{ background: 'var(--color-bg)' }}
                       >
                         {p.link.text}
@@ -256,7 +256,7 @@ export default function Portfolio() {
                     )
                   )}
 
-                  <div className="text-[11px] text-text-dim mt-1.5">{p.value}</div>
+                  <div className="text-[11px] text-text-muted mt-1.5">{p.value}</div>
                 </div>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function Portfolio() {
         </div>
 
         {!hasAccess && (
-          <div className="text-center py-5 text-[13px] text-text-dim">
+          <div className="text-center py-5 text-[13px] text-text-muted">
             Access requires a signed NDA and non-compete. Takes 60 seconds.
           </div>
         )}

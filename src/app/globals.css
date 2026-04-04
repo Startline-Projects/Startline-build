@@ -1,28 +1,24 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Background scale */
+  /* Two surface colors only */
   --color-bg: #F8F5F0;
-  --color-bg-2: #F0EDE8;
   --color-bg-3: #FFFFFF;
-  --color-bg-4: #EAE6E0;
-  --color-bg-5: #E0DCD6;
 
-  /* Text hierarchy */
+  /* Form input background */
+  --color-bg-input: #F3F0EB;
+
+  /* Text: 2 levels + accent */
   --color-text: #1C1B1A;
   --color-text-muted: #6B6560;
-  --color-text-dim: #9A9590;
-  --color-text-faint: #C8C4BC;
 
-  /* Accent — restricted to labels, logo mark, primary CTAs */
+  /* Accent — labels, logo, primary CTAs only */
   --color-amber: #C8681A;
   --color-amber-light: rgba(200,104,26,0.08);
   --color-amber-text: #A85614;
 
-  /* Borders */
+  /* One border token */
   --color-border: #E4E0D8;
-  --color-border-2: #D4D0C8;
-  --color-border-3: #C0BCB8;
 
   /* Semantic */
   --color-dark: #1C1B1A;

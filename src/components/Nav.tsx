@@ -15,7 +15,7 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-[200] transition-all duration-300"
       style={scrolled ? {
         background: 'rgba(245,240,232,0.88)',
-        borderBottom: '1px solid var(--color-border)',
+        borderBottom: '1px solid rgba(228,224,216,0.5)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
       } : undefined}
@@ -29,13 +29,8 @@ export default function Nav() {
               <path d="M1 1.5L10 6.5L1 11.5V1.5Z" fill="white" />
             </svg>
           </div>
-          <div>
-            <div className="font-[family-name:var(--font-syne-var)] font-bold text-lg text-text tracking-tight">
-              start<em className="not-italic text-amber">line</em>
-            </div>
-            <div className="text-[10px] text-text-dim tracking-wide font-normal">
-              Where tech founders start
-            </div>
+          <div className="font-[family-name:var(--font-syne-var)] font-bold text-xl text-text tracking-tight">
+            start<em className="not-italic text-amber">line</em>
           </div>
         </a>
 
