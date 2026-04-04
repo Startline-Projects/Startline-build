@@ -1,123 +1,82 @@
 'use client'
-import { ReactNode } from 'react'
 import { useNDA } from '@/context/NDAContext'
-import {
-  StaffVAPreview, InterviewPreview, EstateVaultPreview, PeoplesFirmPreview,
-  MetaHealthPreview, AlHikmaPreview, ChairlyPreview, MuslimGuiderPreview,
-} from './CardPreviews'
 
 interface Project {
-  preview: ReactNode
-  imgBlur: string
+  color: string
   tag: string
   redactedTitle: string
   realTitle: string
   titleBlur: boolean
   desc: string
-  descColor: string
   value: string
   hasLiveBadge?: boolean
-  hasBorderBottom?: boolean
   link?: { url: string; text: string; external: boolean }
 }
 
 const projects: Project[] = [
   {
-    preview: <StaffVAPreview />,
-    imgBlur: '12px',
+    color: '#1C1B1A',
     tag: 'Our Platform · Talent Marketplace',
-    redactedTitle: 'StaffVA',
-    realTitle: 'StaffVA',
-    titleBlur: false,
-    desc: 'Professional offshore talent marketplace. Launching to candidates April 6 · Launching to clients April 20.',
-    descColor: 'var(--color-text-muted)',
-    value: 'Live · Our Platform',
+    redactedTitle: 'StaffVA', realTitle: 'StaffVA', titleBlur: false,
+    desc: 'Professional offshore talent marketplace.',
+    value: 'Live',
     link: { url: 'https://staffva.com', text: 'View Platform ↗', external: true },
   },
   {
-    preview: <InterviewPreview />,
-    imgBlur: '12px',
+    color: '#0F1A2E',
     tag: 'Our Platform · AI SaaS',
-    redactedTitle: 'StaffVA AI Interview',
-    realTitle: 'StaffVA AI Interview',
-    titleBlur: false,
-    desc: 'AI-powered voice interview platform for candidate screening. White-label. Launching to clients April 20.',
-    descColor: 'var(--color-text-muted)',
-    value: 'Live · White-label available',
+    redactedTitle: 'StaffVA AI Interview', realTitle: 'StaffVA AI Interview', titleBlur: false,
+    desc: 'AI-powered voice interview platform. White-label.',
+    value: 'Live',
     link: { url: 'https://interview.staffva.com', text: 'View Platform ↗', external: true },
   },
   {
-    preview: <EstateVaultPreview />,
-    imgBlur: '12px',
+    color: '#0D1E35',
     tag: 'Estate Planning · SaaS',
-    redactedTitle: '████████████',
-    realTitle: 'Estate Vault',
-    titleBlur: true,
+    redactedTitle: '████████████', realTitle: 'Estate Vault', titleBlur: true,
     desc: 'White-label estate planning platform.',
-    descColor: 'var(--color-text-muted)',
     value: 'Delivered',
     link: { url: 'https://estatevault.us', text: 'View Live Site ↗', external: true },
   },
   {
-    preview: <PeoplesFirmPreview />,
-    imgBlur: '12px',
+    color: '#0D1F0F',
     tag: 'Legal Services · Web',
-    redactedTitle: '████████████',
-    realTitle: 'The People\u2019s Firm',
-    titleBlur: true,
+    redactedTitle: '████████████', realTitle: 'The People\u2019s Firm', titleBlur: true,
     desc: 'Law firm website and client portal.',
-    descColor: 'var(--color-text-muted)',
     value: 'Delivered',
     link: { url: 'https://thepeoplesfirmpllc.com', text: 'View Live Site ↗', external: true },
   },
   {
-    preview: <MetaHealthPreview />,
-    imgBlur: '12px',
+    color: '#0A0F1A',
     tag: 'Healthcare · Mobile',
-    redactedTitle: '████████████',
-    realTitle: 'Meta Medical Scribe',
-    titleBlur: true,
-    desc: 'HIPAA-compliant clinical platform. Client identity protected under their NDA — not disclosed upon access.',
-    descColor: 'var(--color-text-muted)',
+    redactedTitle: '████████████', realTitle: 'Meta Medical Scribe', titleBlur: true,
+    desc: 'HIPAA-compliant clinical platform.',
     value: 'Live · Client identity protected',
     hasLiveBadge: true,
     link: { url: '/meta-health', text: 'View Project Details →', external: false },
   },
   {
-    preview: <AlHikmaPreview />,
-    imgBlur: '12px',
+    color: '#0B2545',
     tag: 'Education · SaaS',
-    redactedTitle: '████████████',
-    realTitle: 'Al-Hikma School Platform',
-    titleBlur: true,
+    redactedTitle: '████████████', realTitle: 'Al-Hikma School Platform', titleBlur: true,
     desc: 'Full school operating system. 9 modules.',
-    descColor: 'var(--color-text-muted)',
-    value: 'In Progress · May 2026',
+    value: 'In Progress',
     link: { url: '/alhikma', text: 'View Project Details →', external: false },
   },
   {
-    preview: <ChairlyPreview />,
-    imgBlur: '12px',
+    color: '#0E0E0D',
     tag: 'Consumer · Mobile App',
-    redactedTitle: '████████████',
-    realTitle: 'Chairly',
-    titleBlur: true,
+    redactedTitle: '████████████', realTitle: 'Chairly', titleBlur: true,
     desc: 'Two-sided barber marketplace.',
-    descColor: 'var(--color-text-muted)',
-    value: 'In Progress · June 2026',
-    hasBorderBottom: true,
+    value: 'In Progress',
     link: { url: '/chairly', text: 'View Project Details →', external: false },
   },
   {
-    preview: <MuslimGuiderPreview />,
-    imgBlur: '12px',
+    color: '#0D1117',
     tag: 'Religious Tech · Mobile',
-    redactedTitle: '████████████',
-    realTitle: 'Muslim Guider Pro',
-    titleBlur: true,
+    redactedTitle: '████████████', realTitle: 'Muslim Guider Pro', titleBlur: true,
     desc: 'Live audio broadcasting. Smart TV.',
-    descColor: 'var(--color-text-muted)',
-    value: 'In Progress · July 2026',
+    value: 'In Progress',
     link: { url: '/muslim-guider', text: 'View Project Details →', external: false },
   },
 ]
@@ -126,147 +85,103 @@ export default function Portfolio() {
   const { openNDA, hasAccess } = useNDA()
 
   return (
-    <section className="py-36 bg-bg" id="work">
+    <section className="py-36 bg-bg" id="work" aria-label="Our work">
       <div className="max-w-[1160px] mx-auto px-10">
         <div className="reveal">
-          <div className="text-[11px] font-bold tracking-[0.12em] uppercase text-amber mb-3.5">Our Work</div>
-          <h2 className="font-[family-name:var(--font-syne-var)] text-[46px] font-extrabold tracking-[-1.2px] leading-[1.08] mb-4">
+          <div className="text-[11px] font-semibold tracking-widest uppercase text-amber mb-4">Our Work</div>
+          <h2 className="font-[family-name:var(--font-syne-var)] text-4xl md2:text-[46px] font-extrabold tracking-tight leading-[1.08] mb-5">
             Six industries.<br />One team model.
           </h2>
-          <p className="text-[17px] text-text-muted leading-[1.75] max-w-[580px] font-light">
+          <p className="text-lg text-text-muted leading-relaxed max-w-[42ch]">
             Request access to see the full portfolio.
           </p>
         </div>
 
-        {/* NDA gate banner — hidden when unlocked */}
+        {/* NDA gate banner */}
         {!hasAccess && (
-          <div className="bg-bg-3 rounded-xl py-6 px-7 mt-10 mb-5 flex items-center justify-between flex-wrap gap-4 reveal" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
+          <div className="bg-bg-3 rounded-xl py-6 px-7 mt-12 mb-8 flex items-center justify-between flex-wrap gap-4 reveal" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
             <div>
-              <div className="text-[15px] font-bold text-text mb-1">All projects require a signed agreement to view.</div>
-              <div className="text-[13px] text-text-muted">NDA and non-compete. Takes 60 seconds. Access granted immediately.</div>
+              <div className="text-base font-semibold text-text mb-0.5">Portfolio requires a signed agreement.</div>
+              <div className="text-sm text-text-muted">NDA and non-compete. Takes 60 seconds.</div>
             </div>
             <button
               onClick={openNDA}
-              className="bg-amber text-white px-7 py-3.5 rounded-[9px] text-[15px] font-semibold transition-all duration-150 hover:opacity-90 hover:-translate-y-px cursor-pointer border-none font-[family-name:var(--font-epilogue-var)]"
+              className="bg-amber text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-150 hover:opacity-90 hover:-translate-y-px cursor-pointer border-none"
             >
-              Request Portfolio Access →
+              Request Access
             </button>
           </div>
         )}
 
-        {/* Unlocked banner — shown when access granted */}
+        {/* Unlocked banner */}
         {hasAccess && (
-          <div className="flex items-center gap-3 rounded-[16px] p-4 mt-10 mb-5" style={{ background: 'rgba(22,163,74,0.06)', border: '1px solid rgba(22,163,74,0.2)' }}>
-            <div className="w-7 h-7 rounded-full bg-green flex items-center justify-center text-white text-sm font-bold shrink-0">
-              ✓
-            </div>
+          <div className="flex items-center gap-3 rounded-xl p-4 mt-12 mb-8 bg-green-light reveal">
+            <div className="w-7 h-7 rounded-full bg-green flex items-center justify-center text-white text-sm font-bold shrink-0">✓</div>
             <div>
-              <div className="text-sm font-semibold" style={{ color: '#15803d' }}>Portfolio access granted</div>
-              <div className="text-xs mt-0.5" style={{ color: '#16a34a' }}>
-                You&rsquo;re viewing all Startline projects. A signed copy of your NDA has been recorded.
-              </div>
+              <div className="text-sm font-semibold text-text">Portfolio access granted</div>
+              <div className="text-sm text-text-muted mt-0.5">You&rsquo;re viewing all Startline projects.</div>
             </div>
           </div>
         )}
 
-        {/* All 8 projects — 4-column grid */}
-        <div className="grid grid-cols-2 md2:grid-cols-4 gap-4 reveal">
+        {/* Project grid */}
+        <div className="grid grid-cols-2 md2:grid-cols-4 gap-5 reveal">
           {projects.map((p, i) => (
-            <div
-              key={i}
-              className="bg-bg-3 rounded-xl overflow-hidden transition-shadow duration-200 hover:shadow-md flex flex-col"
-            >
-              {/* Image area — CSS mini preview */}
+            <div key={i} className="flex flex-col group">
+              {/* Color swatch */}
               <div
-                className="h-[140px] relative overflow-hidden transition-[filter] duration-400 ease-in-out"
-                style={{
-                  filter: hasAccess ? 'none' : `blur(${p.imgBlur})`,
-                  borderBottom: p.hasBorderBottom ? '1px solid var(--color-border)' : undefined,
-                }}
+                className="h-28 rounded-xl mb-4 transition-transform duration-200 group-hover:-translate-y-0.5"
+                style={{ background: p.color }}
               >
                 {p.hasLiveBadge && (
-                  <div
-                    className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1 text-[9px] font-bold py-[3px] px-2 rounded-[20px]"
-                    style={{
-                      color: 'var(--color-green)',
-                      background: 'rgba(34,197,94,0.1)',
-                      border: '1px solid rgba(34,197,94,0.2)',
-                    }}
-                  >
-                    <div className="w-[5px] h-[5px] rounded-full bg-green" />
-                    Live
+                  <div className="flex justify-end p-2.5">
+                    <div className="flex items-center gap-1 text-[9px] font-bold py-0.5 px-2 rounded-full" style={{ color: '#16a34a', background: 'rgba(34,197,94,0.15)' }}>
+                      <div className="w-1 h-1 rounded-full bg-green" aria-hidden="true" />
+                      Live
+                    </div>
                   </div>
-                )}
-                {p.preview}
-                {!hasAccess && (
-                  <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,10,10,0.20)' }} />
                 )}
               </div>
 
-              {/* Body */}
-              <div className="p-[18px] flex flex-col flex-1">
-                <div className="text-[10px] font-bold tracking-[0.08em] uppercase text-amber mb-1.5">{p.tag}</div>
-                <div
-                  className={`font-[family-name:var(--font-syne-var)] text-base font-bold mb-[5px] transition-all duration-300 ${p.titleBlur && !hasAccess ? 'blur-sm select-none' : ''}`}
-                >
-                  {hasAccess ? p.realTitle : p.redactedTitle}
-                </div>
-                <p className="text-xs leading-[1.6] mb-3 flex-1" style={{ color: p.descColor }}>{p.desc}</p>
+              {/* Text */}
+              <div className="text-[10px] font-semibold tracking-widest uppercase text-amber mb-1.5">{p.tag}</div>
+              <div className={`font-[family-name:var(--font-syne-var)] text-base font-bold mb-1 transition-all duration-300 ${p.titleBlur && !hasAccess ? 'blur-sm select-none' : ''}`}>
+                {hasAccess ? p.realTitle : p.redactedTitle}
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed mb-3 flex-1">{p.desc}</p>
 
-                {/* Button + status — always at bottom */}
-                <div className="mt-auto">
-                  {/* Lock button — shown when locked */}
-                  {!hasAccess && (
-                    <button
-                      onClick={openNDA}
-                      className="inline-flex items-center gap-[5px] text-xs text-text-muted font-medium cursor-pointer py-[5px] px-3 rounded-[20px] border border-border transition-all duration-150 hover:border-amber hover:text-amber"
-                      style={{ background: 'var(--color-bg-4)' }}
-                    >
-                      🔒 Request Access
-                    </button>
-                  )}
+              {/* Action */}
+              <div className="mt-auto">
+                {!hasAccess && (
+                  <button
+                    onClick={openNDA}
+                    className="text-sm text-text-muted font-medium cursor-pointer bg-transparent border-none transition-colors hover:text-amber p-0"
+                  >
+                    🔒 Request Access
+                  </button>
+                )}
 
-                  {/* Links — shown when unlocked */}
-                  {hasAccess && p.link && (
-                    p.link.external ? (
-                      <a
-                        href={p.link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
-                        style={{
-                          color: '#92400e',
-                          background: 'rgba(200,104,26,0.06)',
-                          borderColor: 'rgba(200,104,26,0.3)',
-                        }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.12)' }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(200,104,26,0.06)' }}
-                      >
-                        {p.link.text}
-                      </a>
-                    ) : (
-                      <a
-                        href={p.link.url}
-                        target="_blank"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-text px-3 py-1.5 rounded-full border border-border transition-colors hover:border-amber hover:text-amber"
-                        style={{ background: 'var(--color-bg)' }}
-                      >
-                        {p.link.text}
-                      </a>
-                    )
-                  )}
+                {hasAccess && p.link && (
+                  <a
+                    href={p.link.url}
+                    target="_blank"
+                    rel={p.link.external ? 'noopener noreferrer' : undefined}
+                    className="text-sm font-medium text-text-muted transition-colors hover:text-text"
+                  >
+                    {p.link.text}
+                  </a>
+                )}
 
-                  <div className="text-[11px] text-text-muted mt-1.5">{p.value}</div>
-                </div>
+                <div className="text-xs text-text-muted mt-1.5">{p.value}</div>
               </div>
             </div>
           ))}
         </div>
 
         {!hasAccess && (
-          <div className="text-center py-5 text-[13px] text-text-muted">
+          <p className="text-center pt-8 text-sm text-text-muted reveal">
             Access requires a signed NDA and non-compete. Takes 60 seconds.
-          </div>
+          </p>
         )}
       </div>
     </section>
