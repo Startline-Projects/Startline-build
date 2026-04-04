@@ -1,0 +1,285 @@
+<svg width="600" height="340" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050D20"/>
+      <stop offset="40%" stop-color="#0B0F30"/>
+      <stop offset="100%" stop-color="#070415"/>
+    </linearGradient>
+    <!-- SA phone bg -->
+    <linearGradient id="sa-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#001B3D"/>
+      <stop offset="100%" stop-color="#003068"/>
+    </linearGradient>
+    <!-- AA phone bg - dashboard is white -->
+    <linearGradient id="aa-dash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F2F2F7"/>
+      <stop offset="100%" stop-color="#E8E8EF"/>
+    </linearGradient>
+    <!-- Nurse bg -->
+    <linearGradient id="nurse-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F2F2F7"/>
+      <stop offset="100%" stop-color="#EAEAF0"/>
+    </linearGradient>
+    <!-- Avatar grad -->
+    <linearGradient id="av" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#34C759"/>
+    </linearGradient>
+    <!-- Blue stat card -->
+    <linearGradient id="stat-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#0060D1"/>
+    </linearGradient>
+    <!-- Green stat card -->
+    <linearGradient id="stat-green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34C759"/>
+      <stop offset="100%" stop-color="#1FAE43"/>
+    </linearGradient>
+    <!-- Blue glow -->
+    <radialGradient id="g-blue" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#0A84FF" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Purple glow -->
+    <radialGradient id="g-purple" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#BF5AF2" stop-opacity=".24"/>
+      <stop offset="100%" stop-color="#BF5AF2" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Green glow -->
+    <radialGradient id="g-green" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#30D158" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#30D158" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Phone drop shadow filter -->
+    <filter id="ph-shadow" x="-15%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+    <!-- Card shadow -->
+    <filter id="card-shad" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity=".1"/>
+    </filter>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="0.8"/>
+    </pattern>
+    <!-- Clip for whole card -->
+    <clipPath id="card-clip">
+      <rect width="600" height="340" rx="0"/>
+    </clipPath>
+    <!-- Clip for SA phone -->
+    <clipPath id="sa-clip">
+      <rect x="308" y="52" width="72" height="148" rx="13"/>
+    </clipPath>
+    <!-- Clip for AA phone -->
+    <clipPath id="aa-clip">
+      <rect x="392" y="36" width="72" height="168" rx="13"/>
+    </clipPath>
+    <!-- Clip for Nurse phone -->
+    <clipPath id="nr-clip">
+      <rect x="476" y="52" width="72" height="148" rx="13"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── BACKGROUND ── -->
+  <rect width="600" height="340" fill="url(#bg)"/>
+  <rect width="600" height="340" fill="url(#grid)"/>
+
+  <!-- Ambient glows -->
+  <ellipse cx="-20" cy="90" rx="200" ry="200" fill="url(#g-blue)"/>
+  <ellipse cx="300" cy="130" rx="160" ry="160" fill="url(#g-purple)"/>
+  <ellipse cx="610" cy="290" rx="190" ry="190" fill="url(#g-green)"/>
+
+  <!-- ── LEFT TEXT ── -->
+  <!-- Category -->
+  <text x="44" y="62" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="1.4" fill="#30D158">HEALTHCARE · SAAS</text>
+
+  <!-- Product name -->
+  <text x="44" y="106" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="42" font-weight="800" letter-spacing="-2" fill="#EEF2FF">Meta-Health</text>
+
+  <!-- Tagline -->
+  <text x="44" y="130" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="12.5" font-weight="400" fill="rgba(238,242,255,0.48)">AI-powered clinical documentation for</text>
+  <text x="44" y="148" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="12.5" font-weight="400" fill="rgba(238,242,255,0.48)">home health agencies.</text>
+
+  <!-- Pill row 1 -->
+  <rect x="44" y="166" width="88" height="21" rx="10.5" fill="rgba(10,132,255,0.1)" stroke="rgba(10,132,255,0.32)" stroke-width="1"/>
+  <text x="88" y="180.5" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#0A84FF">Super Admin</text>
+
+  <rect x="138" y="166" width="90" height="21" rx="10.5" fill="rgba(191,90,242,0.1)" stroke="rgba(191,90,242,0.32)" stroke-width="1"/>
+  <text x="183" y="180.5" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#BF5AF2">Agency Admin</text>
+
+  <rect x="234" y="166" width="52" height="21" rx="10.5" fill="rgba(48,209,88,0.1)" stroke="rgba(48,209,88,0.32)" stroke-width="1"/>
+  <text x="260" y="180.5" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#30D158">Nurse</text>
+
+  <!-- Pill row 2 -->
+  <rect x="44" y="193" width="50" height="19" rx="9.5" fill="rgba(238,242,255,0.05)" stroke="rgba(238,242,255,0.11)" stroke-width="1"/>
+  <text x="69" y="206" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(238,242,255,0.58)">HIPAA</text>
+
+  <rect x="100" y="193" width="58" height="19" rx="9.5" fill="rgba(238,242,255,0.05)" stroke="rgba(238,242,255,0.11)" stroke-width="1"/>
+  <text x="129" y="206" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(238,242,255,0.58)">Voice AI</text>
+
+  <rect x="164" y="193" width="82" height="19" rx="9.5" fill="rgba(238,242,255,0.05)" stroke="rgba(238,242,255,0.11)" stroke-width="1"/>
+  <text x="205" y="206" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(238,242,255,0.58)">Multi-Tenant</text>
+
+  <rect x="252" y="193" width="80" height="19" rx="9.5" fill="rgba(238,242,255,0.05)" stroke="rgba(238,242,255,0.11)" stroke-width="1"/>
+  <text x="292" y="206" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(238,242,255,0.58)">React Native</text>
+
+  <!-- Stats line -->
+  <text x="44" y="236" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="10.5" font-weight="500" fill="rgba(238,242,255,0.28)">89 endpoints  ·  18 app screens  ·  7 security layers</text>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- SA PHONE – dark navy login, rotate -4° -->
+  <!-- ──────────────────────────────────────────── -->
+  <g transform="rotate(-4 344 148)" filter="url(#ph-shadow)">
+    <!-- Frame -->
+    <rect x="308" y="52" width="72" height="148" rx="14" fill="url(#sa-bg)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
+    <!-- Dynamic Island -->
+    <rect x="328" y="60" width="24" height="9" rx="4.5" fill="#000"/>
+    <!-- Icon -->
+    <rect x="336" y="76" width="16" height="16" rx="5" fill="rgba(10,132,255,0.22)" stroke="rgba(10,132,255,0.45)" stroke-width="0.8"/>
+    <circle cx="344" cy="82" r="3" stroke="#0A84FF" stroke-width="1.3" fill="none"/>
+    <path d="M340.5 87 Q344 85.5 347.5 87" stroke="#0A84FF" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <!-- Labels -->
+    <text x="344" y="101" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="7" font-weight="800" fill="white">Meta-Health</text>
+    <rect x="323" y="104" width="42" height="10" rx="3" fill="rgba(10,132,255,0.22)" stroke="rgba(10,132,255,0.4)" stroke-width="0.5"/>
+    <text x="344" y="112" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="700" fill="#0A84FF" letter-spacing="0.3">SUPER ADMIN</text>
+    <!-- Email field -->
+    <rect x="316" y="119" width="56" height="13" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.09)" stroke-width="0.5"/>
+    <text x="320" y="123.5" font-family="'Manrope','Segoe UI',sans-serif" font-size="4" font-weight="600" fill="rgba(255,255,255,0.38)" letter-spacing="0.3">EMAIL</text>
+    <text x="320" y="130" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="rgba(255,255,255,0.9)">admin@metahealth.io</text>
+    <!-- Password field -->
+    <rect x="316" y="135" width="56" height="13" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.09)" stroke-width="0.5"/>
+    <text x="320" y="139.5" font-family="'Manrope','Segoe UI',sans-serif" font-size="4" font-weight="600" fill="rgba(255,255,255,0.38)" letter-spacing="0.3">PASSWORD</text>
+    <text x="320" y="146" font-family="'Manrope','Segoe UI',sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">●●●●●●●</text>
+    <!-- Sign In button -->
+    <rect x="316" y="153" width="56" height="14" rx="5.5" fill="#0A84FF"/>
+    <text x="344" y="163" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="6" font-weight="800" fill="white">Sign In to Platform</text>
+    <!-- Encryption hint -->
+    <text x="344" y="178" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="4.5" fill="rgba(255,255,255,0.2)">End-to-end encrypted</text>
+    <!-- Home indicator -->
+    <rect x="333" y="190" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.18)"/>
+  </g>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- AA PHONE – white dashboard, center, tallest -->
+  <!-- ──────────────────────────────────────────── -->
+  <g filter="url(#ph-shadow)">
+    <rect x="392" y="36" width="72" height="168" rx="14" fill="url(#aa-dash)" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
+    <!-- Dynamic Island -->
+    <rect x="412" y="44" width="24" height="9" rx="4.5" fill="#000"/>
+    <!-- Header -->
+    <text x="396" y="62" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" font-weight="500" fill="#8E8E93">Sunrise Home Health</text>
+    <text x="396" y="72" font-family="'Manrope','Segoe UI',sans-serif" font-size="9.5" font-weight="800" fill="#000" letter-spacing="-0.4">Dashboard</text>
+    <!-- AA badge -->
+    <circle cx="455" cy="67" r="10" fill="url(#g-purple)"/>
+    <rect x="446" y="57" width="18" height="18" rx="9" fill="linear-gradient(135deg,#BF5AF2,#8944C4)"/>
+    <rect x="446" y="57" width="18" height="18" rx="9" fill="#BF5AF2"/>
+    <text x="455" y="69.5" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="6.5" font-weight="800" fill="white">AA</text>
+    <!-- Stats grid 2x2 -->
+    <rect x="396" y="77" width="28" height="24" rx="5" fill="white" filter="url(#card-shad)"/>
+    <text x="410" y="87" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#000" letter-spacing="-0.5">47</text>
+    <text x="410" y="97" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="#8E8E93">Nurses</text>
+
+    <rect x="428" y="77" width="28" height="24" rx="5" fill="white" filter="url(#card-shad)"/>
+    <text x="442" y="87" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#000" letter-spacing="-0.5">234</text>
+    <text x="442" y="97" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="#8E8E93">Visits</text>
+
+    <rect x="396" y="104" width="28" height="24" rx="5" fill="#34C759"/>
+    <text x="410" y="114" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="10" font-weight="800" fill="white" letter-spacing="-0.5">96%</text>
+    <text x="410" y="124" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="rgba(255,255,255,0.75)">QA Rate</text>
+
+    <rect x="428" y="104" width="28" height="24" rx="5" fill="white" filter="url(#card-shad)"/>
+    <text x="442" y="114" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#FF3B30" letter-spacing="-0.5">3</text>
+    <text x="442" y="124" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="#8E8E93">QA Pending</text>
+    <!-- Red dot -->
+    <circle cx="454" cy="106" r="3" fill="#FF3B30"/>
+
+    <!-- Quick actions -->
+    <rect x="396" y="132" width="28" height="15" rx="5" fill="rgba(191,90,242,0.1)" stroke="rgba(191,90,242,0.25)" stroke-width="0.8"/>
+    <text x="410" y="142.5" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="700" fill="#BF5AF2">+ Nurses</text>
+
+    <rect x="428" y="132" width="28" height="15" rx="5" fill="rgba(255,255,255,0.8)" stroke="rgba(0,0,0,0.07)" stroke-width="0.8"/>
+    <text x="442" y="142.5" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="700" fill="#000">QA Queue</text>
+
+    <!-- Alert -->
+    <rect x="396" y="151" width="60" height="14" rx="4" fill="rgba(255,59,48,0.06)" stroke="rgba(255,59,48,0.18)" stroke-width="0.8"/>
+    <text x="400" y="160.5" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="600" fill="#FF3B30">⚠ 3 notes pending QA review</text>
+
+    <!-- Tab bar -->
+    <rect x="392" y="172" width="72" height="24" rx="0" fill="rgba(242,242,247,0.95)"/>
+    <line x1="392" y1="172" x2="464" y2="172" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
+    <text x="406" y="185" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="700" fill="#BF5AF2">Home</text>
+    <text x="424" y="185" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">Nurses</text>
+    <text x="441" y="185" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">QA</text>
+    <text x="458" y="185" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">Reports</text>
+    <!-- Active indicator -->
+    <rect x="398" y="192" width="16" height="2.5" rx="1.25" fill="#BF5AF2"/>
+    <!-- Home indicator -->
+    <rect x="417" y="196" width="22" height="3" rx="1.5" fill="rgba(0,0,0,0.14)"/>
+  </g>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- NURSE PHONE – white Today screen, rotate 4° -->
+  <!-- ──────────────────────────────────────────── -->
+  <g transform="rotate(4 511 148)" filter="url(#ph-shadow)">
+    <rect x="476" y="52" width="72" height="148" rx="14" fill="url(#nurse-bg)" stroke="rgba(0,0,0,0.08)" stroke-width="1.5"/>
+    <!-- Dynamic Island -->
+    <rect x="496" y="60" width="24" height="9" rx="4.5" fill="#000"/>
+    <!-- Header -->
+    <text x="480" y="78" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" font-weight="500" fill="#8E8E93">Good morning, Sarah 👋</text>
+    <text x="480" y="88" font-family="'Manrope','Segoe UI',sans-serif" font-size="9.5" font-weight="800" fill="#000" letter-spacing="-0.3">Tuesday</text>
+    <!-- Avatar -->
+    <circle cx="541" cy="82" r="9" fill="url(#av)"/>
+    <text x="541" y="85.5" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="7" font-weight="800" fill="white">S</text>
+    <!-- Section label -->
+    <text x="480" y="98" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" font-weight="700" fill="#8E8E93" letter-spacing="0.4">TODAY · 3 VISITS</text>
+    <!-- Visit card 1 - Dorothy (start) -->
+    <rect x="479" y="101" width="62" height="22" rx="6" fill="white" filter="url(#card-shad)"/>
+    <circle cx="486" cy="108" r="3.5" fill="#34C759"/>
+    <text x="492" y="110" font-family="'Manrope','Segoe UI',sans-serif" font-size="6.5" font-weight="700" fill="#000">Dorothy M.</text>
+    <text x="530" y="110" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="#8E8E93">9:00 AM</text>
+    <rect x="492" y="113" width="24" height="6.5" rx="2" fill="rgba(0,122,255,0.1)"/>
+    <text x="504" y="118" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="4.5" font-weight="600" fill="#007AFF">SN Routine</text>
+    <rect x="522" y="113" width="16" height="6.5" rx="3.25" fill="#34C759"/>
+    <text x="530" y="118" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="4.5" font-weight="800" fill="white">Start →</text>
+    <!-- Visit card 2 - Robert -->
+    <rect x="479" y="126" width="62" height="16" rx="6" fill="white" filter="url(#card-shad)"/>
+    <circle cx="486" cy="134" r="3.5" fill="#C7C7CC"/>
+    <text x="492" y="136" font-family="'Manrope','Segoe UI',sans-serif" font-size="6.5" font-weight="700" fill="#000">Robert K.</text>
+    <text x="528" y="136" font-family="'Manrope','Segoe UI',sans-serif" font-size="5" fill="#8E8E93">11:30 AM</text>
+    <!-- Visit card 3 - Evelyn -->
+    <rect x="479" y="145" width="62" height="16" rx="6" fill="white" filter="url(#card-shad)"/>
+    <circle cx="486" cy="153" r="3.5" fill="#FF9F0A"/>
+    <text x="492" y="155" font-family="'Manrope','Segoe UI',sans-serif" font-size="6.5" font-weight="700" fill="#000">Evelyn S.</text>
+    <rect x="492" y="158" width="28" height="5" rx="2" fill="rgba(255,159,10,0.1)"/>
+    <text x="506" y="162" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="4.5" font-weight="600" fill="#FF9F0A">Reschedule</text>
+    <!-- Tab bar -->
+    <rect x="476" y="163" width="72" height="29" rx="0" fill="rgba(242,242,247,0.96)"/>
+    <line x1="476" y1="163" x2="548" y2="163" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>
+    <!-- Tab items -->
+    <text x="491" y="175" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="700" fill="#007AFF">Today</text>
+    <text x="509" y="175" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">Patients</text>
+    <text x="527" y="175" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">Record</text>
+    <text x="543" y="175" text-anchor="middle" font-family="'Manrope','Segoe UI',sans-serif" font-size="5.5" font-weight="500" fill="#8E8E93">QA</text>
+    <!-- Blue active dot -->
+    <circle cx="491" cy="180" r="1.8" fill="#007AFF"/>
+    <!-- Home indicator -->
+    <rect x="501" y="183" width="22" height="3" rx="1.5" fill="rgba(0,0,0,0.14)"/>
+  </g>
+
+  <!-- ROLE LABELS -->
+  <text x="344" y="222" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing="0.6" fill="#0A84FF">SUPER ADMIN</text>
+  <text x="428" y="222" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing="0.6" fill="#BF5AF2">AGENCY ADMIN</text>
+  <text x="511" y="222" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing="0.6" fill="#30D158">NURSE</text>
+
+  <!-- ── BOTTOM BAR ── -->
+  <rect x="0" y="302" width="600" height="38" fill="rgba(0,0,0,0.28)"/>
+  <line x1="0" y1="302" x2="600" y2="302" stroke="rgba(255,255,255,0.055)" stroke-width="1"/>
+  <!-- Live dot -->
+  <circle cx="44" cy="321" r="3.5" fill="#30D158"/>
+  <circle cx="44" cy="321" r="6" fill="#30D158" fill-opacity="0.18"/>
+  <!-- Status text -->
+  <text x="56" y="325" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="10" font-weight="500" fill="rgba(238,242,255,0.4)">Live  ·  HIPAA Compliant  ·  3 User Roles  ·  AI-Powered  ·  Voice-First</text>
+  <!-- Startline credit -->
+  <text x="558" y="325" text-anchor="middle" font-family="'Manrope','Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" fill="rgba(238,242,255,0.25)">startline.build</text>
+</svg>

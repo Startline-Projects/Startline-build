@@ -10,6 +10,7 @@ interface Project {
   status: string
   statusLive?: boolean
   gradient: string
+  previewImage?: string
   link?: { url: string; text: string; external: boolean }
 }
 
@@ -47,6 +48,7 @@ const projects: Project[] = [
     industry: 'Healthcare', desc: 'HIPAA-compliant clinical platform.',
     status: 'Live', statusLive: true,
     gradient: 'linear-gradient(135deg, #0A0F1A 0%, #1E3A5F 50%, #2563EB 100%)',
+    previewImage: '/metahealth-preview.svg',
     link: { url: '/meta-health', text: 'View Details →', external: false },
   },
   {
@@ -113,15 +115,22 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 md2:grid-cols-2 gap-10 reveal">
           {projects.map((p, i) => (
             <div key={i} className="group">
-              {/* Gradient thumbnail */}
+              {/* Thumbnail */}
               <div
                 className="h-48 md2:h-56 rounded-2xl mb-5 transition-transform duration-300 group-hover:-translate-y-1 relative overflow-hidden"
                 style={{
-                  background: p.gradient,
+                  background: hasAccess && p.previewImage ? undefined : p.gradient,
                   filter: !hasAccess && p.titleBlur ? 'saturate(0.3) brightness(0.7)' : undefined,
                   transition: 'filter 0.4s ease, transform 0.3s ease',
                 }}
               >
+                {hasAccess && p.previewImage && (
+                  <img
+                    src={p.previewImage}
+                    alt={`${p.realTitle} preview`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
                 {p.statusLive && hasAccess && (
                   <div className="absolute top-3 right-3 flex items-center gap-1.5 text-[10px] font-semibold text-white/80 bg-white/10 backdrop-blur-sm rounded-full py-1 px-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-green" aria-hidden="true" />
