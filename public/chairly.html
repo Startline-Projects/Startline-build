@@ -1315,12 +1315,29 @@ a{text-decoration:none;color:inherit}
 
 <script>
 
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));var el=document.getElementById('p-'+id);if(el)el.classList.add('on')}
-function sw(id,btn){go(id);document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+// Barber phone — only affect screens with 'p-' prefix
+function go(id){
+  document.querySelectorAll('[id^="p-"].screen').forEach(s=>s.classList.remove('on'));
+  var el=document.getElementById('p-'+id);if(el)el.classList.add('on');
+}
+function sw(id,btn){
+  go(id);
+  var nav=btn.closest('.phone')?.querySelectorAll('.nb');
+  if(nav)nav.forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
 
-
-function goC(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));var el=document.getElementById('c-'+id);if(el)el.classList.add('on')}
-function swC(id,btn){goC(id);document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+// Client phone — only affect screens with 'c-' prefix
+function goC(id){
+  document.querySelectorAll('[id^="c-"].screen').forEach(s=>s.classList.remove('on'));
+  var el=document.getElementById('c-'+id);if(el)el.classList.add('on');
+}
+function swC(id,btn){
+  goC(id);
+  var nav=btn.closest('.phone')?.querySelectorAll('.nb');
+  if(nav)nav.forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
 
 </script>
 </body>
