@@ -1,0 +1,119 @@
+<svg width="530" height="224" viewBox="0 0 530 224" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700&amp;family=Epilogue:wght@300;400;600&amp;display=swap');
+    </style>
+    <clipPath id="cc">
+      <rect width="530" height="224" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#cc)">
+
+    <!-- Base background -->
+    <rect width="530" height="224" fill="#0E0E0D"/>
+
+    <!-- Right zone subtle lift -->
+    <rect x="316" y="0" width="214" height="224" fill="#111110"/>
+
+    <!-- Gold left-edge accent bar -->
+    <rect x="0" y="62" width="3" height="44" rx="1.5" fill="#C8A84B"/>
+
+    <!-- ── LEFT CONTENT ── -->
+
+    <!-- Category pill -->
+    <rect x="28" y="28" width="88" height="20" rx="4" fill="#181510" stroke="rgba(200,168,75,0.3)" stroke-width="0.75"/>
+    <text x="72" y="42" text-anchor="middle"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif"
+      font-size="9.5" font-weight="600" fill="#C8A84B" letter-spacing="0.1em">MOBILE APP</text>
+
+    <!-- Project title -->
+    <text x="28" y="88"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="40" fill="#F0EBE0" letter-spacing="-1.2px">Chairly</text>
+
+    <!-- Tagline -->
+    <text x="28" y="113"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif"
+      font-size="12.5" fill="#58544F" font-weight="300">Two-sided barbershop booking</text>
+    <text x="28" y="129"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif"
+      font-size="12.5" fill="#58544F" font-weight="300">marketplace — barbers &amp; clients</text>
+
+    <!-- Stack chips -->
+    <rect x="28" y="152" width="96" height="20" rx="10" fill="#181614" stroke="#252220" stroke-width="0.75"/>
+    <text x="76" y="166" text-anchor="middle"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif" font-size="10" fill="#686460">React Native</text>
+
+    <rect x="130" y="152" width="56" height="20" rx="10" fill="#181614" stroke="#252220" stroke-width="0.75"/>
+    <text x="158" y="166" text-anchor="middle"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif" font-size="10" fill="#686460">NestJS</text>
+
+    <rect x="192" y="152" width="64" height="20" rx="10" fill="#181614" stroke="#252220" stroke-width="0.75"/>
+    <text x="224" y="166" text-anchor="middle"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif" font-size="10" fill="#686460">Supabase</text>
+
+    <rect x="262" y="152" width="50" height="20" rx="10" fill="#181614" stroke="#252220" stroke-width="0.75"/>
+    <text x="287" y="166" text-anchor="middle"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif" font-size="10" fill="#686460">Stripe</text>
+
+    <!-- Attribution -->
+    <text x="28" y="202"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif"
+      font-size="11" fill="#2A2826" letter-spacing="0.02em">startline.build</text>
+
+    <!-- ── STATUS BADGE top-right ── -->
+    <rect x="362" y="28" width="130" height="20" rx="4" fill="#141210" stroke="rgba(200,168,75,0.2)" stroke-width="0.75"/>
+    <circle cx="375" cy="38" r="3.5" fill="#C8A84B" opacity="0.85"/>
+    <text x="383" y="42"
+      font-family="'Epilogue', Helvetica, Arial, sans-serif"
+      font-size="9.5" font-weight="600" fill="#8A7A50" letter-spacing="0.07em">IN DEVELOPMENT</text>
+
+    <!-- ── PHONE MOCKUP ── -->
+
+    <!-- Phone shell -->
+    <rect x="358" y="55" width="118" height="193" rx="19" fill="#111010" stroke="#2C2826" stroke-width="1.5"/>
+    <!-- Screen -->
+    <rect x="364" y="67" width="106" height="173" rx="12" fill="#0A0A09"/>
+    <!-- Notch pill -->
+    <rect x="397" y="70" width="40" height="7" rx="3.5" fill="#1C1A18"/>
+
+    <!-- App header bar -->
+    <rect x="364" y="86" width="106" height="28" fill="#111010"/>
+    <text x="417" y="104" text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif" font-size="11.5" fill="#EDE7DB">Barbers</text>
+
+    <!-- Search bar -->
+    <rect x="370" y="119" width="94" height="14" rx="7" fill="#1A1816" stroke="#262320" stroke-width="0.5"/>
+    <text x="417" y="129.5" text-anchor="middle"
+      font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#3A3836">Search barbers...</text>
+
+    <!-- Barber card 1 -->
+    <rect x="370" y="138" width="94" height="40" rx="8" fill="#161412" stroke="#242220" stroke-width="0.5"/>
+    <circle cx="387" cy="152" r="9" fill="#241E12" stroke="#C8A84B" stroke-width="0.75"/>
+    <text x="387" y="155.5" text-anchor="middle"
+      font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="600" fill="#C8A84B">JM</text>
+    <rect x="402" y="145" width="46" height="4" rx="2" fill="#2A2826"/>
+    <rect x="402" y="153" width="30" height="3.5" rx="1.75" fill="#1E1C1A"/>
+    <text x="402" y="171"
+      font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#C8A84B" opacity="0.9">★★★★★</text>
+
+    <!-- Barber card 2 -->
+    <rect x="370" y="184" width="94" height="40" rx="8" fill="#161412" stroke="#242220" stroke-width="0.5"/>
+    <circle cx="387" cy="198" r="9" fill="#121C18" stroke="#4BAE78" stroke-width="0.75"/>
+    <text x="387" y="201.5" text-anchor="middle"
+      font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="600" fill="#4BAE78">DK</text>
+    <rect x="402" y="191" width="38" height="4" rx="2" fill="#2A2826"/>
+    <rect x="402" y="199" width="24" height="3.5" rx="1.75" fill="#1E1C1A"/>
+    <text x="402" y="216"
+      font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#C8A84B" opacity="0.65">★★★★</text>
+
+    <!-- Bottom nav strip -->
+    <rect x="364" y="226" width="106" height="14" fill="#0D0D0C"/>
+
+  </g>
+
+  <!-- Card border overlay -->
+  <rect width="530" height="224" rx="16" fill="none" stroke="#222020" stroke-width="1"/>
+
+</svg>

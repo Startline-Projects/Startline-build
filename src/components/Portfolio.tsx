@@ -63,6 +63,7 @@ const projects: Project[] = [
     industry: 'Consumer', desc: 'Two-sided barber marketplace.',
     status: 'In Progress',
     gradient: 'linear-gradient(135deg, #0E0E0D 0%, #1A1816 50%, #C8A84B 100%)',
+    previewImage: '/chairly-preview.svg',
     link: { url: '/chairly', text: 'View Details →', external: false },
   },
   {
