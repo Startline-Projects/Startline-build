@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATLAW × Startline · Founding Brief</title>
+<meta name="description" content="A strategic intake for the new ATLAW website. Prepared for Dewnya Bazzi. Approximately forty-five minutes." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Geist:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0E1322;
+    --ink-deep: #080C18;
+    --vellum: #F4EFE6;
+    --vellum-warm: #EFE8DA;
+    --bone: #EDE8DD;
+    --charcoal: #1A1816;
+    --stone: #867F76;
+    --stone-soft: #B8B0A4;
+    --brass: #B08D57;
+    --brass-light: #C9A961;
+    --hairline: rgba(176, 141, 87, 0.25);
+    --hairline-strong: rgba(176, 141, 87, 0.5);
+    --hairline-dark: rgba(237, 232, 221, 0.12);
+
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --body: 'Geist', -apple-system, system-ui, sans-serif;
+
+    --max-w: 920px;
+    --gutter-x: clamp(20px, 5vw, 56px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--vellum);
+    color: var(--charcoal);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ============ HEADER ============ */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 40;
+    padding: 18px var(--gutter-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.86);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-logo {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 96;
+    line-height: 1;
+  }
+  .brand-x {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+  .brand-startline {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+  }
+  .brand-startline svg {
+    display: block;
+    height: 20px;
+    width: auto;
+  }
+
+  /* Reusable Startline mark for use in body content (cover letter sign-off, thank-you footer) */
+  .startline-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+  }
+  .startline-mark svg {
+    display: block;
+    height: 22px;
+    width: auto;
+  }
+  .startline-mark .by {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--stone);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+
+  .save-state {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .save-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brass);
+    transition: background 0.3s, transform 0.4s ease;
+  }
+  .save-state.saving .save-dot { background: var(--stone); transform: scale(0.7); }
+  .save-state.saved .save-dot { background: #5a8a4a; }
+
+  /* ============ PROGRESS BAR ============ */
+  .progress {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    height: 2px;
+    background: var(--hairline);
+    z-index: 39;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--brass);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* ============ MAIN LAYOUT ============ */
+  .stage {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 120px var(--gutter-x) 200px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============ COVER SCREEN ============ */
+  .cover {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px var(--gutter-x);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .cover h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    max-width: 18ch;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-lead {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(19px, 1.8vw, 24px);
+    line-height: 1.45;
+    color: var(--stone);
+    max-width: 56ch;
+    margin-bottom: 56px;
+    font-variation-settings: "opsz" 32, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 64px;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .cover-meta > div {
+    padding: 32px 24px 32px 0;
+    border-right: 1px solid var(--hairline);
+  }
+  .cover-meta > div:last-child { border-right: none; padding-right: 0; }
+  .cover-meta > div:not(:first-child) { padding-left: 24px; }
+
+  .cover-meta .label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .cover-meta .value {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--charcoal);
+    line-height: 1.3;
+    font-variation-settings: "opsz" 32;
+  }
+  .cover-meta .value em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 32, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-letter {
+    background: var(--vellum-warm);
+    border: 1px solid var(--hairline);
+    padding: 40px 44px;
+    margin-bottom: 56px;
+    max-width: 64ch;
+  }
+  .cover-letter-mark {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .cover-letter p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+  .cover-letter p:last-child { margin-bottom: 0; }
+  .cover-letter .signoff {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 18, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--vellum);
+    border: 1px solid var(--ink);
+  }
+  .btn-primary:hover {
+    background: var(--charcoal);
+    transform: translateY(-1px);
+  }
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--charcoal);
+    border: 1px solid var(--hairline-strong);
+  }
+  .btn-ghost:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+  .btn .arrow {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+    transition: transform 0.25s;
+  }
+  .btn:hover .arrow:not(.back) { transform: translateX(3px); }
+  .btn:hover .arrow.back { transform: translateX(-3px); }
+
+  .cover-resume {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--stone);
+    margin-left: 12px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .cover-resume a {
+    color: var(--brass);
+    border-bottom: 1px solid var(--brass);
+    padding-bottom: 1px;
+  }
+
+  /* ============ SECTION COVER ============ */
+  .section-cover {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: left;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 64px;
+  }
+  .section-cover .marker {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .section-cover h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 96;
+  }
+  .section-cover h2 em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  }
+  .section-cover p {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--stone);
+    max-width: 56ch;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ QUESTION CARD ============ */
+  .q {
+    margin-bottom: 80px;
+    scroll-margin-top: 120px;
+  }
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+  }
+  .q-meta .num {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--brass);
+    text-transform: none;
+    letter-spacing: 0.04em;
+    font-size: 13px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .q-meta::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  .q-prompt {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+    font-variation-settings: "opsz" 96;
+  }
+  .q-prompt em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  }
+  .q-why {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--stone);
+    font-style: italic;
+    font-family: var(--display);
+    margin-bottom: 28px;
+    max-width: 60ch;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .q-why::before {
+    content: 'Why we ask · ';
+    font-style: normal;
+    color: var(--brass);
+    font-weight: 500;
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-right: 8px;
+    font-variation-settings: normal;
+  }
+
+  /* ============ INPUTS ============ */
+  .input, textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--hairline-strong);
+    padding: 14px 0;
+    font-family: var(--display);
+    font-size: clamp(18px, 2vw, 24px);
+    color: var(--charcoal);
+    line-height: 1.4;
+    font-weight: 400;
+    font-variation-settings: "opsz" 24;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: var(--brass);
+  }
+  .input::placeholder, textarea::placeholder {
+    color: var(--stone-soft);
+    font-style: italic;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+  textarea {
+    min-height: 120px;
+    line-height: 1.5;
+    font-size: clamp(16px, 1.5vw, 18px);
+    font-family: var(--body);
+    font-variation-settings: normal;
+  }
+
+  .char-count {
+    text-align: right;
+    font-size: 11px;
+    color: var(--stone);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+    font-style: italic;
+    font-family: var(--display);
+    font-variation-settings: "opsz" 12, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ SELECTS / CHECKS / RADIOS ============ */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+    background: transparent;
+  }
+  .option:hover {
+    border-color: var(--brass);
+    background: rgba(176, 141, 87, 0.04);
+  }
+  .option input[type="radio"], .option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--stone-soft);
+    background: transparent;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .option input[type="radio"] { border-radius: 50%; }
+  .option input[type="checkbox"] { border-radius: 0; }
+  .option input[type="radio"]:checked,
+  .option input[type="checkbox"]:checked {
+    border-color: var(--brass);
+    background: var(--brass);
+  }
+  .option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--vellum);
+    border-radius: 50%;
+  }
+  .option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border-right: 1.5px solid var(--vellum);
+    border-bottom: 1.5px solid var(--vellum);
+    transform: rotate(45deg);
+  }
+  .option-text {
+    flex: 1;
+    font-size: 15.5px;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .option-text strong {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .option-text em {
+    font-style: italic;
+    color: var(--stone);
+    font-family: var(--display);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    display: block;
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+  .option.selected {
+    border-color: var(--brass);
+    background: rgba(176, 141, 87, 0.06);
+  }
+
+  /* Multi-select chips for voice/tone */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--charcoal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    user-select: none;
+  }
+  .chip:hover {
+    border-color: var(--brass);
+  }
+  .chip.selected {
+    background: var(--ink);
+    color: var(--vellum);
+    border-color: var(--ink);
+  }
+  /* When max selected, dim unselected chips */
+  #voice-chips.maxed .chip:not(.selected) {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  #voice-chips.maxed .chip:not(.selected):hover {
+    border-color: var(--hairline-strong);
+  }
+  .chip-hint {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--stone);
+    margin-top: 14px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ PRACTICE TRIAGE TABLE ============ */
+  .practice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .practice-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: center;
+  }
+  .practice-row.major .practice-name {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 24;
+  }
+  .practice-row.sub {
+    padding-left: 24px;
+    background: rgba(176, 141, 87, 0.025);
+  }
+  .practice-row.sub .practice-name {
+    font-size: 14.5px;
+    color: var(--stone);
+    font-style: italic;
+    font-family: var(--display);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .practice-row.sub .practice-name::before {
+    content: '↳ ';
+    color: var(--brass);
+    margin-right: 6px;
+  }
+  .triage {
+    display: flex;
+    gap: 6px;
+  }
+  .triage-btn {
+    background: transparent;
+    border: 1px solid var(--hairline);
+    padding: 7px 12px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--stone);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .triage-btn:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+  .triage-btn.selected[data-tier="lead"] {
+    background: var(--ink);
+    color: var(--bone);
+    border-color: var(--ink);
+  }
+  .triage-btn.selected[data-tier="standard"] {
+    background: var(--brass);
+    color: var(--vellum);
+    border-color: var(--brass);
+  }
+  .triage-btn.selected[data-tier="rare"] {
+    background: var(--vellum-warm);
+    color: var(--charcoal);
+    border-color: var(--hairline-strong);
+  }
+  .triage-btn.selected[data-tier="no"] {
+    background: transparent;
+    color: var(--stone);
+    text-decoration: line-through;
+    border-color: var(--hairline);
+  }
+
+  .triage-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--vellum-warm);
+    border: 1px solid var(--hairline);
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.45;
+  }
+  .triage-legend strong {
+    color: var(--charcoal);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  /* "Other practice" custom add */
+  .practice-add {
+    margin-top: 16px;
+    padding: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .practice-add input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    padding: 8px 0;
+    font-family: var(--body);
+    font-size: 14px;
+    color: var(--charcoal);
+  }
+  .practice-add input:focus { outline: none; border-bottom-color: var(--brass); }
+  .practice-add button {
+    background: transparent;
+    color: var(--brass);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid var(--brass);
+    padding: 8px 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .practice-add button:hover {
+    background: var(--brass);
+    color: var(--vellum);
+  }
+
+  /* ============ PRACTICE-SPECIFIC LEADS ============ */
+  .lead-block {
+    border: 1px solid var(--hairline);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    background: rgba(176, 141, 87, 0.025);
+  }
+  .lead-block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .lead-block-head h4 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 32;
+  }
+  .lead-block-head .tier {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .lead-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+  }
+  .lead-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lead-grid label.full { grid-column: span 2; }
+  .lead-grid label .field-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .lead-grid input, .lead-grid textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    padding: 6px 0;
+    font-family: var(--body);
+    font-size: 14.5px;
+    color: var(--charcoal);
+    line-height: 1.5;
+    transition: border-color 0.2s;
+  }
+  .lead-grid input:focus, .lead-grid textarea:focus {
+    outline: none;
+    border-bottom-color: var(--brass);
+  }
+  .lead-grid textarea { min-height: 56px; resize: vertical; }
+  .lead-grid input::placeholder, .lead-grid textarea::placeholder {
+    color: var(--stone-soft);
+    font-style: italic;
+  }
+
+  /* ============ DYNAMIC LIST (for matters, awards) ============ */
+  .repeater {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .repeater-item {
+    border: 1px solid var(--hairline);
+    padding: 24px 28px;
+    background: rgba(176, 141, 87, 0.025);
+    position: relative;
+  }
+  .repeater-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .repeater-item-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .repeater-remove {
+    background: transparent;
+    border: none;
+    color: var(--stone);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .repeater-remove:hover { color: var(--charcoal); }
+  .repeater-add {
+    background: transparent;
+    border: 1px dashed var(--hairline-strong);
+    padding: 16px 20px;
+    color: var(--stone);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    text-align: center;
+  }
+  .repeater-add:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+    background: rgba(176, 141, 87, 0.04);
+  }
+
+  /* ============ NAV BAR ============ */
+  .nav-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 35;
+    background: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-top: 1px solid var(--hairline);
+    padding: 16px var(--gutter-x);
+  }
+  .nav-bar-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .nav-bar-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .nav-bar-progress strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+  .nav-bar-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .nav-bar .btn {
+    padding: 12px 20px;
+    font-size: 11px;
+  }
+
+  /* Hide on cover screen */
+  .nav-bar.hidden { display: none; }
+
+  /* ============ THANK YOU SCREEN ============ */
+  .thanks {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px var(--gutter-x);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+  .thanks.active { display: flex; }
+  .thanks .marker {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    margin-bottom: 24px;
+  }
+  .thanks h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    max-width: 18ch;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144;
+  }
+  .thanks h2 em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+  .thanks p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    max-width: 60ch;
+    margin-bottom: 16px;
+  }
+  .thanks p.signoff {
+    margin-top: 32px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ ERROR / VALIDATION ============ */
+  .field-error {
+    color: #b04a3c;
+    font-size: 12px;
+    font-style: italic;
+    font-family: var(--display);
+    margin-top: 8px;
+    font-variation-settings: "opsz" 12, "SOFT" 100, "WONK" 1;
+  }
+
+  /* Submission overlay */
+  .submitting {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .submitting.active { display: flex; }
+  .submitting-mark {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .submitting-text {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 720px) {
+    .topbar { padding: 14px 20px; }
+    .brand { gap: 10px; }
+    .brand-logo { font-size: 16px; }
+    .brand-x { font-size: 12px; }
+    .brand-startline svg { height: 16px; }
+    .brand-startline { height: 16px; }
+    .stage { padding-top: 100px; padding-bottom: 220px; }
+    .cover { padding: 40px 20px; }
+    .cover-letter { padding: 28px 24px; }
+    .cover-meta { grid-template-columns: 1fr; }
+    .cover-meta > div {
+      padding: 24px 0 !important;
+      border-right: none;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .cover-meta > div:last-child { border-bottom: none; }
+    .lead-grid { grid-template-columns: 1fr; }
+    .lead-grid label.full { grid-column: span 1; }
+    .practice-row { grid-template-columns: 1fr; gap: 8px; }
+    .triage { flex-wrap: wrap; }
+    .nav-bar-inner { flex-direction: column-reverse; align-items: stretch; }
+    .nav-bar-actions { justify-content: space-between; }
+    .nav-bar-progress { justify-content: center; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar" id="topbar">
+  <div class="brand">
+    <span class="brand-logo">ATLAW</span>
+    <span class="brand-x">×</span>
+    <span class="brand-startline" aria-label="Startline">
+      <svg width="120" height="22" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+        <rect width="28" height="28" rx="7" fill="#C8681A"/>
+        <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+        <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+      </svg>
+    </span>
+  </div>
+  <div class="save-state saved" id="save-state">
+    <span class="save-dot"></span>
+    <span id="save-label">Saved</span>
+  </div>
+</header>
+
+<div class="progress" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- ============ COVER SCREEN ============ -->
+<section class="cover" id="cover-screen">
+
+  <span class="cover-eyebrow">Founding Brief · Strategic Intake</span>
+
+  <h1>The questions that <em>shape the firm.</em></h1>
+
+  <p class="cover-lead">
+    A strategic intake. Designed to capture the decisions only the founder can make. Roughly forty-five minutes, broken across six short sections. Save and resume any time.
+  </p>
+
+  <div class="cover-meta">
+    <div>
+      <span class="label">Prepared for</span>
+      <span class="value">Dewnya Bazzi, <em>Esq.</em></span>
+    </div>
+    <div>
+      <span class="label">Estimated Time</span>
+      <span class="value"><em>~</em>45 minutes</span>
+    </div>
+    <div>
+      <span class="label">Sections</span>
+      <span class="value">Six in total</span>
+    </div>
+  </div>
+
+  <aside class="cover-letter">
+    <span class="cover-letter-mark">A note before you begin.</span>
+    <p>
+      This is the first half of a two-part intake. The questions on the pages that follow can only be answered by you. Strategic positioning, voice, the practices you actually lead, the work you've done, the decisions you make about how the firm presents itself. Forty-five minutes of your real attention is worth more than four hours of someone else's guesswork.
+    </p>
+    <p>
+      The second part of the intake will arrive separately, addressed to whoever on your team handles operational details. The attorney roster, office addresses, brand files, current digital infrastructure. You will not need to fill that one out yourself.
+    </p>
+    <p>
+      Every question below is followed by a short note explaining what it shapes on the website. Skip the explanation if you don't need it. Save and return at any time. Your answers are stored in this browser. When you finish, the responses come straight to me.
+    </p>
+    <p class="signoff">Sam</p>
+    <div class="startline-mark" style="margin-top: 18px;">
+      <span class="by">Built by</span>
+      <svg width="100" height="18" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+        <rect width="28" height="28" rx="7" fill="#C8681A"/>
+        <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+        <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+      </svg>
+    </div>
+  </aside>
+
+  <div class="cover-actions">
+    <button class="btn btn-primary" id="cover-begin">
+      Begin the Brief
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+    <span class="cover-resume" id="cover-resume" style="display:none;">
+      <a href="#" id="cover-resume-link">Resume where you left off →</a>
+    </span>
+  </div>
+
+</section>
+
+<!-- ============ FORM SCREEN ============ -->
+<form class="stage" id="form-stage" style="display:none;" novalidate>
+
+<!-- =========================================
+     SECTION I · POSITIONING & VOICE
+========================================= -->
+<div class="section-cover" data-section="1">
+  <span class="marker">§ I · Section One of Six</span>
+  <h2>Positioning &amp; <em>Voice.</em></h2>
+  <p>The shape of the firm. The competitive position. The tone the website speaks in. Ten short questions that determine almost everything else.</p>
+</div>
+
+<!-- Q1 -->
+<div class="q" data-qid="q1" data-section="1">
+  <div class="q-meta"><span class="num">No. 01</span><span>Required</span></div>
+  <h3 class="q-prompt">In one sentence, when someone asks what kind of firm <em>ATLAW is</em>, what's your answer?</h3>
+  <p class="q-why">Becomes the working draft of the homepage hero subhead and the meta description Google reads first.</p>
+  <textarea class="input" name="q1_pitch" rows="2" maxlength="280" placeholder="One sentence. Plain words." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 280</div>
+</div>
+
+<!-- Q2 -->
+<div class="q" data-qid="q2" data-section="1">
+  <div class="q-meta"><span class="num">No. 02</span><span>Required</span></div>
+  <h3 class="q-prompt">What kind of firm is ATLAW <em>not</em>?</h3>
+  <p class="q-why">Sometimes more useful than what the firm is. Tells us where to <em>not</em> point the brand. High-volume mill, big-law, ambulance-chaser, generalist, and so on.</p>
+  <textarea class="input" name="q2_not" rows="3" maxlength="400" placeholder="Two or three things. Honest." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 400</div>
+</div>
+
+<!-- Q3 -->
+<div class="q" data-qid="q3" data-section="1">
+  <div class="q-meta"><span class="num">No. 03</span><span>Required</span></div>
+  <h3 class="q-prompt">Who is your <em>ideal client</em>?</h3>
+  <p class="q-why">If you could only take one type of client for the next decade, who would it be? Then: who's your second-most-valuable type? The site is built to attract these two profiles.</p>
+  <textarea class="input" name="q3_ideal" rows="4" maxlength="600" placeholder="Two profiles. Be specific. Industry, life stage, nature of matter, roughly what they're worth." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+<!-- Q4 -->
+<div class="q" data-qid="q4" data-section="1">
+  <div class="q-meta"><span class="num">No. 04</span><span>Required</span></div>
+  <h3 class="q-prompt">In your competitive landscape, who do you actively want to be <em>confused with</em>, and who do you actively want to <em>not</em> be confused with?</h3>
+  <p class="q-why">Naming actual competitors reveals the positioning ladder. The site is then built to sit on the right rung.</p>
+  <textarea class="input" name="q4_competitors" rows="4" maxlength="500" placeholder="Examples. &quot;I want to be in the conversation with X. I never want to be confused with Y.&quot;" data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 500</div>
+</div>
+
+<!-- Q5 -->
+<div class="q" data-qid="q5" data-section="1">
+  <div class="q-meta"><span class="num">No. 05</span><span>Required</span></div>
+  <h3 class="q-prompt">What's the <em>one matter</em> (verdict, settlement, transaction, or moment) that, if you could show only one to a stranger to convey "this is what we do," it would be that one?</h3>
+  <p class="q-why">Anchors the homepage proof section. The single best representation of the firm's work.</p>
+  <textarea class="input" name="q5_signature" rows="4" maxlength="600" placeholder="The matter, the outcome, why it represents the firm." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+<!-- Q6 -->
+<div class="q" data-qid="q6" data-section="1">
+  <div class="q-meta"><span class="num">No. 06</span><span>Required</span></div>
+  <h3 class="q-prompt">What does ATLAW have that <em>no other firm</em> in metro Detroit has?</h3>
+  <p class="q-why">The "Why ATLAW" pillars. Aim for three answers. They become the three differentiator panels on the homepage.</p>
+  <textarea class="input" name="q6_unique" rows="5" maxlength="700" placeholder="Three things. Don't be modest." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 700</div>
+</div>
+
+<!-- Q7 -->
+<div class="q" data-qid="q7" data-section="1">
+  <div class="q-meta"><span class="num">No. 07</span><span>Required</span></div>
+  <h3 class="q-prompt">Where does the firm want to be <em>in three years</em>?</h3>
+  <p class="q-why">Same offices, more, fewer? Acquired, acquiring, independent? Bigger team, same team? Determines whether the site is built for current state or future state.</p>
+  <textarea class="input" name="q7_horizon" rows="4" maxlength="600" placeholder="A few sentences. Where the firm is heading and why." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+<!-- Q8 -->
+<div class="q" data-qid="q8" data-section="1">
+  <div class="q-meta"><span class="num">No. 08</span><span>Optional · Confidential</span></div>
+  <h3 class="q-prompt">Are there any current narratives, events, or <em>news</em> the firm is preparing for, navigating, or moving away from?</h3>
+  <p class="q-why">Pending litigation, leadership transitions, expansion announcements, sensitivities. Anything that affects what the site can or cannot say. Held in confidence.</p>
+  <textarea class="input" name="q8_sensitivities" rows="4" maxlength="800" placeholder="Optional. Leave blank if none."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+<!-- Q9 · VOICE CHIPS -->
+<div class="q" data-qid="q9" data-section="1">
+  <div class="q-meta"><span class="num">No. 09</span><span>Required · Pick Three</span></div>
+  <h3 class="q-prompt">Voice and tone. Pick the <em>three</em> that fit best.</h3>
+  <p class="q-why">Calibrates how the website speaks. Copy register, weight of typography, density of design.</p>
+  <div class="chips" id="voice-chips" data-required>
+    <button type="button" class="chip" data-value="Authoritative">Authoritative</button>
+    <button type="button" class="chip" data-value="Warm">Warm</button>
+    <button type="button" class="chip" data-value="Direct">Direct</button>
+    <button type="button" class="chip" data-value="Sophisticated">Sophisticated</button>
+    <button type="button" class="chip" data-value="Approachable">Approachable</button>
+    <button type="button" class="chip" data-value="Aggressive">Aggressive</button>
+    <button type="button" class="chip" data-value="Bilingual-forward">Bilingual-forward</button>
+    <button type="button" class="chip" data-value="Faith-respecting">Faith-respecting</button>
+    <button type="button" class="chip" data-value="Local">Local</button>
+    <button type="button" class="chip" data-value="Regional">Regional</button>
+    <button type="button" class="chip" data-value="National">National</button>
+    <button type="button" class="chip" data-value="Editorial">Editorial</button>
+    <button type="button" class="chip" data-value="Modern">Modern</button>
+    <button type="button" class="chip" data-value="Old-money">Old-money</button>
+    <button type="button" class="chip" data-value="Plain-spoken">Plain-spoken</button>
+  </div>
+  <p class="chip-hint">Pick exactly three. <span id="voice-count">0</span> / 3 selected.</p>
+</div>
+
+<!-- Q10 · Advertising posture -->
+<div class="q" data-qid="q10" data-section="1">
+  <div class="q-meta"><span class="num">No. 10</span><span>Required</span></div>
+  <h3 class="q-prompt">What's the firm's posture on <em>attorney advertising</em>?</h3>
+  <p class="q-why">Determines how the site handles case results, recognitions, attorney photos, video, social, paid ads. Bar-rules adjacent. Your call governs everything downstream.</p>
+  <div class="options" data-radio="q10_advertising" data-required>
+    <label class="option"><input type="radio" name="q10_advertising" value="conservative" /><span class="option-text"><strong>Conservative.</strong><em>Minimal use of dollar figures, limited recognition lists, restrained tone, no aggressive ad spend.</em></span></label>
+    <label class="option"><input type="radio" name="q10_advertising" value="balanced" /><span class="option-text"><strong>Balanced.</strong><em>Selective dollar figures with disclaimers, recognition shown where credible, professional photography, considered ad spend.</em></span></label>
+    <label class="option"><input type="radio" name="q10_advertising" value="aggressive" /><span class="option-text"><strong>Aggressive.</strong><em>Verdicts and settlements featured prominently, full recognition lists, strong PI marketing tone, real digital ad budget.</em></span></label>
+    <label class="option"><input type="radio" name="q10_advertising" value="mixed" /><span class="option-text"><strong>Mixed by practice.</strong><em>PI gets aggressive treatment; corporate, estate, and other practices stay restrained. Most multi-practice firms land here.</em></span></label>
+  </div>
+</div>
+
+<!-- =========================================
+     SECTION II · PRACTICE TRIAGE
+========================================= -->
+<div class="section-cover" data-section="2">
+  <span class="marker">§ II · Section Two of Six</span>
+  <h2>Practice <em>Triage.</em></h2>
+  <p>Every practice you handle, ranked by how the firm actually treats it. The triage drives the architecture of the site. Which practices get full pages, which get sub-practice depth, and which never appear.</p>
+</div>
+
+<!-- Q11 · practice list with triage -->
+<div class="q" data-qid="q11" data-section="2">
+  <div class="q-meta"><span class="num">No. 11</span><span>Required · The Foundation</span></div>
+  <h3 class="q-prompt">Triage every practice. <em>Lead</em>, <em>Standard</em>, <em>Rare</em>, or <em>We don't do it</em>.</h3>
+  <p class="q-why">The single most important question in this brief. Determines which practices get full landing pages, sub-practice depth, dedicated attorney pages, and SEO priority. Answer accurately even when it stings.</p>
+
+  <div class="triage-legend">
+    <span><strong>Lead.</strong> Known for it, marketed actively, multiple attorneys focus on it</span>
+    <span><strong>Standard.</strong> Handled regularly, not the headline</span>
+    <span><strong>Rare.</strong> Taken occasionally, not pursued</span>
+    <span><strong>We don't.</strong> Never accept these matters</span>
+  </div>
+
+  <div class="practice-list" id="practice-list">
+    <!-- Populated by JS -->
+  </div>
+
+  <div class="practice-add">
+    <input type="text" id="practice-other-input" placeholder="Add a practice not listed above (e.g. Education Law, Environmental Law)" />
+    <button type="button" id="practice-other-add">Add</button>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="q" data-qid="q12" data-section="2">
+  <div class="q-meta"><span class="num">No. 12</span><span>Optional</span></div>
+  <h3 class="q-prompt">What practices are you <em>adding</em> in the next 12 months?</h3>
+  <p class="q-why">The site is designed to accommodate them now rather than rebuild later.</p>
+  <textarea class="input" name="q12_adding" rows="3" maxlength="500" placeholder="Optional. List any planned new practices."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 500</div>
+</div>
+
+<!-- Q13 -->
+<div class="q" data-qid="q13" data-section="2">
+  <div class="q-meta"><span class="num">No. 13</span><span>Optional</span></div>
+  <h3 class="q-prompt">What practices have you <em>stopped taking</em>, and would never want a lead for?</h3>
+  <p class="q-why">Ensures the site doesn't accidentally generate intake for matters the firm only refers out. Wasted time on both sides.</p>
+  <textarea class="input" name="q13_stopped" rows="3" maxlength="500" placeholder="Optional. List practices to actively suppress."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 500</div>
+</div>
+
+<!-- =========================================
+     SECTION III · PRACTICE LEADS
+     Dynamic · populated based on Q11
+========================================= -->
+<div class="section-cover" data-section="3">
+  <span class="marker">§ III · Section Three of Six</span>
+  <h2>Practice <em>Leads.</em></h2>
+  <p>For each Lead and Standard practice you marked, three short fields: the attorney who runs it, a representative recent matter, and the most common type of client call. The pages are written around these answers.</p>
+</div>
+
+<div class="q" data-qid="q14" data-section="3">
+  <div class="q-meta"><span class="num">No. 14</span><span>Auto-generated · Edit each</span></div>
+  <h3 class="q-prompt">Lead attorney, signature matter, and primary client type. <em>Per practice.</em></h3>
+  <p class="q-why">Becomes the visible authorship on each practice landing page and the targeting copy for the lead-capture form.</p>
+  <div id="leads-container">
+    <p style="color: var(--stone); font-style: italic; font-family: var(--display); padding: 20px 0; font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;">
+      Complete the practice triage in Section II first. This section will populate based on what you marked as Lead or Standard.
+    </p>
+  </div>
+</div>
+
+<!-- Q15 · Bilingual capacity -->
+<div class="q" data-qid="q15" data-section="3">
+  <div class="q-meta"><span class="num">No. 15</span><span>Required</span></div>
+  <h3 class="q-prompt">Which practices are actively staffed by <em>Arabic-speaking attorneys</em>?</h3>
+  <p class="q-why">Determines where the bilingual signal surfaces. Landing pages, intake forms, and the future Arabic-language content layer.</p>
+  <div id="bilingual-container">
+    <p style="color: var(--stone); font-style: italic; font-family: var(--display); padding: 16px 0; font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;">
+      Complete the practice triage in Section II first. Your active practices will appear here for selection.
+    </p>
+  </div>
+</div>
+
+<!-- =========================================
+     SECTION IV · PROOF
+========================================= -->
+<div class="section-cover" data-section="4">
+  <span class="marker">§ IV · Section Four of Six</span>
+  <h2>Proof &amp; <em>Recognition.</em></h2>
+  <p>Verdicts, settlements, and matters the firm is permitted to disclose. Awards and recognitions earned. Published work. The proof tier of the site lives or dies on this section.</p>
+</div>
+
+<!-- Q16 · recent matters repeater -->
+<div class="q" data-qid="q16" data-section="4">
+  <div class="q-meta"><span class="num">No. 16</span><span>Required · 4 to 8 entries recommended</span></div>
+  <h3 class="q-prompt">Recent matters the firm is <em>permitted to disclose</em>.</h3>
+  <p class="q-why">Anchors the Selected Outcomes panel on the homepage and the proof rows on every practice landing page. Fabricated or speculative numbers are a bar-rules problem. Leave only what you can stand behind.</p>
+  <div class="repeater" id="matters-repeater"></div>
+  <button type="button" class="repeater-add" id="matters-add">+ Add a matter</button>
+</div>
+
+<!-- Q17 · recognitions repeater -->
+<div class="q" data-qid="q17" data-section="4">
+  <div class="q-meta"><span class="num">No. 17</span><span>Optional · As many as apply</span></div>
+  <h3 class="q-prompt">Awards, recognitions, rankings, and honors. <em>Past five years.</em></h3>
+  <p class="q-why">Drives the Recognition row in the homepage proof section. Each entry should be one Dewnya is willing to display publicly with the source named.</p>
+  <div class="repeater" id="awards-repeater"></div>
+  <button type="button" class="repeater-add" id="awards-add">+ Add a recognition</button>
+</div>
+
+<!-- Q18 · published work -->
+<div class="q" data-qid="q18" data-section="4">
+  <div class="q-meta"><span class="num">No. 18</span><span>Optional</span></div>
+  <h3 class="q-prompt">Has any attorney been quoted in or written for a major <em>publication</em> in the past three years?</h3>
+  <p class="q-why">Becomes the "As Seen In" or Insights surface on the firm site. Links count even if the article is paywalled.</p>
+  <textarea class="input" name="q18_published" rows="4" maxlength="800" placeholder="Publication name, attorney, year, link. One per line."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+<!-- Q19 · community -->
+<div class="q" data-qid="q19" data-section="4">
+  <div class="q-meta"><span class="num">No. 19</span><span>Optional</span></div>
+  <h3 class="q-prompt">What boards, charities, bar associations, or professional <em>organizations</em> does the firm or its leadership serve?</h3>
+  <p class="q-why">Footer credibility, plus the foundation for partnership and referral channel introductions.</p>
+  <textarea class="input" name="q19_community" rows="4" maxlength="800" placeholder="One per line. Name, role, year joined or served."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+<!-- =========================================
+     SECTION V · CONVERSION
+========================================= -->
+<div class="section-cover" data-section="5">
+  <span class="marker">§ V · Section Five of Six</span>
+  <h2>Intake &amp; <em>Conversion.</em></h2>
+  <p>What turns a visitor into a client. The questions only Dewnya can answer about who the firm wants to hear from and how fast someone responds when they reach out.</p>
+</div>
+
+<!-- Q20 · qualified lead threshold -->
+<div class="q" data-qid="q20" data-section="5">
+  <div class="q-meta"><span class="num">No. 20</span><span>Required</span></div>
+  <h3 class="q-prompt">For each Lead practice, what's the <em>minimum threshold</em> a matter has to clear for the firm to want a phone call about it?</h3>
+  <p class="q-why">Determines whether the website intake form pre-qualifies matters or accepts everything. Bad-fit leads drain attorney time more than they help.</p>
+  <textarea class="input" name="q20_threshold" rows="5" maxlength="800" placeholder="Examples. &quot;PI: minimum medical treatment received.&quot; &quot;Business: minimum $1M revenue.&quot; &quot;Estate: minimum $500K estate.&quot;" data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+<!-- Q21 · what info every lead needs -->
+<div class="q" data-qid="q21" data-section="5">
+  <div class="q-meta"><span class="num">No. 21</span><span>Required</span></div>
+  <h3 class="q-prompt">What 3 to 5 questions does the firm ask <em>every prospective client</em> before deciding whether to take the call?</h3>
+  <p class="q-why">Built into the website intake form so the questions get asked once, upfront, in writing. Instead of three times on three different phone calls.</p>
+  <textarea class="input" name="q21_qualifying" rows="6" maxlength="800" placeholder="One question per line. Cover the universal ones first, then practice-specific." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+<!-- Q22 · response handler & speed -->
+<div class="q" data-qid="q22" data-section="5">
+  <div class="q-meta"><span class="num">No. 22</span><span>Required</span></div>
+  <h3 class="q-prompt">When a lead comes in, <em>who responds</em> first, and how fast?</h3>
+  <p class="q-why">Sets the autoresponder copy and the visible response-time promise on the contact page. A lawyer's site that says "we'll respond within 24 hours" while a competitor says "within an hour" loses the lead.</p>
+  <textarea class="input" name="q22_response" rows="4" maxlength="600" placeholder="Who responds, target response time during business hours, after-hours coverage." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+<!-- Q23 · fee structure -->
+<div class="q" data-qid="q23" data-section="5">
+  <div class="q-meta"><span class="num">No. 23</span><span>Required</span></div>
+  <h3 class="q-prompt">How should the website handle <em>fee information</em>?</h3>
+  <p class="q-why">"Free PI consultation," "flat fee for wills starting at $X," "hourly rate for business work," or "all matters discussed by consultation"?</p>
+  <div class="options" data-radio="q23_fees" data-required>
+    <label class="option"><input type="radio" name="q23_fees" value="show-pi-only" /><span class="option-text"><strong>Show PI fee structure (no fee unless we recover); other practices stay generic.</strong><em>Most multi-practice firms with a PI lead practice land here.</em></span></label>
+    <label class="option"><input type="radio" name="q23_fees" value="show-all" /><span class="option-text"><strong>Show fee structure for every practice that has one.</strong><em>Maximum transparency. Tends to convert higher-quality leads but discourages low-end inquiries.</em></span></label>
+    <label class="option"><input type="radio" name="q23_fees" value="show-none" /><span class="option-text"><strong>"All matters discussed by consultation."</strong><em>Conservative. Common at firms targeting institutional clients.</em></span></label>
+    <label class="option"><input type="radio" name="q23_fees" value="custom" /><span class="option-text"><strong>Custom. I'll specify per practice.</strong><em>We'll discuss the details on the kickoff call.</em></span></label>
+  </div>
+</div>
+
+<!-- =========================================
+     SECTION VI · PROJECT
+========================================= -->
+<div class="section-cover" data-section="6">
+  <span class="marker">§ VI · Section Six of Six</span>
+  <h2>Project <em>Logistics.</em></h2>
+  <p>The cadence of the work. The contact who decides. The deadline if there is one. The last few questions before the brief is complete.</p>
+</div>
+
+<!-- Q24 · POC -->
+<div class="q" data-qid="q24" data-section="6">
+  <div class="q-meta"><span class="num">No. 24</span><span>Required</span></div>
+  <h3 class="q-prompt">Who is the <em>single point of contact</em> at ATLAW for this project?</h3>
+  <p class="q-why">If the answer is "me," fine. If it's an executive assistant or operations lead, name them. Without a single decision-maker, the project bogs down.</p>
+  <div class="lead-grid" style="border:none; padding: 0; background: transparent; margin: 0;">
+    <label><span class="field-label">Name</span><input type="text" name="q24_poc_name" data-required /></label>
+    <label><span class="field-label">Role</span><input type="text" name="q24_poc_role" /></label>
+    <label><span class="field-label">Email</span><input type="email" name="q24_poc_email" data-required /></label>
+    <label><span class="field-label">Direct Phone</span><input type="tel" name="q24_poc_phone" /></label>
+  </div>
+</div>
+
+<!-- Q25 · review cadence -->
+<div class="q" data-qid="q25" data-section="6">
+  <div class="q-meta"><span class="num">No. 25</span><span>Required</span></div>
+  <h3 class="q-prompt">How often do you want to see <em>progress</em>?</h3>
+  <p class="q-why">Defines the operating rhythm. Pick the cadence you'll actually keep, not the one that sounds best.</p>
+  <div class="options" data-radio="q25_cadence" data-required>
+    <label class="option"><input type="radio" name="q25_cadence" value="weekly-live" /><span class="option-text"><strong>Weekly live walkthrough.</strong><em>30-minute call every week, screenshare and discussion. Best for high-engagement projects.</em></span></label>
+    <label class="option"><input type="radio" name="q25_cadence" value="weekly-async" /><span class="option-text"><strong>Weekly async. Loom video and screenshots.</strong><em>I record a 5-minute walkthrough, you watch when you have time, reply with thoughts. Best when calendars are tight.</em></span></label>
+    <label class="option"><input type="radio" name="q25_cadence" value="biweekly-live" /><span class="option-text"><strong>Bi-weekly live walkthrough.</strong><em>Every two weeks. Lower overhead, longer feedback loops.</em></span></label>
+    <label class="option"><input type="radio" name="q25_cadence" value="biweekly-async" /><span class="option-text"><strong>Bi-weekly async.</strong><em>Lowest-overhead option. Good for trusted relationships.</em></span></label>
+  </div>
+</div>
+
+<!-- Q26 · launch target -->
+<div class="q" data-qid="q26" data-section="6">
+  <div class="q-meta"><span class="num">No. 26</span><span>Required</span></div>
+  <h3 class="q-prompt">When does the new site need to be <em>live</em>?</h3>
+  <p class="q-why">A speaking engagement, a press moment, an event, a fiscal year, or a soft target. Hard deadlines get planned around; soft targets get tracked but don't drive sequencing.</p>
+  <div class="lead-grid" style="border:none; padding: 0; background: transparent; margin: 0;">
+    <label class="full"><span class="field-label">Target Date</span><input type="text" name="q26_launch_date" placeholder="e.g. June 1, 2026 (or 'no hard date')" data-required /></label>
+    <label class="full"><span class="field-label">Reason (if hard deadline)</span><input type="text" name="q26_launch_reason" placeholder="What's tied to that date?" /></label>
+  </div>
+</div>
+
+<!-- Q27 · the open one -->
+<div class="q" data-qid="q27" data-section="6">
+  <div class="q-meta"><span class="num">No. 27</span><span>Optional · The last word</span></div>
+  <h3 class="q-prompt">What do you want this website to do that <em>no website you've ever seen</em> has done?</h3>
+  <p class="q-why">Open-ended. The one thing that, if we get it right, would make this project feel like a win. Sometimes the best answers come last.</p>
+  <textarea class="input" name="q27_dream" rows="5" maxlength="800" placeholder="Optional. Write what comes to mind."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 800</div>
+</div>
+
+</form>
+
+<!-- ============ NAV BAR ============ -->
+<div class="nav-bar hidden" id="nav-bar">
+  <div class="nav-bar-inner">
+    <div class="nav-bar-progress">
+      <span>Section <strong id="current-section">1</strong> of 6</span>
+      <span>·</span>
+      <span><strong id="answered-count">0</strong> of <strong id="total-count">27</strong> answered</span>
+    </div>
+    <div class="nav-bar-actions">
+      <button type="button" class="btn btn-ghost" id="btn-back">
+        <svg class="arrow back" viewBox="0 0 24 24"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button type="button" class="btn btn-primary" id="btn-next">
+        Continue
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <button type="button" class="btn btn-primary" id="btn-submit" style="display:none;">
+        Submit Brief
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SUBMITTING OVERLAY ============ -->
+<div class="submitting" id="submitting">
+  <span class="submitting-mark">"</span>
+  <span class="submitting-text">Sending the brief</span>
+</div>
+
+<!-- ============ THANK YOU ============ -->
+<section class="thanks" id="thanks-screen">
+  <span class="marker">§ Submitted · Thank you, Dewnya.</span>
+  <h2>The brief is <em>received.</em></h2>
+  <p>Sam has been notified. You'll hear back within one business day with a summary of what's been captured, the proposed page architecture, and the schedule for kickoff.</p>
+  <p>The second intake (for your team to handle the operational details) will be sent to your point of contact this week. They'll have everything they need to fill it out without you.</p>
+  <p>If anything in the brief needs to be revised after submission, reply to the confirmation email or text directly. Nothing about this is locked.</p>
+  <p class="signoff">Sam</p>
+  <div class="startline-mark" style="margin-top: 28px;">
+    <span class="by">Built by</span>
+    <svg width="120" height="22" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+      <rect width="28" height="28" rx="7" fill="#C8681A"/>
+      <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+      <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+    </svg>
+  </div>
+</section>
+
+<script>
+// =========================================
+// CONFIG · submission endpoint
+// =========================================
+// Set this to the Formspree URL you create. Until set, the form will fall back
+// to a mailto link as a backup.
+const FORMSPREE_ENDPOINT = "/api/atlaw-intake";
+const FALLBACK_EMAIL = "sam@glostaffing.com"; // edit if you want submissions elsewhere
+
+// =========================================
+// PRACTICE LIST DATA
+// =========================================
+const PRACTICES = [
+  { id: 'pi', name: 'Personal Injury', major: true },
+  { id: 'pi-auto', name: 'Auto Accidents', parent: 'pi' },
+  { id: 'pi-medmal', name: 'Medical Malpractice', parent: 'pi' },
+  { id: 'pi-workcomp', name: "Workers' Compensation", parent: 'pi' },
+
+  { id: 'biz', name: 'Business & Corporate', major: true },
+  { id: 'biz-ma', name: 'Mergers & Acquisitions', parent: 'biz' },
+  { id: 'biz-securities', name: 'Securities Law', parent: 'biz' },
+  { id: 'biz-franchise', name: 'Franchise Law', parent: 'biz' },
+
+  { id: 'estate', name: 'Estate Planning & Probate', major: true },
+  { id: 'estate-trust-lit', name: 'Trust & Estate Litigation', parent: 'estate' },
+
+  { id: 'imm', name: 'Immigration', major: true },
+  { id: 'imm-asylum', name: 'Asylum / Removal Defense', parent: 'imm' },
+
+  { id: 'crim', name: 'Criminal Defense', major: true },
+  { id: 'crim-dui', name: 'DUI / OWI', parent: 'crim' },
+  { id: 'crim-federal', name: 'Federal Criminal Defense', parent: 'crim' },
+  { id: 'crim-whitecollar', name: 'White Collar', parent: 'crim' },
+
+  { id: 'health', name: 'Healthcare Law', major: true },
+  { id: 'health-compliance', name: 'Healthcare Compliance', parent: 'health' },
+
+  { id: 're', name: 'Real Estate', major: true },
+  { id: 're-construction', name: 'Construction Law', parent: 're' },
+
+  { id: 'fam', name: 'Family Law', major: true },
+  { id: 'fam-adopt', name: 'Adoption', parent: 'fam' },
+
+  { id: 'tax', name: 'Tax', major: true },
+  { id: 'tax-controversy', name: 'IRS Controversy', parent: 'tax' },
+
+  { id: 'lit', name: 'Litigation (Commercial)', major: true },
+  { id: 'lit-class', name: 'Class Actions', parent: 'lit' },
+  { id: 'lit-app', name: 'Appellate', parent: 'lit' },
+
+  { id: 'employ', name: 'Employment Law', major: true },
+  { id: 'civilrights', name: 'Civil Rights', major: true },
+  { id: 'insurance', name: 'Insurance Defense / Coverage', major: true },
+  { id: 'ip', name: 'IP / Patent / Trademark / Copyright', major: true },
+  { id: 'cyber', name: 'Cybersecurity & Privacy', major: true },
+  { id: 'gov', name: 'Government Relations / Lobbying', major: true },
+  { id: 'nonprofit', name: 'Nonprofit / Tax-Exempt', major: true },
+  { id: 'erisa', name: 'ERISA / Employee Benefits', major: true },
+  { id: 'bk', name: 'Bankruptcy / Restructuring', major: true },
+  { id: 'intl', name: 'International / Cross-Border', major: true },
+];
+
+// =========================================
+// STATE
+// =========================================
+const STORAGE_KEY = 'atlaw_intake_v1';
+const state = {
+  answers: {},
+  triage: {},
+  voice: [],
+  bilingual: [],
+  customPractices: [],
+  matters: [],
+  awards: [],
+  currentSection: 1,
+  started: false
+};
+
+// =========================================
+// STORAGE
+// =========================================
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    showSaved();
+  } catch (e) {
+    console.warn('Save failed:', e);
+  }
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const loaded = JSON.parse(raw);
+    Object.assign(state, loaded);
+    return true;
+  } catch (e) { return false; }
+}
+
+let saveTimer = null;
+let saveLabel = document.getElementById('save-label');
+let saveStateEl = document.getElementById('save-state');
+function showSaving() {
+  saveStateEl.classList.remove('saved');
+  saveStateEl.classList.add('saving');
+  saveLabel.textContent = 'Saving';
+}
+function showSaved() {
+  saveStateEl.classList.remove('saving');
+  saveStateEl.classList.add('saved');
+  saveLabel.textContent = 'Saved';
+}
+function queueSave() {
+  showSaving();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 600);
+}
+
+// =========================================
+// CHAR COUNTERS
+// =========================================
+document.querySelectorAll('textarea[maxlength]').forEach(ta => {
+  const counter = ta.nextElementSibling?.querySelector('.cc-now');
+  if (!counter) return;
+  ta.addEventListener('input', () => {
+    counter.textContent = ta.value.length;
+    state.answers[ta.name] = ta.value;
+    queueSave();
+  });
+});
+
+// =========================================
+// VOICE CHIPS
+// =========================================
+document.querySelectorAll('#voice-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const v = chip.dataset.value;
+    const idx = state.voice.indexOf(v);
+    if (idx >= 0) {
+      state.voice.splice(idx, 1);
+      chip.classList.remove('selected');
+    } else {
+      if (state.voice.length >= 3) return; // cap
+      state.voice.push(v);
+      chip.classList.add('selected');
+    }
+    document.getElementById('voice-count').textContent = state.voice.length;
+    document.getElementById('voice-chips').classList.toggle('maxed', state.voice.length >= 3);
+    queueSave();
+  });
+});
+
+// =========================================
+// RADIO OPTION HANDLER (visual selection)
+// =========================================
+document.querySelectorAll('.options[data-radio]').forEach(group => {
+  const name = group.dataset.radio;
+  group.querySelectorAll('input[type=radio]').forEach(input => {
+    input.addEventListener('change', () => {
+      group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      input.closest('.option').classList.add('selected');
+      state.answers[name] = input.value;
+      queueSave();
+    });
+  });
+});
+
+// =========================================
+// PRACTICE LIST RENDER + TRIAGE
+// =========================================
+function renderPracticeList() {
+  const wrap = document.getElementById('practice-list');
+  wrap.innerHTML = '';
+  const all = PRACTICES.concat(state.customPractices.map(name => ({
+    id: 'custom_' + name.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+    name: name + ' (custom)',
+    major: true
+  })));
+
+  all.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'practice-row ' + (p.major ? 'major' : 'sub');
+    const tier = state.triage[p.id] || null;
+
+    row.innerHTML = `
+      <div class="practice-name">${p.name}</div>
+      <div class="triage" data-practice-id="${p.id}">
+        <button type="button" class="triage-btn ${tier === 'lead' ? 'selected' : ''}" data-tier="lead">Lead</button>
+        <button type="button" class="triage-btn ${tier === 'standard' ? 'selected' : ''}" data-tier="standard">Standard</button>
+        <button type="button" class="triage-btn ${tier === 'rare' ? 'selected' : ''}" data-tier="rare">Rare</button>
+        <button type="button" class="triage-btn ${tier === 'no' ? 'selected' : ''}" data-tier="no">We don't</button>
+      </div>
+    `;
+    wrap.appendChild(row);
+  });
+
+  wrap.querySelectorAll('.triage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.parentElement.dataset.practiceId;
+      const tier = btn.dataset.tier;
+      // toggle behavior · if already selected, deselect
+      if (state.triage[id] === tier) {
+        delete state.triage[id];
+      } else {
+        state.triage[id] = tier;
+      }
+      renderPracticeList();
+      renderLeads();
+      renderBilingual();
+      queueSave();
+    });
+  });
+}
+
+document.getElementById('practice-other-add').addEventListener('click', () => {
+  addCustomPractice();
+});
+document.getElementById('practice-other-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    addCustomPractice();
+  }
+});
+function addCustomPractice() {
+  const input = document.getElementById('practice-other-input');
+  const v = input.value.trim();
+  if (!v) return;
+  if (!state.customPractices.includes(v)) {
+    state.customPractices.push(v);
+    renderPracticeList();
+    renderLeads();
+    renderBilingual();
+    queueSave();
+  }
+  input.value = '';
+}
+
+// =========================================
+// PRACTICE LEADS · generated from triage
+// =========================================
+function getActivePractices() {
+  // Returns all Lead and Standard practices (and customs marked Lead/Standard)
+  const all = PRACTICES.concat(state.customPractices.map(name => ({
+    id: 'custom_' + name.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+    name: name + ' (custom)',
+    major: true
+  })));
+  return all.filter(p => {
+    const tier = state.triage[p.id];
+    return tier === 'lead' || tier === 'standard';
+  });
+}
+
+function renderLeads() {
+  const wrap = document.getElementById('leads-container');
+  const active = getActivePractices();
+
+  if (active.length === 0) {
+    wrap.innerHTML = `<p style="color: var(--stone); font-style: italic; font-family: var(--display); padding: 20px 0; font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;">
+      Complete the practice triage in Section II first. This section will populate based on what you marked as Lead or Standard.
+    </p>`;
+    return;
+  }
+
+  wrap.innerHTML = '';
+  active.forEach(p => {
+    const tier = state.triage[p.id];
+    const block = document.createElement('div');
+    block.className = 'lead-block';
+    block.innerHTML = `
+      <div class="lead-block-head">
+        <h4>${p.name}</h4>
+        <span class="tier">${tier === 'lead' ? '· Lead Practice' : '· Standard'}</span>
+      </div>
+      <div class="lead-grid">
+        <label><span class="field-label">Lead Attorney</span><input type="text" data-lead-field="attorney" data-practice="${p.id}" placeholder="Name" value="${escapeAttr(state.answers['lead_' + p.id + '_attorney'] || '')}" /></label>
+        <label><span class="field-label">Most Common Client Type</span><input type="text" data-lead-field="client" data-practice="${p.id}" placeholder="e.g. Wayne County rear-end auto" value="${escapeAttr(state.answers['lead_' + p.id + '_client'] || '')}" /></label>
+        <label class="full"><span class="field-label">Signature Recent Matter</span><textarea data-lead-field="matter" data-practice="${p.id}" placeholder="2 to 3 sentences. Describe the matter and outcome.">${escapeAttr(state.answers['lead_' + p.id + '_matter'] || '')}</textarea></label>
+      </div>
+    `;
+    wrap.appendChild(block);
+  });
+
+  wrap.querySelectorAll('[data-lead-field]').forEach(el => {
+    el.addEventListener('input', () => {
+      const key = 'lead_' + el.dataset.practice + '_' + el.dataset.leadField;
+      state.answers[key] = el.value;
+      queueSave();
+    });
+  });
+}
+
+function renderBilingual() {
+  const wrap = document.getElementById('bilingual-container');
+  const active = getActivePractices();
+
+  if (active.length === 0) {
+    wrap.innerHTML = `<p style="color: var(--stone); font-style: italic; font-family: var(--display); padding: 16px 0; font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;">
+      Complete the practice triage in Section II first. Your active practices will appear here for selection.
+    </p>`;
+    return;
+  }
+
+  wrap.innerHTML = '<div class="options" style="border-top: 1px solid var(--hairline); padding-top: 8px;">' +
+    active.map(p => {
+      const checked = state.bilingual.includes(p.id);
+      return `<label class="option ${checked ? 'selected' : ''}">
+        <input type="checkbox" data-bilingual="${p.id}" ${checked ? 'checked' : ''} />
+        <span class="option-text"><strong>${p.name}</strong></span>
+      </label>`;
+    }).join('') + '</div>';
+
+  wrap.querySelectorAll('input[data-bilingual]').forEach(input => {
+    input.addEventListener('change', () => {
+      const id = input.dataset.bilingual;
+      if (input.checked) {
+        if (!state.bilingual.includes(id)) state.bilingual.push(id);
+        input.closest('.option').classList.add('selected');
+      } else {
+        state.bilingual = state.bilingual.filter(x => x !== id);
+        input.closest('.option').classList.remove('selected');
+      }
+      queueSave();
+    });
+  });
+}
+
+// =========================================
+// REPEATERS · Matters & Awards
+// =========================================
+function renderMatters() {
+  const wrap = document.getElementById('matters-repeater');
+  wrap.innerHTML = '';
+  state.matters.forEach((m, i) => {
+    const item = document.createElement('div');
+    item.className = 'repeater-item';
+    item.innerHTML = `
+      <div class="repeater-item-head">
+        <span class="repeater-item-num">No. ${String(i + 1).padStart(2, '0')}</span>
+        <button type="button" class="repeater-remove" data-remove="${i}">Remove</button>
+      </div>
+      <div class="lead-grid">
+        <label><span class="field-label">Practice Area</span><input type="text" data-matter-field="practice" data-idx="${i}" value="${escapeAttr(m.practice || '')}" placeholder="e.g. Personal Injury" /></label>
+        <label><span class="field-label">Outcome</span><input type="text" data-matter-field="outcome" data-idx="${i}" value="${escapeAttr(m.outcome || '')}" placeholder="e.g. $4.2M verdict, or 'confidential'" /></label>
+        <label class="full"><span class="field-label">Brief Description (1 to 2 sentences)</span><textarea data-matter-field="description" data-idx="${i}" placeholder="What the matter was about, what was at stake, what was achieved.">${escapeAttr(m.description || '')}</textarea></label>
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+
+  wrap.querySelectorAll('[data-matter-field]').forEach(el => {
+    el.addEventListener('input', () => {
+      const i = parseInt(el.dataset.idx);
+      state.matters[i][el.dataset.matterField] = el.value;
+      queueSave();
+    });
+  });
+  wrap.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.matters.splice(parseInt(btn.dataset.remove), 1);
+      renderMatters();
+      queueSave();
+    });
+  });
+}
+document.getElementById('matters-add').addEventListener('click', () => {
+  state.matters.push({ practice: '', outcome: '', description: '' });
+  renderMatters();
+  queueSave();
+});
+
+function renderAwards() {
+  const wrap = document.getElementById('awards-repeater');
+  wrap.innerHTML = '';
+  state.awards.forEach((a, i) => {
+    const item = document.createElement('div');
+    item.className = 'repeater-item';
+    item.innerHTML = `
+      <div class="repeater-item-head">
+        <span class="repeater-item-num">No. ${String(i + 1).padStart(2, '0')}</span>
+        <button type="button" class="repeater-remove" data-remove="${i}">Remove</button>
+      </div>
+      <div class="lead-grid">
+        <label><span class="field-label">Award / Recognition</span><input type="text" data-award-field="name" data-idx="${i}" value="${escapeAttr(a.name || '')}" placeholder="e.g. Super Lawyers Rising Star" /></label>
+        <label><span class="field-label">Source / Publication</span><input type="text" data-award-field="source" data-idx="${i}" value="${escapeAttr(a.source || '')}" placeholder="e.g. Thomson Reuters" /></label>
+        <label><span class="field-label">Recipient</span><input type="text" data-award-field="recipient" data-idx="${i}" value="${escapeAttr(a.recipient || '')}" placeholder="Firm or attorney name" /></label>
+        <label><span class="field-label">Year</span><input type="text" data-award-field="year" data-idx="${i}" value="${escapeAttr(a.year || '')}" placeholder="e.g. 2024" /></label>
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+
+  wrap.querySelectorAll('[data-award-field]').forEach(el => {
+    el.addEventListener('input', () => {
+      const i = parseInt(el.dataset.idx);
+      state.awards[i][el.dataset.awardField] = el.value;
+      queueSave();
+    });
+  });
+  wrap.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.awards.splice(parseInt(btn.dataset.remove), 1);
+      renderAwards();
+      queueSave();
+    });
+  });
+}
+document.getElementById('awards-add').addEventListener('click', () => {
+  state.awards.push({ name: '', source: '', recipient: '', year: '' });
+  renderAwards();
+  queueSave();
+});
+
+// Lead-grid simple inputs (q24, q26)
+document.querySelectorAll('.lead-grid input, .lead-grid textarea').forEach(el => {
+  if (el.name) {
+    el.addEventListener('input', () => {
+      state.answers[el.name] = el.value;
+      queueSave();
+    });
+  }
+});
+
+// =========================================
+// SECTION NAVIGATION
+// =========================================
+const TOTAL_SECTIONS = 6;
+const TOTAL_QUESTIONS = 27;
+
+function showSection(n) {
+  state.currentSection = n;
+  document.getElementById('cover-screen').style.display = 'none';
+  document.getElementById('form-stage').style.display = 'block';
+  document.getElementById('nav-bar').classList.remove('hidden');
+
+  // Show only the requested section's content
+  document.querySelectorAll('.section-cover').forEach(el => {
+    el.style.display = parseInt(el.dataset.section) === n ? 'block' : 'none';
+  });
+  document.querySelectorAll('.q').forEach(el => {
+    el.style.display = parseInt(el.dataset.section) === n ? 'block' : 'none';
+  });
+
+  document.getElementById('current-section').textContent = n;
+
+  // Toggle Submit vs Continue
+  const isLast = n === TOTAL_SECTIONS;
+  document.getElementById('btn-next').style.display = isLast ? 'none' : 'inline-flex';
+  document.getElementById('btn-submit').style.display = isLast ? 'inline-flex' : 'none';
+  document.getElementById('btn-back').style.display = 'inline-flex';
+
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  state.started = true;
+  queueSave();
+}
+
+function updateProgress() {
+  const answered = countAnswered();
+  document.getElementById('answered-count').textContent = answered;
+  const pct = Math.min(100, (answered / TOTAL_QUESTIONS) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function countAnswered() {
+  let n = 0;
+  // text/textarea answers
+  ['q1_pitch','q2_not','q3_ideal','q4_competitors','q5_signature','q6_unique','q7_horizon',
+   'q12_adding','q13_stopped','q18_published','q19_community','q20_threshold','q21_qualifying',
+   'q22_response','q24_poc_name','q24_poc_email','q26_launch_date','q27_dream'].forEach(k => {
+    if (state.answers[k] && state.answers[k].trim().length > 0) n++;
+  });
+  // q8 optional, q12 optional, etc · counting only filled ones above
+  // structured
+  if (state.voice.length === 3) n++; // q9
+  if (state.answers.q10_advertising) n++;
+  if (Object.keys(state.triage).length > 0) n++; // q11
+  if (state.answers.q23_fees) n++;
+  if (state.answers.q25_cadence) n++;
+  // section III practice leads · count as answered if at least one practice has fields
+  if (Object.keys(state.answers).some(k => k.startsWith('lead_'))) n++;
+  if (state.bilingual.length > 0) n++;
+  // section IV · matters + awards
+  if (state.matters.length > 0) n++;
+  if (state.awards.length > 0) n++;
+  return n;
+}
+
+document.getElementById('btn-next').addEventListener('click', () => {
+  if (state.currentSection < TOTAL_SECTIONS) showSection(state.currentSection + 1);
+});
+document.getElementById('btn-back').addEventListener('click', () => {
+  if (state.currentSection > 1) {
+    showSection(state.currentSection - 1);
+  } else {
+    // From section 1, back returns to cover/introduction
+    document.getElementById('form-stage').style.display = 'none';
+    document.getElementById('nav-bar').classList.add('hidden');
+    document.getElementById('cover-screen').style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+});
+
+document.getElementById('cover-begin').addEventListener('click', () => {
+  showSection(1);
+});
+
+// Resume link
+document.getElementById('cover-resume-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  showSection(state.currentSection || 1);
+});
+
+// =========================================
+// SUBMISSION
+// =========================================
+document.getElementById('btn-submit').addEventListener('click', async () => {
+
+  // ---------- VALIDATION ----------
+  // Identify required fields and what's missing
+  const REQUIRED = [
+    { key: 'q1_pitch', label: 'Q1 · Firm pitch', section: 1 },
+    { key: 'q2_not', label: 'Q2 · What ATLAW is not', section: 1 },
+    { key: 'q3_ideal', label: 'Q3 · Ideal client', section: 1 },
+    { key: 'q4_competitors', label: 'Q4 · Competitive landscape', section: 1 },
+    { key: 'q5_signature', label: 'Q5 · Signature matter', section: 1 },
+    { key: 'q6_unique', label: 'Q6 · Unique advantages', section: 1 },
+    { key: 'q7_horizon', label: 'Q7 · Three-year horizon', section: 1 },
+    { key: 'q10_advertising', label: 'Q10 · Advertising posture', section: 1, type: 'radio' },
+    { key: 'q20_threshold', label: 'Q20 · Lead threshold', section: 5 },
+    { key: 'q21_qualifying', label: 'Q21 · Qualifying questions', section: 5 },
+    { key: 'q22_response', label: 'Q22 · Response handler', section: 5 },
+    { key: 'q23_fees', label: 'Q23 · Fee structure', section: 5, type: 'radio' },
+    { key: 'q24_poc_name', label: 'Q24 · Point of contact name', section: 6 },
+    { key: 'q24_poc_email', label: 'Q24 · Point of contact email', section: 6 },
+    { key: 'q25_cadence', label: 'Q25 · Review cadence', section: 6, type: 'radio' },
+    { key: 'q26_launch_date', label: 'Q26 · Launch target', section: 6 },
+  ];
+
+  const missing = [];
+  REQUIRED.forEach(r => {
+    const v = state.answers[r.key];
+    if (!v || (typeof v === 'string' && v.trim().length === 0)) {
+      missing.push(r);
+    }
+  });
+
+  // Q9 voice chips · need exactly 3
+  if (state.voice.length !== 3) {
+    missing.push({ key: 'q9_voice', label: 'Q9 · Voice and tone (pick 3)', section: 1 });
+  }
+
+  // Q11 practice triage · at least one practice triaged
+  if (Object.keys(state.triage).length === 0) {
+    missing.push({ key: 'q11_practice_triage', label: 'Q11 · Practice triage', section: 2 });
+  }
+
+  // Q15 bilingual · at least if there are active practices, expect a selection (optional but nudge)
+  // (Not adding as hard required since the question text says "Required" but selection of zero is valid)
+
+  // Q24 email format check
+  const email = state.answers.q24_poc_email || '';
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    missing.push({ key: 'q24_poc_email_format', label: 'Q24 · Point of contact email (format)', section: 6 });
+  }
+
+  if (missing.length > 0) {
+    // Find earliest section with a missing field
+    const earliestSection = Math.min(...missing.map(m => m.section));
+    const list = missing.map(m => '  · ' + m.label).join('\n');
+    const proceed = confirm(
+      'Before submitting, ' + missing.length + ' required item' + (missing.length === 1 ? '' : 's') +
+      ' need attention:\n\n' + list +
+      '\n\nClick OK to jump to the first one. Click Cancel to submit anyway.'
+    );
+    if (proceed) {
+      showSection(earliestSection);
+      return;
+    }
+    // If they cancel, fall through and submit incomplete (their choice)
+  }
+
+  // ---------- BUILD PAYLOAD AND SUBMIT ----------
+  const overlay = document.getElementById('submitting');
+  overlay.classList.add('active');
+
+  // Build payload
+  const payload = {
+    submitted_at: new Date().toISOString(),
+    submitted_by: state.answers.q24_poc_name || 'Dewnya Bazzi',
+    poc_email: state.answers.q24_poc_email || '',
+    poc_phone: state.answers.q24_poc_phone || '',
+
+    // Section I · Positioning
+    q1_pitch: state.answers.q1_pitch || '',
+    q2_not: state.answers.q2_not || '',
+    q3_ideal: state.answers.q3_ideal || '',
+    q4_competitors: state.answers.q4_competitors || '',
+    q5_signature: state.answers.q5_signature || '',
+    q6_unique: state.answers.q6_unique || '',
+    q7_horizon: state.answers.q7_horizon || '',
+    q8_sensitivities: state.answers.q8_sensitivities || '',
+    q9_voice: state.voice.join(', '),
+    q10_advertising: state.answers.q10_advertising || '',
+
+    // Section II · Practice triage
+    q11_practice_triage: JSON.stringify(state.triage),
+    q11_custom_practices: state.customPractices.join(', '),
+    q12_adding: state.answers.q12_adding || '',
+    q13_stopped: state.answers.q13_stopped || '',
+
+    // Section III · Practice leads
+    q14_practice_leads: JSON.stringify(
+      Object.keys(state.answers).filter(k => k.startsWith('lead_')).reduce((o, k) => { o[k] = state.answers[k]; return o; }, {})
+    ),
+    q15_bilingual_practices: state.bilingual.join(', '),
+
+    // Section IV · Proof
+    q16_recent_matters: JSON.stringify(state.matters),
+    q17_recognitions: JSON.stringify(state.awards),
+    q18_published: state.answers.q18_published || '',
+    q19_community: state.answers.q19_community || '',
+
+    // Section V · Conversion
+    q20_threshold: state.answers.q20_threshold || '',
+    q21_qualifying: state.answers.q21_qualifying || '',
+    q22_response: state.answers.q22_response || '',
+    q23_fees: state.answers.q23_fees || '',
+
+    // Section VI · Project
+    q24_poc_name: state.answers.q24_poc_name || '',
+    q24_poc_role: state.answers.q24_poc_role || '',
+    q26_launch_date: state.answers.q26_launch_date || '',
+    q26_launch_reason: state.answers.q26_launch_reason || '',
+    q25_cadence: state.answers.q25_cadence || '',
+    q27_dream: state.answers.q27_dream || '',
+
+    _subject: 'ATLAW × Startline · Founding Brief Submitted'
+  };
+
+  // Try Formspree first
+  let success = false;
+  if (FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes('REPLACE_WITH')) {
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      success = res.ok;
+    } catch (e) {
+      console.warn('Formspree submission failed:', e);
+    }
+  }
+
+  // Mailto fallback if Formspree fails or isn't configured
+  if (!success) {
+    const subject = encodeURIComponent('ATLAW × Startline · Founding Brief Submitted');
+    const body = encodeURIComponent(
+      'A submitted brief is below.\n\n' +
+      Object.entries(payload).map(([k, v]) => `--- ${k} ---\n${v}\n`).join('\n')
+    );
+    window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
+  // Show thank you
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    document.getElementById('form-stage').style.display = 'none';
+    document.getElementById('nav-bar').classList.add('hidden');
+    document.getElementById('thanks-screen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Optional: clear local storage so a fresh visit starts clean
+    // localStorage.removeItem(STORAGE_KEY);
+  }, 800);
+});
+
+// =========================================
+// HELPERS
+// =========================================
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// =========================================
+// HYDRATE FROM SAVED STATE
+// =========================================
+function hydrate() {
+  // Text fields
+  document.querySelectorAll('textarea[name]').forEach(ta => {
+    if (state.answers[ta.name]) {
+      ta.value = state.answers[ta.name];
+      const counter = ta.nextElementSibling?.querySelector('.cc-now');
+      if (counter) counter.textContent = ta.value.length;
+    }
+  });
+  document.querySelectorAll('.lead-grid input[name], .lead-grid textarea[name]').forEach(el => {
+    if (state.answers[el.name]) el.value = state.answers[el.name];
+  });
+  // Voice chips
+  state.voice.forEach(v => {
+    const chip = document.querySelector(`#voice-chips .chip[data-value="${v}"]`);
+    if (chip) chip.classList.add('selected');
+  });
+  document.getElementById('voice-count').textContent = state.voice.length;
+  document.getElementById('voice-chips').classList.toggle('maxed', state.voice.length >= 3);
+  // Radios
+  ['q10_advertising', 'q23_fees', 'q25_cadence'].forEach(name => {
+    const v = state.answers[name];
+    if (v) {
+      const input = document.querySelector(`input[name="${name}"][value="${v}"]`);
+      if (input) {
+        input.checked = true;
+        input.closest('.option').classList.add('selected');
+      }
+    }
+  });
+  // Practices
+  renderPracticeList();
+  renderLeads();
+  renderBilingual();
+  renderMatters();
+  renderAwards();
+}
+
+// =========================================
+// INIT
+// =========================================
+const hadSavedState = loadState();
+if (hadSavedState && state.started) {
+  document.getElementById('cover-resume').style.display = 'inline';
+}
+hydrate();
+updateProgress();
+</script>
+
+</body>
+</html>
