@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /atlaw-intake1/
+Disallow: /atlaw-intake2/

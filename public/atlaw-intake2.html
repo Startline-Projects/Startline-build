@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATLAW × Startline · Operations Brief</title>
+<meta name="description" content="The operational intake for the new ATLAW website. The facts about the firm: attorneys, offices, brand, infrastructure. Approximately sixty minutes." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Geist:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0E1322;
+    --ink-deep: #080C18;
+    --vellum: #F4EFE6;
+    --vellum-warm: #EFE8DA;
+    --bone: #EDE8DD;
+    --charcoal: #1A1816;
+    --stone: #867F76;
+    --stone-soft: #B8B0A4;
+    --brass: #B08D57;
+    --brass-light: #C9A961;
+    --hairline: rgba(176, 141, 87, 0.25);
+    --hairline-strong: rgba(176, 141, 87, 0.5);
+    --hairline-dark: rgba(237, 232, 221, 0.12);
+
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --body: 'Geist', -apple-system, system-ui, sans-serif;
+
+    --max-w: 1180px;
+    --gutter-x: clamp(24px, 5vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--vellum);
+    color: var(--charcoal);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ============ TOPBAR ============ */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 40;
+    padding: 18px var(--gutter-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.86);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-logo {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 96;
+    line-height: 1;
+  }
+  .brand-x {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+  .brand-startline {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+  }
+  .brand-startline svg {
+    display: block;
+    height: 24px;
+    width: auto;
+  }
+  .startline-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+  }
+  .startline-mark svg {
+    display: block;
+    height: 22px;
+    width: auto;
+  }
+  .startline-mark .by {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--stone);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+
+  .save-state {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .save-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brass);
+    transition: background 0.3s, transform 0.4s ease;
+  }
+  .save-state.saving .save-dot { background: var(--stone); transform: scale(0.7); }
+  .save-state.saved .save-dot { background: #5a8a4a; }
+
+  /* ============ PROGRESS BAR ============ */
+  .progress {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    height: 2px;
+    background: var(--hairline);
+    z-index: 39;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--brass);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* ============ COVER ============ */
+  .cover {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px var(--gutter-x);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .cover h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(52px, 8.4vw, 116px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    max-width: 18ch;
+    margin-bottom: 36px;
+    font-variation-settings: "opsz" 144;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-lead {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(21px, 2.1vw, 28px);
+    line-height: 1.45;
+    color: var(--stone);
+    max-width: 56ch;
+    margin-bottom: 64px;
+    font-variation-settings: "opsz" 32, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 64px;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .cover-meta > div {
+    padding: 32px 24px 32px 0;
+    border-right: 1px solid var(--hairline);
+  }
+  .cover-meta > div:last-child { border-right: none; padding-right: 0; }
+  .cover-meta > div:not(:first-child) { padding-left: 24px; }
+
+  .cover-meta .label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .cover-meta .value {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--charcoal);
+    line-height: 1.3;
+    font-variation-settings: "opsz" 32;
+  }
+  .cover-meta .value em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 32, "SOFT" 100, "WONK" 1;
+  }
+
+  .cover-letter {
+    background: var(--vellum-warm);
+    border: 1px solid var(--hairline);
+    padding: 40px 44px;
+    margin-bottom: 56px;
+    max-width: 64ch;
+  }
+  .cover-letter-mark {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .cover-letter p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+  .cover-letter p:last-child { margin-bottom: 0; }
+  .cover-letter .signoff {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--charcoal);
+    font-variation-settings: "opsz" 18, "SOFT" 100, "WONK" 1;
+  }
+
+  .privacy-note {
+    background: rgba(176, 141, 87, 0.08);
+    border-left: 2px solid var(--brass);
+    padding: 18px 22px;
+    margin-bottom: 32px;
+    max-width: 64ch;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+  .privacy-note strong {
+    color: var(--brass);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--vellum);
+    border: 1px solid var(--ink);
+  }
+  .btn-primary:hover {
+    background: var(--charcoal);
+    transform: translateY(-1px);
+  }
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--charcoal);
+    border: 1px solid var(--hairline-strong);
+  }
+  .btn-ghost:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+  .btn .arrow {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+    transition: transform 0.25s;
+  }
+  .btn:hover .arrow:not(.back) { transform: translateX(3px); }
+  .btn:hover .arrow.back { transform: translateX(-3px); }
+
+  .cover-resume {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--stone);
+    margin-left: 12px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .cover-resume a {
+    color: var(--brass);
+    border-bottom: 1px solid var(--brass);
+    padding-bottom: 1px;
+  }
+
+  /* ============ STAGE ============ */
+  .stage {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 120px var(--gutter-x) 200px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============ SECTION COVER ============ */
+  .section-cover {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: left;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 64px;
+  }
+  .section-cover .marker {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .section-cover h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 96;
+  }
+  .section-cover h2 em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  }
+  .section-cover p {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--stone);
+    max-width: 56ch;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ QUESTION ============ */
+  .q {
+    margin-bottom: 80px;
+    scroll-margin-top: 120px;
+  }
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+  }
+  .q-meta .num {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--brass);
+    text-transform: none;
+    letter-spacing: 0.04em;
+    font-size: 13px;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .q-meta::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  .q-prompt {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(26px, 2.8vw, 36px);
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+    font-variation-settings: "opsz" 96;
+  }
+  .q-prompt em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  }
+  .q-why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--stone);
+    font-style: italic;
+    font-family: var(--display);
+    margin-bottom: 28px;
+    max-width: 60ch;
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .q-why::before {
+    content: 'Why we ask · ';
+    font-style: normal;
+    color: var(--brass);
+    font-weight: 500;
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-right: 8px;
+    font-variation-settings: normal;
+  }
+
+  /* ============ INPUTS ============ */
+  .input, textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--hairline-strong);
+    padding: 14px 0;
+    font-family: var(--display);
+    font-size: clamp(20px, 2.2vw, 26px);
+    color: var(--charcoal);
+    line-height: 1.4;
+    font-weight: 400;
+    font-variation-settings: "opsz" 24;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: var(--brass);
+  }
+  .input::placeholder, textarea::placeholder {
+    color: var(--stone-soft);
+    font-style: italic;
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+  textarea {
+    min-height: 120px;
+    line-height: 1.5;
+    font-size: clamp(17px, 1.6vw, 19px);
+    font-family: var(--body);
+    font-variation-settings: normal;
+  }
+
+  .char-count {
+    text-align: right;
+    font-size: 11px;
+    color: var(--stone);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+    font-style: italic;
+    font-family: var(--display);
+    font-variation-settings: "opsz" 12, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ OPTIONS / RADIOS ============ */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+    background: transparent;
+  }
+  .option:hover {
+    border-color: var(--brass);
+    background: rgba(176, 141, 87, 0.04);
+  }
+  .option input[type="radio"], .option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--stone-soft);
+    background: transparent;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .option input[type="radio"] { border-radius: 50%; }
+  .option input[type="checkbox"] { border-radius: 0; }
+  .option input[type="radio"]:checked,
+  .option input[type="checkbox"]:checked {
+    border-color: var(--brass);
+    background: var(--brass);
+  }
+  .option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--vellum);
+    border-radius: 50%;
+  }
+  .option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border-right: 1.5px solid var(--vellum);
+    border-bottom: 1.5px solid var(--vellum);
+    transform: rotate(45deg);
+  }
+  .option-text {
+    flex: 1;
+    font-size: 15.5px;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .option-text strong {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .option-text em {
+    font-style: italic;
+    color: var(--stone);
+    font-family: var(--display);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    display: block;
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+  .option.selected {
+    border-color: var(--brass);
+    background: rgba(176, 141, 87, 0.06);
+  }
+
+  /* ============ DETAIL GRID (the standard form-row layout) ============ */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+  }
+  .detail-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .detail-grid label.full { grid-column: span 2; }
+  .detail-grid label .field-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .detail-grid input, .detail-grid textarea, .detail-grid select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    padding: 6px 0;
+    font-family: var(--body);
+    font-size: 14.5px;
+    color: var(--charcoal);
+    line-height: 1.5;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .detail-grid input:focus, .detail-grid textarea:focus, .detail-grid select:focus {
+    outline: none;
+    border-bottom-color: var(--brass);
+  }
+  .detail-grid textarea { min-height: 56px; resize: vertical; }
+  .detail-grid input::placeholder, .detail-grid textarea::placeholder {
+    color: var(--stone-soft);
+    font-style: italic;
+  }
+
+  /* ============ REPEATER ============ */
+  .repeater {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .repeater-item {
+    border: 1px solid var(--hairline);
+    padding: 28px 32px;
+    background: rgba(176, 141, 87, 0.025);
+    position: relative;
+  }
+  .repeater-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .repeater-item-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+  .repeater-remove {
+    background: transparent;
+    border: none;
+    color: var(--stone);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .repeater-remove:hover { color: var(--charcoal); }
+  .repeater-add {
+    background: transparent;
+    border: 1px dashed var(--hairline-strong);
+    padding: 16px 20px;
+    color: var(--stone);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    text-align: center;
+  }
+  .repeater-add:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+    background: rgba(176, 141, 87, 0.04);
+  }
+
+  /* ============ CALLOUT (for sidebar info, spreadsheet template note) ============ */
+  .callout {
+    background: var(--vellum-warm);
+    border-left: 2px solid var(--brass);
+    padding: 22px 28px;
+    margin-bottom: 32px;
+    max-width: 64ch;
+  }
+  .callout-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .callout p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout strong {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .callout em {
+    font-style: italic;
+    color: var(--stone);
+    font-family: var(--display);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+  }
+
+  /* ============ NAV BAR ============ */
+  .nav-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 35;
+    background: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-top: 1px solid var(--hairline);
+    padding: 16px var(--gutter-x);
+  }
+  .nav-bar-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .nav-bar-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  .nav-bar-progress strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+  .nav-bar-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .nav-bar .btn {
+    padding: 12px 20px;
+    font-size: 11px;
+  }
+  .nav-bar.hidden { display: none; }
+
+  /* ============ THANKS ============ */
+  .thanks {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px var(--gutter-x);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+  .thanks.active { display: flex; }
+  .thanks .marker {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
+    margin-bottom: 24px;
+  }
+  .thanks h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    max-width: 18ch;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144;
+  }
+  .thanks h2 em {
+    font-style: italic;
+    color: var(--brass);
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+  .thanks p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    max-width: 60ch;
+    margin-bottom: 16px;
+  }
+  .thanks p.signoff {
+    margin-top: 32px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+  }
+
+  .submitting {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .submitting.active { display: flex; }
+  .submitting-mark {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--brass);
+    font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .submitting-text {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 720px) {
+    .topbar { padding: 14px 20px; }
+    .brand { gap: 10px; }
+    .brand-logo { font-size: 16px; }
+    .brand-x { font-size: 12px; }
+    .brand-startline svg { height: 16px; }
+    .brand-startline { height: 16px; }
+    .stage { padding-top: 100px; padding-bottom: 220px; }
+    .cover { padding: 40px 20px; }
+    .cover-letter { padding: 28px 24px; }
+    .cover-meta { grid-template-columns: 1fr; }
+    .cover-meta > div {
+      padding: 24px 0 !important;
+      border-right: none;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .cover-meta > div:last-child { border-bottom: none; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .detail-grid label.full { grid-column: span 1; }
+    .nav-bar-inner { flex-direction: column-reverse; align-items: stretch; }
+    .nav-bar-actions { justify-content: space-between; }
+    .nav-bar-progress { justify-content: center; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar" id="topbar">
+  <div class="brand">
+    <span class="brand-logo">ATLAW</span>
+    <span class="brand-x">×</span>
+    <span class="brand-startline" aria-label="Startline">
+      <svg width="120" height="24" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+        <rect width="28" height="28" rx="7" fill="#C8681A"/>
+        <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+        <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+      </svg>
+    </span>
+  </div>
+  <div class="save-state saved" id="save-state">
+    <span class="save-dot"></span>
+    <span id="save-label">Saved</span>
+  </div>
+</header>
+
+<div class="progress" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- ============ COVER SCREEN ============ -->
+<section class="cover" id="cover-screen">
+
+  <span class="cover-eyebrow">Operations Brief · Team Intake</span>
+
+  <h1>The facts that <em>build the site.</em></h1>
+
+  <p class="cover-lead">
+    The operational details only your team can compile. Attorney roster, office locations, brand assets, digital infrastructure. Roughly sixty to ninety minutes, broken across six sections. Save and resume any time.
+  </p>
+
+  <div class="cover-meta">
+    <div>
+      <span class="label">Prepared for</span>
+      <span class="value">ATLAW <em>operations team</em></span>
+    </div>
+    <div>
+      <span class="label">Estimated Time</span>
+      <span class="value"><em>~</em>60 to 90 minutes</span>
+    </div>
+    <div>
+      <span class="label">Sections</span>
+      <span class="value">Six in total</span>
+    </div>
+  </div>
+
+  <aside class="cover-letter">
+    <span class="cover-letter-mark">A note before you begin.</span>
+    <p>
+      Dewnya named you as the operations lead on the new website project. The questions on the pages that follow are facts about the firm she's asked you to handle on her behalf. Most of them have a single right answer that lives in a file folder, an HR system, or someone's head.
+    </p>
+    <p>
+      The form is structured to be filled out efficiently. Each question shows you exactly what shapes on the website. Where a question is genuinely better answered by a spreadsheet (the full attorney roster, for example), the form will tell you and provide a template you can complete separately.
+    </p>
+    <p>
+      If you don't know an answer, leave it blank and continue. Skipped fields can be circled back to later. Save and return at any time. Your answers are stored in this browser. When you finish, the responses come straight to me.
+    </p>
+    <p class="signoff">Sam</p>
+    <div class="startline-mark" style="margin-top: 18px;">
+      <span class="by">Built by</span>
+      <svg width="100" height="18" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+        <rect width="28" height="28" rx="7" fill="#C8681A"/>
+        <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+        <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+      </svg>
+    </div>
+  </aside>
+
+  <aside class="privacy-note">
+    <strong>A note on confidentiality.</strong> This form will collect contact information for your attorneys and offices, plus details about the firm's digital infrastructure. The URL is private and not indexed by search engines. Please don't share this URL outside the people on your team who need to fill it out.
+  </aside>
+
+  <div class="cover-actions">
+    <button class="btn btn-primary" id="cover-begin">
+      Begin the Brief
+      <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+    <span class="cover-resume" id="cover-resume" style="display:none;">
+      <a href="#" id="cover-resume-link">Resume where you left off →</a>
+    </span>
+  </div>
+
+</section>
+
+<!-- ============ FORM STAGE ============ -->
+<form class="stage" id="form-stage" style="display:none;" novalidate>
+
+<!-- ===========================================
+     SECTION I · FIRM ESSENTIALS
+=========================================== -->
+<div class="section-cover" data-section="1">
+  <span class="marker">§ I · Section One of Six</span>
+  <h2>Firm <em>Essentials.</em></h2>
+  <p>The legal name, the trading names, the foundational facts. Five short questions.</p>
+</div>
+
+<!-- Q1 · Legal entity -->
+<div class="q" data-qid="q1" data-section="1">
+  <div class="q-meta"><span class="num">No. 01</span><span>Required</span></div>
+  <h3 class="q-prompt">Full <em>legal name</em> of the firm and any DBAs.</h3>
+  <p class="q-why">Every legal page footer cites the entity. Required for the Attorney Advertising disclaimer and Privacy Policy.</p>
+  <div class="detail-grid">
+    <label class="full"><span class="field-label">Legal Entity Name</span><input type="text" name="q1_legal_name" placeholder="e.g. ATLAW Group, P.L.L.C." data-required /></label>
+    <label class="full"><span class="field-label">DBAs / Trade Names (one per line, if any)</span><textarea name="q1_dbas" placeholder="Optional. Any 'doing business as' names the firm operates under."></textarea></label>
+    <label><span class="field-label">State of Organization</span><input type="text" name="q1_state_org" placeholder="e.g. Michigan" data-required /></label>
+    <label><span class="field-label">Year Founded</span><input type="text" name="q1_year_founded" placeholder="e.g. 2013" data-required /></label>
+  </div>
+</div>
+
+<!-- Q2 · Headcount -->
+<div class="q" data-qid="q2" data-section="1">
+  <div class="q-meta"><span class="num">No. 02</span><span>Required</span></div>
+  <h3 class="q-prompt">Current <em>headcount</em>.</h3>
+  <p class="q-why">Drives the trust band on the homepage ("50+ attorneys") and informs how we structure the team page.</p>
+  <div class="detail-grid">
+    <label><span class="field-label">Total Attorneys</span><input type="text" name="q2_attorney_count" placeholder="e.g. 42" data-required /></label>
+    <label><span class="field-label">Total Staff (non-attorney)</span><input type="text" name="q2_staff_count" placeholder="e.g. 18" /></label>
+    <label class="full"><span class="field-label">Breakdown by Role (optional)</span><textarea name="q2_breakdown" placeholder="Optional. Partners / associates / of-counsel / paralegals / support, if you want to segment the count."></textarea></label>
+  </div>
+</div>
+
+<!-- Q3 · Bar admissions -->
+<div class="q" data-qid="q3" data-section="1">
+  <div class="q-meta"><span class="num">No. 03</span><span>Required</span></div>
+  <h3 class="q-prompt">Every state where any ATLAW attorney is currently <em>licensed</em> to practice.</h3>
+  <p class="q-why">Lets us list legitimate jurisdictional reach on the site without overstating it. State bar rules require accuracy here.</p>
+  <textarea class="input" name="q3_bar_admissions" rows="3" maxlength="400" placeholder="States only. e.g. Michigan, Ohio, Illinois, New York, Florida, Texas." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 400</div>
+</div>
+
+<!-- Q4 · International reach -->
+<div class="q" data-qid="q4" data-section="1">
+  <div class="q-meta"><span class="num">No. 04</span><span>Optional</span></div>
+  <h3 class="q-prompt">International or <em>cross-border</em> matters.</h3>
+  <p class="q-why">The current site references Kuwait and Saudi Arabia work. Confirm: active matters, exploratory, or referral-only? Determines how we surface this on the site.</p>
+  <div class="options" data-radio="q4_intl" data-required>
+    <label class="option"><input type="radio" name="q4_intl" value="active" /><span class="option-text"><strong>Active matters.</strong><em>The firm currently represents clients in international or cross-border matters.</em></span></label>
+    <label class="option"><input type="radio" name="q4_intl" value="exploratory" /><span class="option-text"><strong>Exploratory.</strong><em>Building relationships and pursuing opportunities, but no active matters yet.</em></span></label>
+    <label class="option"><input type="radio" name="q4_intl" value="referral" /><span class="option-text"><strong>Referral-only.</strong><em>We refer international matters to outside counsel rather than handling directly.</em></span></label>
+    <label class="option"><input type="radio" name="q4_intl" value="none" /><span class="option-text"><strong>Not applicable.</strong><em>The firm does not handle international matters.</em></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">Detail (if applicable)</span><textarea name="q4_intl_detail" placeholder="Optional. Specific countries, types of matters, partner relationships."></textarea></label>
+  </div>
+</div>
+
+<!-- Q5 · Languages -->
+<div class="q" data-qid="q5" data-section="1">
+  <div class="q-meta"><span class="num">No. 05</span><span>Required</span></div>
+  <h3 class="q-prompt">Languages spoken at the firm <em>beyond English</em>.</h3>
+  <p class="q-why">Bilingual capacity is one of ATLAW's strongest market differentiators. Surfaces on the homepage and within practice pages where it applies.</p>
+  <textarea class="input" name="q5_languages" rows="2" maxlength="300" placeholder="Languages and number of attorneys fluent in each. e.g. Arabic (8), Spanish (3), French (2)." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 300</div>
+</div>
+
+
+<!-- ===========================================
+     SECTION II · ATTORNEY ROSTER
+=========================================== -->
+<div class="section-cover" data-section="2">
+  <span class="marker">§ II · Section Two of Six</span>
+  <h2>Attorney <em>Roster.</em></h2>
+  <p>The leadership we feature on the homepage. The full roster delivered separately by spreadsheet.</p>
+</div>
+
+<!-- Q6 · Featured leadership -->
+<div class="q" data-qid="q6" data-section="2">
+  <div class="q-meta"><span class="num">No. 06</span><span>Required · 3 to 5 entries</span></div>
+  <h3 class="q-prompt">Three to five <em>leadership attorneys</em> to feature on the homepage.</h3>
+  <p class="q-why">These are the attorneys clients see first. Should include Dewnya plus the practice leads or named partners she wants to surface. Do not include the full roster here · spreadsheet template is below for that.</p>
+  <div class="repeater" id="leaders-repeater"></div>
+  <button type="button" class="repeater-add" id="leaders-add">+ Add a leadership attorney</button>
+</div>
+
+<!-- Q7 · Full roster (spreadsheet) -->
+<div class="q" data-qid="q7" data-section="2">
+  <div class="q-meta"><span class="num">No. 07</span><span>Required · Spreadsheet delivery</span></div>
+  <h3 class="q-prompt">The <em>full attorney roster</em>.</h3>
+  <p class="q-why">Filling out 35 to 45 attorney rows in a web form is its own form of torture. Use the spreadsheet template instead. One row per attorney. We'll generate every attorney profile page from it.</p>
+
+  <aside class="callout">
+    <span class="callout-label">Spreadsheet Template</span>
+    <p>Download the template, fill one row per attorney, then email the completed file to <strong>sam@glostaffing.com</strong> with subject line <em>"ATLAW Form 2 · Roster"</em>.</p>
+    <p>Columns required: <em>Full name · Title · Practice areas · Year joined · Education (J.D. school + year) · Bar admissions (states) · Languages · Direct email · Direct phone · Bio (200 words) · Headshot file name.</em></p>
+    <p style="margin-top: 12px;"><strong>Template link:</strong> <a href="#" style="color: var(--brass); border-bottom: 1px solid var(--brass);" id="roster-template-link">[Will be sent separately by email]</a></p>
+  </aside>
+
+  <div class="detail-grid">
+    <label class="full"><span class="field-label">Status</span>
+      <div class="options" data-radio="q7_roster_status">
+        <label class="option"><input type="radio" name="q7_roster_status" value="will-deliver" /><span class="option-text"><strong>I will deliver the roster spreadsheet by email.</strong></span></label>
+        <label class="option"><input type="radio" name="q7_roster_status" value="need-template" /><span class="option-text"><strong>I need the template emailed to me first.</strong></span></label>
+        <label class="option"><input type="radio" name="q7_roster_status" value="have-existing" /><span class="option-text"><strong>We have an existing attorney directory file.</strong><em>(In any format · we'll work with whatever you have. Reference it in the notes below.)</em></span></label>
+      </div>
+    </label>
+    <label class="full"><span class="field-label">Notes (optional)</span><textarea name="q7_roster_notes" placeholder="Anything about the roster we should know. e.g. 'Three attorneys are joining in Q3', 'Two attorneys do not want web profiles', 'Existing directory is at [link]'."></textarea></label>
+  </div>
+</div>
+
+<!-- Q8 · Headshot status -->
+<div class="q" data-qid="q8" data-section="2">
+  <div class="q-meta"><span class="num">No. 08</span><span>Required</span></div>
+  <h3 class="q-prompt">Status of attorney <em>headshots</em>.</h3>
+  <p class="q-why">If headshots are inconsistent (some professional, some phone-quality), we schedule one photo session before launch. Photo sessions have a 4-week lead time, so this gets flagged early.</p>
+  <div class="options" data-radio="q8_headshots" data-required>
+    <label class="option"><input type="radio" name="q8_headshots" value="all-professional" /><span class="option-text"><strong>All current and professional.</strong><em>Every attorney has a recent professional headshot, taken within the last 2 years, with consistent style.</em></span></label>
+    <label class="option"><input type="radio" name="q8_headshots" value="mixed" /><span class="option-text"><strong>Mixed quality.</strong><em>Some attorneys have professional headshots, others have phone selfies or older photos. We'll need a photo session.</em></span></label>
+    <label class="option"><input type="radio" name="q8_headshots" value="all-need" /><span class="option-text"><strong>Most attorneys need new headshots.</strong><em>Plan for a full photo session before launch.</em></span></label>
+    <label class="option"><input type="radio" name="q8_headshots" value="prefer-no-photos" /><span class="option-text"><strong>Some or all attorneys prefer no photos on the site.</strong><em>We'll use monogram avatars instead. Note which attorneys in the roster spreadsheet.</em></span></label>
+  </div>
+</div>
+
+
+<!-- ===========================================
+     SECTION III · OFFICES
+=========================================== -->
+<div class="section-cover" data-section="3">
+  <span class="marker">§ III · Section Three of Six</span>
+  <h2>Office <em>Locations.</em></h2>
+  <p>Every physical office where the firm operates. One entry per location, with full contact details.</p>
+</div>
+
+<!-- Q9 · Offices repeater -->
+<div class="q" data-qid="q9" data-section="3">
+  <div class="q-meta"><span class="num">No. 09</span><span>Required · One entry per office</span></div>
+  <h3 class="q-prompt">Every <em>physical office</em> ATLAW currently operates.</h3>
+  <p class="q-why">Each office gets a dedicated location page on the site, optimized for local SEO. Local SEO requires every detail: full address, phone, hours, parking notes. Skipped fields hurt search rankings.</p>
+  <div class="repeater" id="offices-repeater"></div>
+  <button type="button" class="repeater-add" id="offices-add">+ Add an office</button>
+</div>
+
+<!-- Q10 · Service area beyond offices -->
+<div class="q" data-qid="q10" data-section="3">
+  <div class="q-meta"><span class="num">No. 10</span><span>Optional</span></div>
+  <h3 class="q-prompt">Cities or counties where the firm <em>actively takes matters</em> but doesn't have an office.</h3>
+  <p class="q-why">We'll build dedicated service-area pages for these locations to capture local SEO without misrepresenting where you have a physical presence.</p>
+  <textarea class="input" name="q10_service_area" rows="4" maxlength="600" placeholder="One per line. Examples: 'Sterling Heights · regular court appearances', 'Detroit metro · injury intake calls', 'Wayne County · all practices'."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+
+<!-- ===========================================
+     SECTION IV · BRAND ASSETS
+=========================================== -->
+<div class="section-cover" data-section="4">
+  <span class="marker">§ IV · Section Four of Six</span>
+  <h2>Brand <em>Assets.</em></h2>
+  <p>Logo files, colors, fonts, photography. The visual building blocks the new site is constructed from.</p>
+</div>
+
+<!-- Q11 · Logo files -->
+<div class="q" data-qid="q11" data-section="4">
+  <div class="q-meta"><span class="num">No. 11</span><span>Required</span></div>
+  <h3 class="q-prompt">Where to access the <em>logo files</em>.</h3>
+  <p class="q-why">We need vector logo files (SVG, AI, or EPS) at minimum. The current site's PNG logo will look pixelated on Retina displays. Send a Drive or Dropbox link with every variant available · primary logo, monogram, dark / light versions.</p>
+  <div class="detail-grid">
+    <label class="full"><span class="field-label">Drive / Dropbox / Box link to logo files</span><input type="url" name="q11_logo_link" placeholder="https://drive.google.com/..." /></label>
+    <label class="full"><span class="field-label">If no link · what formats do you have?</span><textarea name="q11_logo_formats" placeholder="e.g. 'High-res PNG only', 'AI file from designer', 'JPEG from business card'. We'll work with whatever exists."></textarea></label>
+    <label class="full"><span class="field-label">Designer or agency that created the logo (if known)</span><input type="text" name="q11_logo_origin" placeholder="Optional. If we need to recreate from scratch, knowing the source helps." /></label>
+  </div>
+</div>
+
+<!-- Q12 · Brand colors -->
+<div class="q" data-qid="q12" data-section="4">
+  <div class="q-meta"><span class="num">No. 12</span><span>Required</span></div>
+  <h3 class="q-prompt">Official <em>brand colors</em>.</h3>
+  <p class="q-why">Every web color, every email signature, every accent line on the site uses these. Hex codes preferred; we can extract from logo files if needed.</p>
+  <div class="detail-grid">
+    <label><span class="field-label">Primary Color (hex)</span><input type="text" name="q12_primary_hex" placeholder="e.g. #1A1816 or 'extract from logo'" data-required /></label>
+    <label><span class="field-label">Accent Color (hex)</span><input type="text" name="q12_accent_hex" placeholder="e.g. #B08D57 or 'extract from logo'" /></label>
+    <label class="full"><span class="field-label">Other Colors / Brand Guide</span><textarea name="q12_other_colors" placeholder="Optional. Additional palette colors, secondary accents, or a link to the firm's brand style guide PDF."></textarea></label>
+  </div>
+</div>
+
+<!-- Q13 · Fonts -->
+<div class="q" data-qid="q13" data-section="4">
+  <div class="q-meta"><span class="num">No. 13</span><span>Optional</span></div>
+  <h3 class="q-prompt">Current <em>typefaces</em> in use.</h3>
+  <p class="q-why">If the firm has a font on letterhead, business cards, signage · we match it on the site. If you have flexibility, we'll select something appropriate.</p>
+  <div class="detail-grid">
+    <label class="full"><span class="field-label">Fonts (with samples or files if available)</span><textarea name="q13_fonts" placeholder="e.g. 'Montserrat for headers, Open Sans for body. Letterhead uses Garamond.' Or attach samples to your roster email."></textarea></label>
+    <label class="full"><span class="field-label">Open to typeface recommendations?</span>
+      <div class="options" data-radio="q13_font_open">
+        <label class="option"><input type="radio" name="q13_font_open" value="match" /><span class="option-text"><strong>Match the existing fonts.</strong></span></label>
+        <label class="option"><input type="radio" name="q13_font_open" value="recommend" /><span class="option-text"><strong>Open to recommendations.</strong></span></label>
+        <label class="option"><input type="radio" name="q13_font_open" value="dewnya-decides" /><span class="option-text"><strong>Dewnya will decide.</strong></span></label>
+      </div>
+    </label>
+  </div>
+</div>
+
+<!-- Q14 · Photography -->
+<div class="q" data-qid="q14" data-section="4">
+  <div class="q-meta"><span class="num">No. 14</span><span>Required</span></div>
+  <h3 class="q-prompt">Current <em>office and team photography</em>.</h3>
+  <p class="q-why">Beyond attorney headshots, the site needs office photos, team-in-action shots, and lifestyle imagery. Confirm what exists; we plan around the gaps.</p>
+  <div class="options" data-radio="q14_photography" data-required>
+    <label class="option"><input type="radio" name="q14_photography" value="full" /><span class="option-text"><strong>Full library exists.</strong><em>Recent professional photos of offices, team, and detail shots are available.</em></span></label>
+    <label class="option"><input type="radio" name="q14_photography" value="some" /><span class="option-text"><strong>Some photos exist.</strong><em>A few are good but not enough for a full site. We'll need to schedule a session to fill gaps.</em></span></label>
+    <label class="option"><input type="radio" name="q14_photography" value="none" /><span class="option-text"><strong>Nothing usable.</strong><em>Plan for a full photography session. Schedule alongside the headshot session if needed.</em></span></label>
+    <label class="option"><input type="radio" name="q14_photography" value="stock-ok" /><span class="option-text"><strong>Open to high-end stock photography.</strong><em>For now, use editorial stock images for hero and lifestyle shots; do a custom session later.</em></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">Link to existing photo library (if applicable)</span><input type="url" name="q14_photo_link" placeholder="Drive / Dropbox / Box link to the firm's photo files." /></label>
+  </div>
+</div>
+
+
+<!-- ===========================================
+     SECTION V · DIGITAL FOOTPRINT
+=========================================== -->
+<div class="section-cover" data-section="5">
+  <span class="marker">§ V · Section Five of Six</span>
+  <h2>Digital <em>Footprint.</em></h2>
+  <p>Domains, email, analytics, ads, the systems where leads currently land. The infrastructure the new site connects into.</p>
+</div>
+
+<!-- Q15 · Domains -->
+<div class="q" data-qid="q15" data-section="5">
+  <div class="q-meta"><span class="num">No. 15</span><span>Required</span></div>
+  <h3 class="q-prompt">Every <em>domain name</em> ATLAW owns.</h3>
+  <p class="q-why">Beyond atlawgroup.com, what else does the firm hold? Some domains may need to redirect to the new site; some may be preserved for separate uses (e.g. atla-healthcare.com for the sister practice).</p>
+  <textarea class="input" name="q15_domains" rows="4" maxlength="600" placeholder="One per line. e.g. 'atlawgroup.com (primary)', 'atlaw.com (parked)', 'atla-healthcare.com (separate site)'." data-required></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 600</div>
+</div>
+
+<!-- Q16 · Email infrastructure -->
+<div class="q" data-qid="q16" data-section="5">
+  <div class="q-meta"><span class="num">No. 16</span><span>Required</span></div>
+  <h3 class="q-prompt">Email and productivity <em>infrastructure</em>.</h3>
+  <p class="q-why">Determines how the site's contact form delivers messages, how autoresponders are sent, and how to route lead notifications to attorneys without spam-flagging.</p>
+  <div class="options" data-radio="q16_email" data-required>
+    <label class="option"><input type="radio" name="q16_email" value="m365" /><span class="option-text"><strong>Microsoft 365 (Outlook).</strong></span></label>
+    <label class="option"><input type="radio" name="q16_email" value="google" /><span class="option-text"><strong>Google Workspace (Gmail).</strong></span></label>
+    <label class="option"><input type="radio" name="q16_email" value="other" /><span class="option-text"><strong>Other / hosted email.</strong><em>Specify in notes below.</em></span></label>
+    <label class="option"><input type="radio" name="q16_email" value="unsure" /><span class="option-text"><strong>Not sure · IT can confirm.</strong></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">IT contact (for email / DNS / domain access during migration)</span><input type="text" name="q16_it_contact" placeholder="Name, role, email. Internal IT person, MSP, or Dewnya if she handles it." /></label>
+  </div>
+</div>
+
+<!-- Q17 · Analytics -->
+<div class="q" data-qid="q17" data-section="5">
+  <div class="q-meta"><span class="num">No. 17</span><span>Optional</span></div>
+  <h3 class="q-prompt">Current <em>analytics</em> on atlawgroup.com.</h3>
+  <p class="q-why">If Google Analytics is running, we preserve the historical data. If nothing is running, we set up GA4 fresh on the new site.</p>
+  <div class="options" data-radio="q17_analytics">
+    <label class="option"><input type="radio" name="q17_analytics" value="ga4" /><span class="option-text"><strong>Google Analytics 4 is set up.</strong><em>Need access transferred to the new site.</em></span></label>
+    <label class="option"><input type="radio" name="q17_analytics" value="ua" /><span class="option-text"><strong>Universal Analytics (older).</strong><em>Migrate to GA4 as part of the build.</em></span></label>
+    <label class="option"><input type="radio" name="q17_analytics" value="other" /><span class="option-text"><strong>Other tool.</strong><em>Mixpanel, Plausible, etc. Specify in notes.</em></span></label>
+    <label class="option"><input type="radio" name="q17_analytics" value="none" /><span class="option-text"><strong>Nothing is currently tracking.</strong><em>Set up fresh on the new site.</em></span></label>
+    <label class="option"><input type="radio" name="q17_analytics" value="unsure" /><span class="option-text"><strong>Not sure.</strong><em>Will check with IT or marketing.</em></span></label>
+  </div>
+</div>
+
+<!-- Q18 · Ad accounts -->
+<div class="q" data-qid="q18" data-section="5">
+  <div class="q-meta"><span class="num">No. 18</span><span>Optional</span></div>
+  <h3 class="q-prompt">Active <em>advertising</em> accounts.</h3>
+  <p class="q-why">If the firm runs Google Ads, Meta ads, or LSA (Local Service Ads), the new site must integrate the conversion tracking on day one. Otherwise we lose data continuity.</p>
+  <div class="detail-grid">
+    <label class="full"><span class="field-label">Active platforms and account managers</span><textarea name="q18_ad_accounts" placeholder="One per line. e.g. 'Google Ads · managed by [agency name]', 'Meta · managed in-house by [name]', 'Local Service Ads · self-managed'. Or 'No active ads.'"></textarea></label>
+  </div>
+</div>
+
+<!-- Q19 · CRM / intake system -->
+<div class="q" data-qid="q19" data-section="5">
+  <div class="q-meta"><span class="num">No. 19</span><span>Required</span></div>
+  <h3 class="q-prompt">Where leads <em>currently land</em>.</h3>
+  <p class="q-why">When someone fills out the contact form on atlawgroup.com today, where does that submission go? The new site must integrate with whatever system you're already using · otherwise leads end up in two places, or worse, none.</p>
+  <div class="options" data-radio="q19_crm" data-required>
+    <label class="option"><input type="radio" name="q19_crm" value="clio" /><span class="option-text"><strong>Clio Grow / Clio Manage.</strong></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="mycase" /><span class="option-text"><strong>MyCase.</strong></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="practicepanther" /><span class="option-text"><strong>PracticePanther.</strong></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="lawmatics" /><span class="option-text"><strong>Lawmatics.</strong></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="other-crm" /><span class="option-text"><strong>Other CRM.</strong><em>Specify in notes.</em></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="email-only" /><span class="option-text"><strong>Just email.</strong><em>Form submissions hit a shared inbox; no CRM integration.</em></span></label>
+    <label class="option"><input type="radio" name="q19_crm" value="none" /><span class="option-text"><strong>No system at all.</strong><em>Calls and walk-ins; intake handled manually.</em></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">Notes (CRM admin contact, current intake person, anything else relevant)</span><textarea name="q19_crm_notes" placeholder="Optional. Who manages the CRM, who owns intake, any process notes."></textarea></label>
+  </div>
+</div>
+
+<!-- Q20 · Social channels -->
+<div class="q" data-qid="q20" data-section="5">
+  <div class="q-meta"><span class="num">No. 20</span><span>Optional</span></div>
+  <h3 class="q-prompt">Active <em>social media</em> profiles for the firm.</h3>
+  <p class="q-why">Footer links plus integration into "as seen on / latest from" sections of the new site. Only list channels that are actively maintained.</p>
+  <div class="detail-grid">
+    <label><span class="field-label">LinkedIn (firm page URL)</span><input type="url" name="q20_linkedin" placeholder="https://linkedin.com/company/..." /></label>
+    <label><span class="field-label">Instagram</span><input type="url" name="q20_instagram" placeholder="https://instagram.com/..." /></label>
+    <label><span class="field-label">Facebook</span><input type="url" name="q20_facebook" placeholder="https://facebook.com/..." /></label>
+    <label><span class="field-label">YouTube</span><input type="url" name="q20_youtube" placeholder="https://youtube.com/@..." /></label>
+    <label><span class="field-label">X / Twitter</span><input type="url" name="q20_twitter" placeholder="https://x.com/..." /></label>
+    <label><span class="field-label">TikTok</span><input type="url" name="q20_tiktok" placeholder="https://tiktok.com/@..." /></label>
+    <label class="full"><span class="field-label">Other channels</span><input type="text" name="q20_other_social" placeholder="Other platforms not listed above." /></label>
+  </div>
+</div>
+
+
+<!-- ===========================================
+     SECTION VI · LEGAL & COMPLIANCE
+=========================================== -->
+<div class="section-cover" data-section="6">
+  <span class="marker">§ VI · Section Six of Six</span>
+  <h2>Legal &amp; <em>Compliance.</em></h2>
+  <p>Privacy policy, terms of service, attorney advertising rules, accessibility. The compliance layer of the website.</p>
+</div>
+
+<!-- Q21 · Privacy / TOS -->
+<div class="q" data-qid="q21" data-section="6">
+  <div class="q-meta"><span class="num">No. 21</span><span>Required</span></div>
+  <h3 class="q-prompt">Existing <em>privacy policy</em> and <em>terms of service</em>.</h3>
+  <p class="q-why">If they exist, we audit and update for the new site. If they don't, we draft Michigan-bar-compliant versions for Dewnya's review.</p>
+  <div class="options" data-radio="q21_legal_docs" data-required>
+    <label class="option"><input type="radio" name="q21_legal_docs" value="have-current" /><span class="option-text"><strong>We have current documents.</strong><em>Updated within the last 2 years. We'll send PDFs separately.</em></span></label>
+    <label class="option"><input type="radio" name="q21_legal_docs" value="have-old" /><span class="option-text"><strong>We have older documents.</strong><em>Existing but more than 2 years old. Need review and update.</em></span></label>
+    <label class="option"><input type="radio" name="q21_legal_docs" value="need-drafted" /><span class="option-text"><strong>We don't have either.</strong><em>Draft new ones for Dewnya's review.</em></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">Link to existing documents (if applicable)</span><input type="url" name="q21_legal_link" placeholder="Drive / Dropbox link, or 'will email separately'." /></label>
+  </div>
+</div>
+
+<!-- Q22 · Attorney advertising disclaimer -->
+<div class="q" data-qid="q22" data-section="6">
+  <div class="q-meta"><span class="num">No. 22</span><span>Required</span></div>
+  <h3 class="q-prompt">Preferred <em>attorney advertising</em> disclaimer language.</h3>
+  <p class="q-why">Michigan bar rules require attorney advertising disclaimers on the firm's website. The disclaimer goes in the footer of every page and at the bottom of any results-related content.</p>
+  <div class="options" data-radio="q22_disclaimer" data-required>
+    <label class="option"><input type="radio" name="q22_disclaimer" value="have-language" /><span class="option-text"><strong>We have preferred disclaimer language.</strong><em>Send the exact text in the notes below or email it separately.</em></span></label>
+    <label class="option"><input type="radio" name="q22_disclaimer" value="draft-it" /><span class="option-text"><strong>Draft Michigan-bar-compliant language for our review.</strong><em>Most firms go this route. We'll match what other top Michigan firms use.</em></span></label>
+  </div>
+  <div class="detail-grid" style="margin-top: 24px;">
+    <label class="full"><span class="field-label">Existing disclaimer language (if applicable)</span><textarea name="q22_disclaimer_text" placeholder="Paste the current disclaimer if you have one, or describe specific language requirements."></textarea></label>
+  </div>
+</div>
+
+<!-- Q23 · Accessibility -->
+<div class="q" data-qid="q23" data-section="6">
+  <div class="q-meta"><span class="num">No. 23</span><span>Required</span></div>
+  <h3 class="q-prompt">Accessibility (<em>WCAG 2.1 AA</em>) commitment.</h3>
+  <p class="q-why">Law firm websites are an active target for ADA litigation. WCAG 2.1 AA compliance is the legal-industry standard and substantially reduces exposure. Strongly recommend yes.</p>
+  <div class="options" data-radio="q23_accessibility" data-required>
+    <label class="option"><input type="radio" name="q23_accessibility" value="yes" /><span class="option-text"><strong>Yes · build to WCAG 2.1 AA.</strong><em>Standard for law firm sites. Adds about 8 to 12 hours to the build.</em></span></label>
+    <label class="option"><input type="radio" name="q23_accessibility" value="dewnya-decides" /><span class="option-text"><strong>Dewnya will decide.</strong><em>We'll discuss with her on the strategic kickoff.</em></span></label>
+    <label class="option"><input type="radio" name="q23_accessibility" value="no" /><span class="option-text"><strong>No · skip accessibility build.</strong><em>Acknowledged ADA litigation risk. Not recommended.</em></span></label>
+  </div>
+</div>
+
+<!-- Q24 · Live chat -->
+<div class="q" data-qid="q24" data-section="6">
+  <div class="q-meta"><span class="num">No. 24</span><span>Optional</span></div>
+  <h3 class="q-prompt">Live chat or <em>AI chatbot</em> on the site.</h3>
+  <p class="q-why">Many firms get value from live chat for after-hours intake; many lose value from a low-quality chatbot that frustrates visitors. We'll discuss specifics on the kickoff if you want one.</p>
+  <div class="options" data-radio="q24_chat">
+    <label class="option"><input type="radio" name="q24_chat" value="live-chat" /><span class="option-text"><strong>Live chat with human staffing.</strong><em>Evening / weekend coverage by a real person. Effective for intake but ongoing cost.</em></span></label>
+    <label class="option"><input type="radio" name="q24_chat" value="ai-chatbot" /><span class="option-text"><strong>AI chatbot for FAQ.</strong><em>Free-form Q&amp;A on practice areas, fees, location. Lower cost, lower conversion.</em></span></label>
+    <label class="option"><input type="radio" name="q24_chat" value="contact-form-only" /><span class="option-text"><strong>Contact form only.</strong><em>Cleanest experience. Most law firms land here.</em></span></label>
+    <label class="option"><input type="radio" name="q24_chat" value="discuss" /><span class="option-text"><strong>Let's discuss.</strong><em>I'll explore options on the kickoff.</em></span></label>
+  </div>
+</div>
+
+
+<!-- ===========================================
+     SECTION VII · WRAP-UP (single question, not its own section cover)
+=========================================== -->
+<div class="q" data-qid="q25" data-section="6">
+  <div class="q-meta"><span class="num">No. 25</span><span>Optional · The last word</span></div>
+  <h3 class="q-prompt">Anything else <em>worth flagging</em> before we start building.</h3>
+  <p class="q-why">Open-ended. Operational quirks, internal politics, vendor relationships, deadlines, things you wish someone had asked. Sometimes the most useful answers come last.</p>
+  <textarea class="input" name="q25_anything_else" rows="5" maxlength="1000" placeholder="Optional. Anything that didn't fit a question above."></textarea>
+  <div class="char-count"><span class="cc-now">0</span> / 1000</div>
+</div>
+
+<!-- POC for Form 2 follow-up -->
+<div class="q" data-qid="q26" data-section="6">
+  <div class="q-meta"><span class="num">No. 26</span><span>Required</span></div>
+  <h3 class="q-prompt">Your <em>contact details</em>, in case we need to follow up.</h3>
+  <p class="q-why">If a question is unclear or a file is missing after submission, we reach back to you, not to Dewnya. Keeps her time protected for strategic decisions.</p>
+  <div class="detail-grid">
+    <label><span class="field-label">Your Name</span><input type="text" name="q26_your_name" data-required /></label>
+    <label><span class="field-label">Your Role at the Firm</span><input type="text" name="q26_your_role" placeholder="e.g. Operations Manager, Executive Assistant" /></label>
+    <label><span class="field-label">Your Email</span><input type="email" name="q26_your_email" data-required /></label>
+    <label><span class="field-label">Your Direct Phone</span><input type="tel" name="q26_your_phone" /></label>
+  </div>
+</div>
+
+</form>
+
+<!-- ============ NAV BAR ============ -->
+<div class="nav-bar hidden" id="nav-bar">
+  <div class="nav-bar-inner">
+    <div class="nav-bar-progress">
+      <span>Section <strong id="current-section">1</strong> of 6</span>
+      <span>·</span>
+      <span><strong id="answered-count">0</strong> of <strong id="total-count">26</strong> answered</span>
+    </div>
+    <div class="nav-bar-actions">
+      <button type="button" class="btn btn-ghost" id="btn-back">
+        <svg class="arrow back" viewBox="0 0 24 24"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button type="button" class="btn btn-primary" id="btn-next">
+        Continue
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <button type="button" class="btn btn-primary" id="btn-submit" style="display:none;">
+        Submit Brief
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SUBMITTING OVERLAY ============ -->
+<div class="submitting" id="submitting">
+  <span class="submitting-mark">"</span>
+  <span class="submitting-text">Sending the brief</span>
+</div>
+
+<!-- ============ THANK YOU ============ -->
+<section class="thanks" id="thanks-screen">
+  <span class="marker">§ Submitted · Thank you.</span>
+  <h2>The operations brief is <em>received.</em></h2>
+  <p>Sam has been notified. You'll hear back within one business day with confirmation of what was captured and a list of any follow-up items (the roster spreadsheet, brand asset files, legal documents) that need to be sent separately.</p>
+  <p>Don't forget to email any files referenced in the form (logo files, photos, existing privacy / terms documents, attorney roster spreadsheet) to <strong>sam@glostaffing.com</strong> with the subject line <em>"ATLAW Form 2 · Assets"</em>.</p>
+  <p>If anything in the brief needs to be revised after submission, reply to the confirmation email or text directly. Nothing is locked.</p>
+  <p class="signoff">Sam</p>
+  <div class="startline-mark" style="margin-top: 28px;">
+    <span class="by">Built by</span>
+    <svg width="120" height="22" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Startline logo">
+      <rect width="28" height="28" rx="7" fill="#C8681A"/>
+      <path d="M10 8.5L19 14L10 19.5V8.5Z" fill="white"/>
+      <text x="38" y="19" font-family="Syne, sans-serif" font-weight="700" font-size="18" fill="#1C1B1A" letter-spacing="-0.3">start<tspan fill="#C8681A">line</tspan></text>
+    </svg>
+  </div>
+</section>
+
+<script>
+// =========================================
+// CONFIG
+// =========================================
+const FORMSPREE_ENDPOINT = "/api/atlaw-intake-team";
+const FALLBACK_EMAIL = "sam@glostaffing.com";
+
+// =========================================
+// STATE
+// =========================================
+const STORAGE_KEY = 'atlaw_intake2_v1';
+const state = {
+  answers: {},
+  leaders: [],
+  offices: [],
+  currentSection: 1,
+  started: false
+};
+
+// =========================================
+// STORAGE
+// =========================================
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    showSaved();
+  } catch (e) {
+    console.warn('Save failed:', e);
+  }
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const loaded = JSON.parse(raw);
+    Object.assign(state, loaded);
+    return true;
+  } catch (e) { return false; }
+}
+
+let saveTimer = null;
+let saveLabel = document.getElementById('save-label');
+let saveStateEl = document.getElementById('save-state');
+function showSaving() {
+  saveStateEl.classList.remove('saved');
+  saveStateEl.classList.add('saving');
+  saveLabel.textContent = 'Saving';
+}
+function showSaved() {
+  saveStateEl.classList.remove('saving');
+  saveStateEl.classList.add('saved');
+  saveLabel.textContent = 'Saved';
+}
+function queueSave() {
+  showSaving();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 600);
+}
+
+// =========================================
+// CHAR COUNTERS
+// =========================================
+document.querySelectorAll('textarea[maxlength]').forEach(ta => {
+  const counter = ta.nextElementSibling?.querySelector('.cc-now');
+  if (!counter) return;
+  ta.addEventListener('input', () => {
+    counter.textContent = ta.value.length;
+    state.answers[ta.name] = ta.value;
+    queueSave();
+  });
+});
+
+// =========================================
+// RADIO HANDLERS
+// =========================================
+document.querySelectorAll('.options[data-radio]').forEach(group => {
+  const name = group.dataset.radio;
+  group.querySelectorAll('input[type=radio]').forEach(input => {
+    input.addEventListener('change', () => {
+      group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      input.closest('.option').classList.add('selected');
+      state.answers[name] = input.value;
+      queueSave();
+    });
+  });
+});
+
+// =========================================
+// DETAIL-GRID INPUT BINDING
+// =========================================
+document.querySelectorAll('.detail-grid input, .detail-grid textarea, .detail-grid select').forEach(el => {
+  if (el.name) {
+    el.addEventListener('input', () => {
+      state.answers[el.name] = el.value;
+      queueSave();
+    });
+  }
+});
+
+// =========================================
+// REPEATER · LEADERS
+// =========================================
+function renderLeaders() {
+  const wrap = document.getElementById('leaders-repeater');
+  wrap.innerHTML = '';
+  state.leaders.forEach((leader, i) => {
+    const item = document.createElement('div');
+    item.className = 'repeater-item';
+    item.innerHTML = `
+      <div class="repeater-item-head">
+        <span class="repeater-item-num">No. ${String(i + 1).padStart(2, '0')}</span>
+        <button type="button" class="repeater-remove" data-remove="${i}">Remove</button>
+      </div>
+      <div class="detail-grid">
+        <label><span class="field-label">Full Name</span><input type="text" data-leader-field="name" data-idx="${i}" value="${escapeAttr(leader.name || '')}" placeholder="e.g. Dewnya Bazzi" /></label>
+        <label><span class="field-label">Title</span><input type="text" data-leader-field="title" data-idx="${i}" value="${escapeAttr(leader.title || '')}" placeholder="e.g. Founder &amp; CEO" /></label>
+        <label><span class="field-label">Practice Areas</span><input type="text" data-leader-field="practices" data-idx="${i}" value="${escapeAttr(leader.practices || '')}" placeholder="e.g. Personal Injury, Business" /></label>
+        <label><span class="field-label">Year Joined</span><input type="text" data-leader-field="year_joined" data-idx="${i}" value="${escapeAttr(leader.year_joined || '')}" placeholder="e.g. 2013 (founder)" /></label>
+        <label class="full"><span class="field-label">One-Line Bio (will expand later)</span><input type="text" data-leader-field="oneliner" data-idx="${i}" value="${escapeAttr(leader.oneliner || '')}" placeholder="e.g. Founded ATLAW in 2013. Leads firm strategy." /></label>
+        <label><span class="field-label">Direct Email</span><input type="email" data-leader-field="email" data-idx="${i}" value="${escapeAttr(leader.email || '')}" placeholder="firstname@atlawgroup.com" /></label>
+        <label><span class="field-label">Direct Phone</span><input type="tel" data-leader-field="phone" data-idx="${i}" value="${escapeAttr(leader.phone || '')}" placeholder="313-XXX-XXXX" /></label>
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+
+  wrap.querySelectorAll('[data-leader-field]').forEach(el => {
+    el.addEventListener('input', () => {
+      const i = parseInt(el.dataset.idx);
+      state.leaders[i][el.dataset.leaderField] = el.value;
+      queueSave();
+    });
+  });
+  wrap.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.leaders.splice(parseInt(btn.dataset.remove), 1);
+      renderLeaders();
+      queueSave();
+    });
+  });
+}
+document.getElementById('leaders-add').addEventListener('click', () => {
+  if (state.leaders.length >= 5) {
+    alert('Maximum 5 leadership attorneys for the homepage. The full roster goes in the spreadsheet.');
+    return;
+  }
+  state.leaders.push({});
+  renderLeaders();
+  queueSave();
+});
+
+// =========================================
+// REPEATER · OFFICES
+// =========================================
+function renderOffices() {
+  const wrap = document.getElementById('offices-repeater');
+  wrap.innerHTML = '';
+  state.offices.forEach((office, i) => {
+    const item = document.createElement('div');
+    item.className = 'repeater-item';
+    item.innerHTML = `
+      <div class="repeater-item-head">
+        <span class="repeater-item-num">No. ${String(i + 1).padStart(2, '0')}</span>
+        <button type="button" class="repeater-remove" data-remove="${i}">Remove</button>
+      </div>
+      <div class="detail-grid">
+        <label><span class="field-label">Office Name / Identifier</span><input type="text" data-office-field="label" data-idx="${i}" value="${escapeAttr(office.label || '')}" placeholder="e.g. Dearborn HQ, Detroit Branch" /></label>
+        <label><span class="field-label">Headquarters?</span>
+          <select data-office-field="is_hq" data-idx="${i}">
+            <option value="">Select…</option>
+            <option value="yes" ${office.is_hq === 'yes' ? 'selected' : ''}>Yes · primary HQ</option>
+            <option value="no" ${office.is_hq === 'no' ? 'selected' : ''}>No · branch / satellite</option>
+          </select>
+        </label>
+        <label class="full"><span class="field-label">Street Address (line 1)</span><input type="text" data-office-field="street1" data-idx="${i}" value="${escapeAttr(office.street1 || '')}" placeholder="e.g. 22000 Michigan Avenue" /></label>
+        <label class="full"><span class="field-label">Suite / Floor (line 2, if applicable)</span><input type="text" data-office-field="street2" data-idx="${i}" value="${escapeAttr(office.street2 || '')}" placeholder="e.g. Suite 200" /></label>
+        <label><span class="field-label">City</span><input type="text" data-office-field="city" data-idx="${i}" value="${escapeAttr(office.city || '')}" placeholder="e.g. Dearborn" /></label>
+        <label><span class="field-label">State</span><input type="text" data-office-field="state" data-idx="${i}" value="${escapeAttr(office.state || '')}" placeholder="e.g. MI" /></label>
+        <label><span class="field-label">ZIP</span><input type="text" data-office-field="zip" data-idx="${i}" value="${escapeAttr(office.zip || '')}" placeholder="e.g. 48124" /></label>
+        <label><span class="field-label">Main Phone</span><input type="tel" data-office-field="phone" data-idx="${i}" value="${escapeAttr(office.phone || '')}" placeholder="313-XXX-XXXX" /></label>
+        <label><span class="field-label">Fax (if used)</span><input type="tel" data-office-field="fax" data-idx="${i}" value="${escapeAttr(office.fax || '')}" placeholder="Optional" /></label>
+        <label><span class="field-label">Hours of Operation</span><input type="text" data-office-field="hours" data-idx="${i}" value="${escapeAttr(office.hours || '')}" placeholder="e.g. Mon-Fri 9-5, Saturday by appt" /></label>
+        <label class="full"><span class="field-label">Google Maps URL (if you have one)</span><input type="url" data-office-field="maps_url" data-idx="${i}" value="${escapeAttr(office.maps_url || '')}" placeholder="https://maps.google.com/..." /></label>
+        <label class="full"><span class="field-label">Parking / Entry Notes</span><textarea data-office-field="parking" data-idx="${i}" placeholder="Optional. Helpful for clients. e.g. 'Free street parking on Michigan Ave', 'Visitor lot accessible from Schaefer Rd'.">${escapeAttr(office.parking || '')}</textarea></label>
+        <label class="full"><span class="field-label">Office Photo Available?</span>
+          <select data-office-field="photo_status" data-idx="${i}">
+            <option value="">Select…</option>
+            <option value="have" ${office.photo_status === 'have' ? 'selected' : ''}>Yes · we have professional exterior / interior photos</option>
+            <option value="phone" ${office.photo_status === 'phone' ? 'selected' : ''}>Phone-quality only</option>
+            <option value="none" ${office.photo_status === 'none' ? 'selected' : ''}>None · need to capture</option>
+          </select>
+        </label>
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+
+  wrap.querySelectorAll('[data-office-field]').forEach(el => {
+    const evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, () => {
+      const i = parseInt(el.dataset.idx);
+      state.offices[i][el.dataset.officeField] = el.value;
+      queueSave();
+    });
+  });
+  wrap.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.offices.splice(parseInt(btn.dataset.remove), 1);
+      renderOffices();
+      queueSave();
+    });
+  });
+}
+document.getElementById('offices-add').addEventListener('click', () => {
+  state.offices.push({});
+  renderOffices();
+  queueSave();
+});
+
+// =========================================
+// SECTION NAVIGATION
+// =========================================
+const TOTAL_SECTIONS = 6;
+const TOTAL_QUESTIONS = 26;
+
+function showSection(n) {
+  state.currentSection = n;
+  document.getElementById('cover-screen').style.display = 'none';
+  document.getElementById('form-stage').style.display = 'block';
+  document.getElementById('nav-bar').classList.remove('hidden');
+
+  document.querySelectorAll('.section-cover').forEach(el => {
+    el.style.display = parseInt(el.dataset.section) === n ? 'block' : 'none';
+  });
+  document.querySelectorAll('.q').forEach(el => {
+    el.style.display = parseInt(el.dataset.section) === n ? 'block' : 'none';
+  });
+
+  document.getElementById('current-section').textContent = n;
+
+  const isLast = n === TOTAL_SECTIONS;
+  document.getElementById('btn-next').style.display = isLast ? 'none' : 'inline-flex';
+  document.getElementById('btn-submit').style.display = isLast ? 'inline-flex' : 'none';
+  document.getElementById('btn-back').style.display = 'inline-flex';
+
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  state.started = true;
+  queueSave();
+}
+
+function updateProgress() {
+  const answered = countAnswered();
+  document.getElementById('answered-count').textContent = answered;
+  const pct = Math.min(100, (answered / TOTAL_QUESTIONS) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function countAnswered() {
+  let n = 0;
+  ['q1_legal_name','q1_state_org','q1_year_founded','q2_attorney_count','q3_bar_admissions',
+   'q5_languages','q10_service_area','q11_logo_link','q12_primary_hex','q15_domains',
+   'q18_ad_accounts','q21_legal_link','q22_disclaimer_text','q25_anything_else',
+   'q26_your_name','q26_your_email'].forEach(k => {
+    if (state.answers[k] && state.answers[k].trim().length > 0) n++;
+  });
+  if (state.answers.q4_intl) n++;
+  if (state.answers.q7_roster_status) n++;
+  if (state.answers.q8_headshots) n++;
+  if (state.leaders.length > 0) n++;
+  if (state.offices.length > 0) n++;
+  if (state.answers.q14_photography) n++;
+  if (state.answers.q16_email) n++;
+  if (state.answers.q19_crm) n++;
+  if (state.answers.q21_legal_docs) n++;
+  if (state.answers.q22_disclaimer) n++;
+  if (state.answers.q23_accessibility) n++;
+  return n;
+}
+
+document.getElementById('btn-next').addEventListener('click', () => {
+  if (state.currentSection < TOTAL_SECTIONS) showSection(state.currentSection + 1);
+});
+document.getElementById('btn-back').addEventListener('click', () => {
+  if (state.currentSection > 1) {
+    showSection(state.currentSection - 1);
+  } else {
+    document.getElementById('form-stage').style.display = 'none';
+    document.getElementById('nav-bar').classList.add('hidden');
+    document.getElementById('cover-screen').style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+});
+
+document.getElementById('cover-begin').addEventListener('click', () => {
+  showSection(1);
+});
+
+document.getElementById('cover-resume-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  showSection(state.currentSection || 1);
+});
+
+// =========================================
+// SUBMISSION
+// =========================================
+document.getElementById('btn-submit').addEventListener('click', async () => {
+
+  // Validation
+  const REQUIRED = [
+    { key: 'q1_legal_name', label: 'Q1 · Legal entity name', section: 1 },
+    { key: 'q1_state_org', label: 'Q1 · State of organization', section: 1 },
+    { key: 'q1_year_founded', label: 'Q1 · Year founded', section: 1 },
+    { key: 'q2_attorney_count', label: 'Q2 · Total attorneys', section: 1 },
+    { key: 'q3_bar_admissions', label: 'Q3 · Bar admissions', section: 1 },
+    { key: 'q4_intl', label: 'Q4 · International matters posture', section: 1, type: 'radio' },
+    { key: 'q5_languages', label: 'Q5 · Languages', section: 1 },
+    { key: 'q7_roster_status', label: 'Q7 · Full roster status', section: 2, type: 'radio' },
+    { key: 'q8_headshots', label: 'Q8 · Headshot status', section: 2, type: 'radio' },
+    { key: 'q11_logo_link', label: 'Q11 · Logo files link', section: 4 },
+    { key: 'q12_primary_hex', label: 'Q12 · Primary brand color', section: 4 },
+    { key: 'q14_photography', label: 'Q14 · Photography status', section: 4, type: 'radio' },
+    { key: 'q15_domains', label: 'Q15 · Domains', section: 5 },
+    { key: 'q16_email', label: 'Q16 · Email infrastructure', section: 5, type: 'radio' },
+    { key: 'q19_crm', label: 'Q19 · CRM / intake system', section: 5, type: 'radio' },
+    { key: 'q21_legal_docs', label: 'Q21 · Privacy / TOS status', section: 6, type: 'radio' },
+    { key: 'q22_disclaimer', label: 'Q22 · Attorney advertising disclaimer', section: 6, type: 'radio' },
+    { key: 'q23_accessibility', label: 'Q23 · Accessibility commitment', section: 6, type: 'radio' },
+    { key: 'q26_your_name', label: 'Q26 · Your name', section: 6 },
+    { key: 'q26_your_email', label: 'Q26 · Your email', section: 6 },
+  ];
+
+  const missing = [];
+  REQUIRED.forEach(r => {
+    const v = state.answers[r.key];
+    if (!v || (typeof v === 'string' && v.trim().length === 0)) {
+      missing.push(r);
+    }
+  });
+
+  if (state.leaders.length < 3) {
+    missing.push({ key: 'q6_leaders', label: 'Q6 · At least 3 leadership attorneys', section: 2 });
+  }
+  if (state.offices.length === 0) {
+    missing.push({ key: 'q9_offices', label: 'Q9 · At least one office', section: 3 });
+  }
+
+  const email = state.answers.q26_your_email || '';
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    missing.push({ key: 'q26_email_format', label: 'Q26 · Your email (format)', section: 6 });
+  }
+
+  if (missing.length > 0) {
+    const earliestSection = Math.min(...missing.map(m => m.section));
+    const list = missing.map(m => '  · ' + m.label).join('\n');
+    const proceed = confirm(
+      'Before submitting, ' + missing.length + ' required item' + (missing.length === 1 ? '' : 's') +
+      ' need attention:\n\n' + list +
+      '\n\nClick OK to jump to the first one. Click Cancel to submit anyway.'
+    );
+    if (proceed) {
+      showSection(earliestSection);
+      return;
+    }
+  }
+
+  const overlay = document.getElementById('submitting');
+  overlay.classList.add('active');
+
+  const payload = {
+    submitted_at: new Date().toISOString(),
+    submitted_by: state.answers.q26_your_name || '',
+    poc_email: state.answers.q26_your_email || '',
+    poc_phone: state.answers.q26_your_phone || '',
+
+    // Section I · Firm Essentials
+    q1_legal_name: state.answers.q1_legal_name || '',
+    q1_dbas: state.answers.q1_dbas || '',
+    q1_state_org: state.answers.q1_state_org || '',
+    q1_year_founded: state.answers.q1_year_founded || '',
+    q2_attorney_count: state.answers.q2_attorney_count || '',
+    q2_staff_count: state.answers.q2_staff_count || '',
+    q2_breakdown: state.answers.q2_breakdown || '',
+    q3_bar_admissions: state.answers.q3_bar_admissions || '',
+    q4_intl: state.answers.q4_intl || '',
+    q4_intl_detail: state.answers.q4_intl_detail || '',
+    q5_languages: state.answers.q5_languages || '',
+
+    // Section II · Roster
+    q6_leadership_attorneys: JSON.stringify(state.leaders),
+    q7_roster_status: state.answers.q7_roster_status || '',
+    q7_roster_notes: state.answers.q7_roster_notes || '',
+    q8_headshots: state.answers.q8_headshots || '',
+
+    // Section III · Offices
+    q9_offices: JSON.stringify(state.offices),
+    q10_service_area: state.answers.q10_service_area || '',
+
+    // Section IV · Brand
+    q11_logo_link: state.answers.q11_logo_link || '',
+    q11_logo_formats: state.answers.q11_logo_formats || '',
+    q11_logo_origin: state.answers.q11_logo_origin || '',
+    q12_primary_hex: state.answers.q12_primary_hex || '',
+    q12_accent_hex: state.answers.q12_accent_hex || '',
+    q12_other_colors: state.answers.q12_other_colors || '',
+    q13_fonts: state.answers.q13_fonts || '',
+    q13_font_open: state.answers.q13_font_open || '',
+    q14_photography: state.answers.q14_photography || '',
+    q14_photo_link: state.answers.q14_photo_link || '',
+
+    // Section V · Digital
+    q15_domains: state.answers.q15_domains || '',
+    q16_email: state.answers.q16_email || '',
+    q16_it_contact: state.answers.q16_it_contact || '',
+    q17_analytics: state.answers.q17_analytics || '',
+    q18_ad_accounts: state.answers.q18_ad_accounts || '',
+    q19_crm: state.answers.q19_crm || '',
+    q19_crm_notes: state.answers.q19_crm_notes || '',
+    q20_linkedin: state.answers.q20_linkedin || '',
+    q20_instagram: state.answers.q20_instagram || '',
+    q20_facebook: state.answers.q20_facebook || '',
+    q20_youtube: state.answers.q20_youtube || '',
+    q20_twitter: state.answers.q20_twitter || '',
+    q20_tiktok: state.answers.q20_tiktok || '',
+    q20_other_social: state.answers.q20_other_social || '',
+
+    // Section VI · Legal & Compliance
+    q21_legal_docs: state.answers.q21_legal_docs || '',
+    q21_legal_link: state.answers.q21_legal_link || '',
+    q22_disclaimer: state.answers.q22_disclaimer || '',
+    q22_disclaimer_text: state.answers.q22_disclaimer_text || '',
+    q23_accessibility: state.answers.q23_accessibility || '',
+    q24_chat: state.answers.q24_chat || '',
+    q25_anything_else: state.answers.q25_anything_else || '',
+
+    // POC
+    q26_your_name: state.answers.q26_your_name || '',
+    q26_your_role: state.answers.q26_your_role || '',
+    q26_your_email: state.answers.q26_your_email || '',
+    q26_your_phone: state.answers.q26_your_phone || '',
+
+    _subject: 'ATLAW × Startline · Operations Brief Submitted'
+  };
+
+  let success = false;
+  if (FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes('REPLACE_WITH')) {
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      success = res.ok;
+    } catch (e) {
+      console.warn('Submission failed:', e);
+    }
+  }
+
+  if (!success) {
+    const subject = encodeURIComponent('ATLAW × Startline · Operations Brief Submitted');
+    const body = encodeURIComponent(
+      'A submitted brief is below.\n\n' +
+      Object.entries(payload).map(([k, v]) => `--- ${k} ---\n${v}\n`).join('\n')
+    );
+    window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    document.getElementById('form-stage').style.display = 'none';
+    document.getElementById('nav-bar').classList.add('hidden');
+    document.getElementById('thanks-screen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, 800);
+});
+
+// =========================================
+// HELPERS
+// =========================================
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// =========================================
+// HYDRATE
+// =========================================
+function hydrate() {
+  document.querySelectorAll('textarea[name]').forEach(ta => {
+    if (state.answers[ta.name]) {
+      ta.value = state.answers[ta.name];
+      const counter = ta.nextElementSibling?.querySelector('.cc-now');
+      if (counter) counter.textContent = ta.value.length;
+    }
+  });
+  document.querySelectorAll('.detail-grid input[name], .detail-grid textarea[name], .detail-grid select[name]').forEach(el => {
+    if (state.answers[el.name]) el.value = state.answers[el.name];
+  });
+  // Radios
+  ['q4_intl','q7_roster_status','q8_headshots','q13_font_open','q14_photography','q16_email',
+   'q17_analytics','q19_crm','q21_legal_docs','q22_disclaimer','q23_accessibility','q24_chat'].forEach(name => {
+    const v = state.answers[name];
+    if (v) {
+      const input = document.querySelector(`input[name="${name}"][value="${v}"]`);
+      if (input) {
+        input.checked = true;
+        input.closest('.option').classList.add('selected');
+      }
+    }
+  });
+  // Repeaters
+  renderLeaders();
+  renderOffices();
+}
+
+// =========================================
+// INIT
+// =========================================
+const hadSavedState = loadState();
+if (hadSavedState && state.started) {
+  document.getElementById('cover-resume').style.display = 'inline';
+}
+hydrate();
+updateProgress();
+</script>
+
+</body>
+</html>
