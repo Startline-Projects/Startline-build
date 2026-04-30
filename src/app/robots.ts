@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/atlaw-intake1/', '/atlaw-intake2/'],
     },
     sitemap: 'https://startline.build/sitemap.xml',
   }
