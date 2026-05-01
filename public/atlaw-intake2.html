@@ -20,8 +20,8 @@
     --vellum-warm: #EFE8DA;
     --bone: #EDE8DD;
     --charcoal: #1A1816;
-    --stone: #867F76;
-    --stone-soft: #B8B0A4;
+    --stone: #6B645A;
+    --stone-soft: #948B7E;
     --brass: #B08D57;
     --brass-light: #C9A961;
     --hairline: rgba(176, 141, 87, 0.25);
@@ -438,9 +438,31 @@
 
   /* ============ QUESTION ============ */
   .q {
-    margin-bottom: 80px;
+    margin-bottom: 64px;
     scroll-margin-top: 120px;
+    padding-left: 28px;
+    border-left: 1px solid var(--hairline);
+    transition: border-color 0.3s, padding-left 0.3s;
+    position: relative;
   }
+  .q:hover {
+    border-left-color: var(--brass);
+  }
+  /* Required questions with no answer · stronger left edge */
+  .q.required-empty {
+    border-left: 2px solid rgba(176, 141, 87, 0.55);
+  }
+  .q.required-empty:hover {
+    border-left-color: var(--brass);
+  }
+  /* Filled · subtle green-bronze · feels "complete" */
+  .q.answered {
+    border-left: 1px solid rgba(120, 145, 100, 0.4);
+  }
+  @media (max-width: 720px) {
+    .q { padding-left: 16px; }
+  }
+
   .q-meta {
     display: flex;
     align-items: center;
@@ -1523,6 +1545,8 @@ function queueSave() {
   showSaving();
   clearTimeout(saveTimer);
   saveTimer = setTimeout(saveState, 600);
+  // Update visual state immediately · don't wait for save
+  if (typeof updateQuestionStates === 'function') updateQuestionStates();
 }
 
 // =========================================
@@ -1722,6 +1746,27 @@ function updateProgress() {
   document.getElementById('answered-count').textContent = answered;
   const pct = Math.min(100, (answered / TOTAL_QUESTIONS) * 100);
   document.getElementById('progress-fill').style.width = pct + '%';
+  updateQuestionStates();
+}
+
+function updateQuestionStates() {
+  document.querySelectorAll('.q').forEach(q => {
+    const isRequired = !!q.querySelector('[data-required]') || !!q.querySelector('.options[data-required]');
+    let hasValue = false;
+    q.querySelectorAll('input[name], textarea[name], select[name]').forEach(el => {
+      if (el.type === 'radio' || el.type === 'checkbox') {
+        if (el.checked) hasValue = true;
+      } else if (el.value && el.value.trim().length > 0) {
+        hasValue = true;
+      }
+    });
+    // Repeater questions · check state arrays
+    if (q.querySelector('#leaders-repeater') && state.leaders.length > 0) hasValue = true;
+    if (q.querySelector('#offices-repeater') && state.offices.length > 0) hasValue = true;
+
+    q.classList.toggle('answered', hasValue);
+    q.classList.toggle('required-empty', isRequired && !hasValue);
+  });
 }
 
 function countAnswered() {
