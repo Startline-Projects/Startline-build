@@ -31,8 +31,8 @@
     --display: 'Fraunces', 'Times New Roman', serif;
     --body: 'Geist', -apple-system, system-ui, sans-serif;
 
-    --max-w: 1180px;
-    --gutter-x: clamp(24px, 5vw, 64px);
+    --max-w: 1440px;
+    --gutter-x: clamp(28px, 5vw, 88px);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -199,7 +199,7 @@
   .cover h1 {
     font-family: var(--display);
     font-weight: 300;
-    font-size: clamp(52px, 8.4vw, 116px);
+    font-size: clamp(52px, 9vw, 140px);
     line-height: 0.98;
     letter-spacing: -0.025em;
     color: var(--charcoal);
@@ -218,7 +218,7 @@
     font-family: var(--display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(21px, 2.1vw, 28px);
+    font-size: clamp(21px, 2.3vw, 32px);
     line-height: 1.45;
     color: var(--stone);
     max-width: 56ch;
@@ -253,7 +253,7 @@
   .cover-meta .value {
     font-family: var(--display);
     font-weight: 400;
-    font-size: 19px;
+    font-size: 22px;
     color: var(--charcoal);
     line-height: 1.3;
     font-variation-settings: "opsz" 32;
@@ -267,21 +267,21 @@
   .cover-letter {
     background: var(--vellum-warm);
     border: 1px solid var(--hairline);
-    padding: 40px 44px;
+    padding: 48px 52px;
     margin-bottom: 56px;
-    max-width: 64ch;
+    max-width: 70ch;
   }
   .cover-letter-mark {
     font-family: var(--display);
     font-style: italic;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--brass);
     letter-spacing: 0.04em;
     margin-bottom: 16px;
     font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
   }
   .cover-letter p {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.65;
     color: var(--charcoal);
     margin-bottom: 14px;
@@ -414,7 +414,7 @@
   .section-cover h2 {
     font-family: var(--display);
     font-weight: 300;
-    font-size: clamp(40px, 6vw, 72px);
+    font-size: clamp(40px, 6.6vw, 88px);
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--charcoal);
@@ -429,10 +429,10 @@
   .section-cover p {
     font-family: var(--display);
     font-style: italic;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.5;
     color: var(--stone);
-    max-width: 56ch;
+    max-width: 64ch;
     font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
   }
 
@@ -493,7 +493,7 @@
   .q-prompt {
     font-family: var(--display);
     font-weight: 400;
-    font-size: clamp(26px, 2.8vw, 36px);
+    font-size: clamp(26px, 3vw, 44px);
     line-height: 1.18;
     letter-spacing: -0.012em;
     color: var(--charcoal);
@@ -506,13 +506,13 @@
     font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
   }
   .q-why {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.55;
     color: var(--stone);
     font-style: italic;
     font-family: var(--display);
     margin-bottom: 28px;
-    max-width: 60ch;
+    max-width: 64ch;
     font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
   }
   .q-why::before {
@@ -536,7 +536,7 @@
     border-bottom: 1.5px solid var(--hairline-strong);
     padding: 14px 0;
     font-family: var(--display);
-    font-size: clamp(20px, 2.2vw, 26px);
+    font-size: clamp(20px, 2.4vw, 30px);
     color: var(--charcoal);
     line-height: 1.4;
     font-weight: 400;
@@ -556,7 +556,7 @@
   textarea {
     min-height: 120px;
     line-height: 1.5;
-    font-size: clamp(17px, 1.6vw, 19px);
+    font-size: clamp(17px, 1.7vw, 21px);
     font-family: var(--body);
     font-variation-settings: normal;
   }
@@ -629,7 +629,7 @@
   }
   .option-text {
     flex: 1;
-    font-size: 15.5px;
+    font-size: 17px;
     color: var(--charcoal);
     line-height: 1.5;
   }
@@ -643,7 +643,7 @@
     font-family: var(--display);
     font-variation-settings: "opsz" 14, "SOFT" 100, "WONK" 1;
     display: block;
-    font-size: 13px;
+    font-size: 14.5px;
     margin-top: 4px;
     line-height: 1.45;
   }
@@ -665,7 +665,7 @@
   }
   .detail-grid label.full { grid-column: span 2; }
   .detail-grid label .field-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--stone);
@@ -675,9 +675,9 @@
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--hairline);
-    padding: 6px 0;
+    padding: 8px 0;
     font-family: var(--body);
-    font-size: 14.5px;
+    font-size: 16px;
     color: var(--charcoal);
     line-height: 1.5;
     transition: border-color 0.2s;
@@ -855,7 +855,7 @@
   .thanks h2 {
     font-family: var(--display);
     font-weight: 300;
-    font-size: clamp(40px, 6vw, 76px);
+    font-size: clamp(40px, 6.6vw, 88px);
     line-height: 0.98;
     letter-spacing: -0.025em;
     color: var(--charcoal);
