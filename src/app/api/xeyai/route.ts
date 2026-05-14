@@ -12,8 +12,122 @@ type Payload = {
 const escapeHtml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 
-const humanize = (raw: string): string => {
+// Maps each enum value to the full human label shown on the form.
+// Keyed by `${fieldName}.${value}` to disambiguate values like 'yes', 'no', 'both'
+// that mean different things in different fields. 'undecided' is intentionally
+// omitted — it's handled centrally in humanize() as "Still deciding".
+const LABELS: Record<string, string> = {
+  // Section 1 — Your Users
+  'min_age.k_2': 'Kindergarten through 2nd grade',
+  'min_age.grade_3_5': '3rd through 5th grade',
+  'min_age.grade_6_plus': '6th grade and up',
+  'parent_multi_kids.yes': 'One parent account can manage multiple kids',
+  'parent_multi_kids.no': 'One parent, one athlete',
+  'athlete_multi_guardians.yes': 'Yes, more than one adult can be linked',
+  'athlete_multi_guardians.no': 'One guardian per athlete',
+  'other_user_roles.coaches': 'Coaches',
+  'other_user_roles.trainers': 'Real-world trainers and PTs',
+  'other_user_roles.school_staff': 'School or academy staff',
+  'other_user_roles.scouts': 'Scouts and recruiters',
+  'other_user_roles.none': 'No one else at launch',
+
+  // Section 2 — The Agents
+  'pt_mri_scope.in_v1': 'In scope for v1',
+  'pt_mri_scope.photos_only': 'Photos and reports only, not MRIs',
+  'pt_mri_scope.out_v1': 'Out for v1, maybe later',
+  'pt_mri_scope.out_permanent': 'Out permanently',
+  'nutri_photo_scope.in_v1': 'In scope for v1',
+  'nutri_photo_scope.out_v1': 'Out for v1, maybe later',
+  'nutri_photo_scope.out_permanent': 'Out permanently',
+  'psych_athlete_escalation.resource_list': 'A list of resources',
+  'psych_athlete_escalation.one_tap': 'One-tap to a hotline',
+  'psych_athlete_escalation.human_handoff': 'Handoff to a real counselor',
+  'psych_athlete_escalation.all': 'All of the above, tiered by severity',
+  'psych_parent_alert.immediate': 'Yes, immediately, every time',
+  'psych_parent_alert.with_notice': 'Yes, but the athlete sees a notice first',
+  'psych_parent_alert.severe_only': 'Only for high-severity signals',
+  'psych_parent_alert.never': 'No automatic parent alert',
+  'omi_handoff_visibility.visible': 'Visible and narrated',
+  'omi_handoff_visibility.invisible': 'Invisible',
+  'omi_handoff_visibility.first_time': 'Visible only the first time',
+  'omi_history_transfer.full_history': 'Full conversation carries over',
+  'omi_history_transfer.memory_only': 'The new agent starts fresh',
+  'omi_history_transfer.summary': 'A summary carries over',
+  'qotd_source.curated': 'A library you and your team author',
+  'qotd_source.ai_generated': 'OMI generates them per user',
+  'qotd_source.mix': 'A mix of both',
+  'checkin_cadence.on_login': 'On every login',
+  'checkin_cadence.daily_push': 'Daily, with a push notification',
+  'checkin_cadence.weekly': 'Weekly',
+  'checkin_cadence.configurable': 'The user configures it',
+  'checkin_parent_visibility.all': 'All answers visible to the parent',
+  'checkin_parent_visibility.summary': 'Summary only',
+  'checkin_parent_visibility.flagged_only': 'Only flagged answers',
+  'checkin_parent_visibility.private': 'Private to the athlete',
+  'recruiter_send_model.athlete_sends': 'The athlete copies and sends it themselves',
+  'recruiter_send_model.platform_sends': "The platform sends it on the athlete's behalf",
+  'recruiter_send_model.both': 'Both options available',
+  'recruiter_capabilities.profile_builder': "Build the athlete's recruiting profile",
+  'recruiter_capabilities.tournament_finder': 'Suggest showcases and tournaments',
+  'recruiter_capabilities.eligibility_tracker': 'Track academic eligibility',
+  'recruiter_capabilities.scholarship_paths': 'Suggest scholarship paths',
+  'recruiter_capabilities.outreach_only': 'Just outreach for now',
+
+  // Section 3 — Safety & User Data
+  'overseer_severity_tiers.single': 'One threshold',
+  'overseer_severity_tiers.two_tier': 'Two tiers',
+  'overseer_severity_tiers.three_plus': 'Three or more tiers',
+  'overseer_user_facing.silent': 'Silent',
+  'overseer_user_facing.soft_redirect': 'A soft redirect',
+  'overseer_user_facing.clear_notice': 'A clear notice',
+  'overseer_user_facing.suspend': 'Immediate session suspension',
+  'overseer_user_facing.tiered': 'Tiered by severity',
+  'flag_review_owner.internal': 'Your internal team',
+  'flag_review_owner.third_party': 'A third-party moderation partner',
+  'flag_review_owner.mixed': 'A mix',
+  'flag_review_owner.no_human': 'No human review',
+  'flag_retention.permanent': 'Permanently',
+  'flag_retention.twelve_months': '12 months',
+  'flag_retention.resolved_plus_90': 'Until resolved, plus 90 days',
+  'flag_retention.resolved_immediate': 'Until resolved, then immediate',
+  'parent_default_visibility.full_transcripts': 'Full conversation transcripts',
+  'parent_default_visibility.summaries': 'Summaries only',
+  'parent_default_visibility.flags_and_usage': 'Flags and usage stats only',
+  'visibility_by_age.yes': 'Yes',
+  'visibility_by_age.no': 'No',
+  'user_can_delete.yes_anytime': 'Yes, anytime',
+  'user_can_delete.yes_with_approval': 'Yes, but parents must approve if minor',
+  'user_can_delete.no': 'No',
+  'default_retention.forever': 'Forever',
+  'default_retention.24_months': '24 months',
+  'default_retention.12_months': '12 months',
+  'default_retention.6_months': '6 months',
+
+  // Section 4 — Monetization & Parents
+  'revenue_model.subscription': 'Subscription required',
+  'revenue_model.freemium': 'Free with paid upgrade',
+  'revenue_model.b2b': 'Schools, clubs, or academies pay',
+  'revenue_model.free': 'Free for everyone',
+  'primary_payer.parents': 'Parents',
+  'primary_payer.athletes': 'Athletes themselves',
+  'primary_payer.organizations': 'Schools, clubs, or academies',
+  'primary_payer.mix': 'A mix',
+  'feature_tiers.all_or_nothing': 'All or nothing',
+  'feature_tiers.tiered_agents': 'Some agents free, some premium',
+  'feature_tiers.usage_caps': 'Free with usage caps',
+  'feature_tiers.trial': 'Free trial, then paid',
+  'parent_can_message.yes': 'Yes',
+  'parent_can_message.no': 'No',
+  'parent_agent_access.about_child': 'Yes, to ask about their child',
+  'parent_agent_access.for_themselves': 'Yes, for themselves',
+  'parent_agent_access.both': 'Both',
+  'parent_agent_access.no': 'No',
+}
+
+const humanize = (fieldName: string, raw: string): string => {
   if (raw === 'undecided') return 'Still deciding'
+  const labeled = LABELS[`${fieldName}.${raw}`]
+  if (labeled) return labeled
   if (/^[a-z0-9_]+$/.test(raw)) {
     const spaced = raw.replace(/_/g, ' ')
     return spaced.charAt(0).toUpperCase() + spaced.slice(1)
@@ -21,26 +135,26 @@ const humanize = (raw: string): string => {
   return raw
 }
 
-const formatValueText = (v: unknown): string => {
+const formatValueText = (fieldName: string, v: unknown): string => {
   if (v === undefined || v === null || v === '') return '(blank)'
   if (Array.isArray(v)) {
     if (v.length === 0) return '(blank)'
-    return '\n' + v.map(item => `  - ${humanize(String(item))}`).join('\n')
+    return '\n' + v.map(item => `  - ${humanize(fieldName, String(item))}`).join('\n')
   }
-  if (typeof v === 'string') return humanize(v)
+  if (typeof v === 'string') return humanize(fieldName, v)
   return String(v)
 }
 
-const formatValueHtml = (v: unknown): string => {
+const formatValueHtml = (fieldName: string, v: unknown): string => {
   if (v === undefined || v === null || v === '') return '<em style="color:#999">(blank)</em>'
   if (Array.isArray(v)) {
     if (v.length === 0) return '<em style="color:#999">(blank)</em>'
     return `<ul style="margin:4px 0 0 0;padding-left:20px">${v
-      .map(item => `<li>${escapeHtml(humanize(String(item)))}</li>`)
+      .map(item => `<li>${escapeHtml(humanize(fieldName, String(item)))}</li>`)
       .join('')}</ul>`
   }
   if (typeof v === 'string') {
-    return `<div style="white-space:pre-wrap">${escapeHtml(humanize(v))}</div>`
+    return `<div style="white-space:pre-wrap">${escapeHtml(humanize(fieldName, v))}</div>`
   }
   return `<div>${escapeHtml(String(v))}</div>`
 }
@@ -126,13 +240,13 @@ export async function POST(req: NextRequest) {
     '============\n\n' +
     SECTIONS.map(section => {
       const rows = section.fields
-        .map(([key, label]) => `Q: ${label}\nA: ${formatValueText(brief[key])}`)
+        .map(([key, label]) => `Q: ${label}\nA: ${formatValueText(key, brief[key])}`)
         .join('\n\n')
       return `--- ${section.title} ---\n\n${rows}`
     }).join('\n\n') +
     (extraKeys.length
       ? '\n\n--- Other fields ---\n\n' +
-        extraKeys.map(k => `Q: ${k}\nA: ${formatValueText(brief[k])}`).join('\n\n')
+        extraKeys.map(k => `Q: ${k}\nA: ${formatValueText(k, brief[k])}`).join('\n\n')
       : '') +
     `\n\n---\nSubmitted: ${submittedAt}\n`
 
@@ -147,7 +261,7 @@ export async function POST(req: NextRequest) {
             ([key, label]) => `
           <div style="margin:14px 0">
             <div style="font-weight:600;color:#333">${escapeHtml(label)}</div>
-            ${formatValueHtml(brief[key])}
+            ${formatValueHtml(key, brief[key])}
           </div>`,
           )
           .join('')}
@@ -160,7 +274,7 @@ export async function POST(req: NextRequest) {
                 k => `
         <div style="margin:14px 0">
           <div style="font-weight:600;color:#333">${escapeHtml(k)}</div>
-          ${formatValueHtml(brief[k])}
+          ${formatValueHtml(k, brief[k])}
         </div>`,
               )
               .join('')}`
