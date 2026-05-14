@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#F8F5F0">
+<meta name="description" content="XEY.AI project brief, prepared by Startline.">
+<title>XEY.AI Brief · Startline</title>
+
+<!-- Fonts: Syne (display) + Figtree (body). Established Startline pairing. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   STARTLINE: PROJECT BRIEF
+   Brand system established here. All subsequent screens
+   inherit these tokens. Do not change in later steps.
+   ============================================================ */
+
+:root {
+  /* Surface */
+  --bg:        #F8F5F0;   /* main, warm cream */
+  --bg-2:      #F0EDE8;   /* secondary surface */
+  --bg-3:      #FFFFFF;   /* elevated card */
+  --bg-4:      #EAE6E0;   /* darker cream */
+
+  /* Brand */
+  --orange:    #C8681A;   /* primary accent: Startline orange */
+  --orange-2:  #B25C16;   /* hover */
+  --orange-tint:    rgba(200,104,26,0.08);
+  --orange-line:    rgba(200,104,26,0.18);
+
+  /* Text */
+  --ink:       #1C1B1A;   /* primary text */
+  --ink-2:     #3D3A36;   /* secondary text */
+  --muted:     #6B6560;   /* tertiary */
+  --dim:       #9A9590;   /* dimmest */
+
+  /* Lines */
+  --line:      #E4E0D8;
+  --line-2:    #D4D0C8;
+
+  /* System */
+  --r-sm: 8px;
+  --r:    12px;
+  --r-lg: 18px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Figtree', -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   STARTING-LINE MOTIF: thin orange track at very top
+   Becomes the progress indicator in later screens.
+   ============================================================ */
+.track {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--line);
+  z-index: 100;
+}
+.track::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 0%;
+  background: var(--orange);
+  transition: width 700ms var(--ease-out);
+}
+/* Width adjusts per screen via JS by setting --progress */
+.track[data-progress="0"]::after { width: 0%; }
+.track[data-progress="1"]::after { width: 25%; }
+.track[data-progress="2"]::after { width: 50%; }
+.track[data-progress="3"]::after { width: 75%; }
+.track[data-progress="4"]::after { width: 100%; }
+
+/* ============================================================
+   HEADER: Startline logo, top-left, always present
+   ============================================================ */
+.header {
+  padding: 28px 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0;
+  animation: fade-down 600ms var(--ease-out) forwards;
+  animation-delay: 100ms;
+}
+.logo svg { display: block; height: 28px; width: auto; }
+
+.header-meta {
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0;
+  animation: fade-down 600ms var(--ease-out) forwards;
+  animation-delay: 200ms;
+}
+
+/* ============================================================
+   FORM CONTAINER: holds all screens
+   ============================================================ */
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 40px 96px;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Each screen is a section. Only .active is visible. */
+.screen {
+  display: none;
+  animation: screen-in 500ms var(--ease-out);
+}
+.screen.active {
+  display: block;
+}
+
+@keyframes screen-in {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   COVER SCREEN: the intro / sell
+   ============================================================ */
+.cover-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--orange);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fade-up 700ms var(--ease-out) forwards;
+  animation-delay: 350ms;
+}
+
+.cover-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 6.2vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 12ch;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fade-up 800ms var(--ease-out) forwards;
+  animation-delay: 500ms;
+}
+.cover-headline .accent {
+  color: var(--orange);
+}
+
+.cover-sub {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 56ch;
+  margin-bottom: 56px;
+  font-weight: 400;
+  opacity: 0;
+  animation: fade-up 800ms var(--ease-out) forwards;
+  animation-delay: 750ms;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 32px;
+  margin-bottom: 56px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  animation: fade-up 800ms var(--ease-out) forwards;
+  animation-delay: 1000ms;
+}
+.cover-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.cover-meta-item::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cover-cta-row {
+  opacity: 0;
+  animation: fade-up 800ms var(--ease-out) forwards;
+  animation-delay: 1200ms;
+}
+
+/* ============================================================
+   BUTTONS: used across all screens
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  background: var(--orange);
+  color: white;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 200ms var(--ease-out), transform 200ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:hover {
+  background: var(--orange-2);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+.btn .arrow {
+  transition: transform 240ms var(--ease-out);
+}
+.btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover {
+  background: var(--bg-2);
+  color: var(--ink);
+}
+
+.btn-back {
+  position: absolute;
+  top: 28px;
+  left: 40px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 200ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-back:hover {
+  background: var(--bg-2);
+  border-color: var(--line-2);
+  color: var(--ink);
+  transform: translateX(-2px);
+}
+.btn-back svg { display: block; }
+
+.btn-continue:disabled {
+  background: var(--bg-4);
+  color: var(--dim);
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-continue:disabled:hover {
+  background: var(--bg-4);
+  transform: none;
+}
+
+/* ============================================================
+   SECTION SCREENS: shared structure for all sub-screens
+   in Sections 1 to 5.
+   ============================================================ */
+.section-screen {
+  padding-top: 24px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--orange);
+  margin-bottom: 24px;
+}
+
+.section-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 50ch;
+  margin-bottom: 36px;
+}
+
+/* ============================================================
+   FORM INPUTS
+   ============================================================ */
+.field-group {
+  margin-bottom: 20px;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 540px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1.5px solid transparent;
+  border-radius: var(--r);
+  padding: 16px 18px;
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;        /* 16px prevents iOS auto-zoom */
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.4;
+  transition: border-color 200ms var(--ease-out), background 200ms var(--ease-out);
+  -webkit-appearance: none;
+}
+.input:hover,
+.textarea:hover {
+  background: var(--bg-3);
+}
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: var(--bg-3);
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--dim);
+  font-weight: 400;
+}
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+  font-family: 'Figtree', sans-serif;
+  line-height: 1.55;
+}
+
+.field-helper {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.field-helper button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--orange);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.field-helper button:hover {
+  color: var(--orange-2);
+}
+
+/* ============================================================
+   TAP CARDS: for single-select questions (stage, etc.)
+   ============================================================ */
+.tap-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tap-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 18px 20px;
+  background: var(--bg-2);
+  border: 1.5px solid transparent;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all 200ms var(--ease-out);
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.tap-card:hover {
+  background: var(--bg-3);
+  border-color: var(--line-2);
+  transform: translateX(2px);
+}
+.tap-card.selected {
+  border-color: var(--orange);
+  background: var(--orange-tint);
+}
+.tap-card.selected:hover {
+  transform: translateX(2px);
+}
+
+.tap-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.tap-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   SCREEN NAVIGATION (Continue button at bottom)
+   ============================================================ */
+.screen-nav {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 540px) {
+  .screen-nav {
+    margin-top: 32px;
+  }
+  .screen-nav .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-back {
+    top: 22px;
+    left: 24px;
+  }
+}
+
+/* ============================================================
+   THANK-YOU SCREEN
+   ============================================================ */
+.thanks-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+
+.thanks-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 6.2vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 14ch;
+  margin-bottom: 32px;
+}
+.thanks-headline .accent {
+  color: var(--orange);
+}
+
+.thanks-sub {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+
+.thanks-meta {
+  display: flex;
+  align-items: center;
+}
+
+.thanks-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--orange);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: gap 200ms var(--ease-out);
+}
+.thanks-link:hover {
+  gap: 12px;
+}
+.thanks-link svg {
+  transition: transform 200ms var(--ease-out);
+}
+
+/* ============================================================
+   SUBMIT BUTTON: loading + error states
+   ============================================================ */
+.btn-continue.is-loading {
+  background: var(--orange-2);
+  cursor: wait;
+  pointer-events: none;
+}
+.btn-continue.is-loading .arrow {
+  display: none;
+}
+.btn-continue .spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+.btn-continue.is-loading .spinner {
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.submit-error {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(200, 40, 26, 0.06);
+  border: 1px solid rgba(200, 40, 26, 0.18);
+  border-radius: var(--r);
+  font-size: 13px;
+  color: #A23816;
+  line-height: 1.5;
+  display: none;
+}
+.submit-error.is-visible {
+  display: block;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 24px 40px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--dim);
+  opacity: 0;
+  animation: fade-in 800ms var(--ease-out) forwards;
+  animation-delay: 1400ms;
+}
+.footer a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 180ms;
+}
+.footer a:hover {
+  color: var(--ink);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-down {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  .header { padding: 22px 24px 0; }
+  .form-container { padding: 32px 24px 64px; }
+  .footer { padding: 20px 24px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .cover-headline { margin-bottom: 24px; }
+  .cover-sub { font-size: 16px; margin-bottom: 40px; }
+  .cover-meta { margin-bottom: 40px; gap: 0 24px; }
+  .header-meta { display: none; }
+  .section-sub { margin-bottom: 28px; }
+}
+
+@media (max-width: 420px) {
+  .cover-headline { font-size: 38px; }
+  .cover-sub { font-size: 15px; }
+  .btn { padding: 14px 24px; font-size: 14px; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     STARTING-LINE PROGRESS TRACK
+     Width updates per screen (data-progress attribute)
+     ========================================================= -->
+<div class="track" data-progress="0" id="track"></div>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="header">
+  <a href="https://startline.build" class="logo" aria-label="Startline. Back to home">
+    <!-- Startline mark + wordmark. Charcoal "start", orange "line". -->
+    <svg viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="#C8681A"/>
+      <path d="M13 11L25 18L13 25V11Z" fill="white"/>
+      <text x="46" y="25" font-family="Syne, sans-serif" font-weight="700" font-size="22" fill="#1C1B1A" letter-spacing="-0.6">
+        start<tspan fill="#C8681A">line</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="header-meta">XEY.AI Brief</div>
+</header>
+
+<!-- =========================================================
+     FORM: all screens live here.
+     Only the screen with .active is visible.
+     ========================================================= -->
+<main class="form-container" id="form">
+
+  <!-- Back arrow: appears on every screen except cover. -->
+  <button type="button" class="btn-back" id="btn-back" onclick="goBack()" style="display: none;" aria-label="Go back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M13 8H3M7 4L3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- ===================== SCREEN 0: COVER ===================== -->
+  <section class="screen active" data-section="0" data-section-label="XEY.AI Brief" id="screen-0">
+
+    <div class="cover-eyebrow">The Follow-Up</div>
+
+    <h1 class="cover-headline">
+      A few more questions about XEY.AI<span class="accent">.</span>
+    </h1>
+
+    <p class="cover-sub">
+      You've shared the vision. These questions help us scope the build properly.
+      Four short sections about your users, your agents, and how you want to launch.
+      When you finish, we come back with a plan and a prototype.
+    </p>
+
+    <div class="cover-meta">
+      <span class="cover-meta-item">Four short sections</span>
+      <span class="cover-meta-item">Skip what doesn't apply</span>
+    </div>
+
+    <div class="cover-cta-row">
+      <button class="btn" type="button" onclick="goToScreen(1)">
+        Begin
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ===================== SECTION 1: YOUR USERS =====================
+       2 sub-screens. Covers age floor, family structure, and other v1 user roles.
+       Dropped from earlier draft: primary user (answered "co-users" in Exhibit B),
+       UI tier model (answered "adapts to fit theme"), tier assignment (DOB
+       collected, implies auto).
+       ============================================================ -->
+
+  <!-- ----- 1.1: Age floor + family structure ----- -->
+  <section class="screen section-screen" data-section="1" data-section-label="Your Users" id="screen-1-1">
+    <div class="section-eyebrow">Your Users · 1 of 2</div>
+    <h1 class="section-headline">How young, and how connected?</h1>
+    <p class="section-sub">Your three tiers (Elementary, High School, College) are locked. We need the floor and the family rules.</p>
+
+    <div class="field-group">
+      <label class="field-label">How young can a registered athlete be?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Minimum age">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'min_age', 'k_2')">
+          <span class="tap-card-title">Kindergarten through 2nd grade</span>
+          <span class="tap-card-desc">As young as 5 or 6. Maximum compliance scope.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'min_age', 'grade_3_5')">
+          <span class="tap-card-title">3rd through 5th grade</span>
+          <span class="tap-card-desc">Around 8 to 10. Most "Elementary" sports programs start here.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'min_age', 'grade_6_plus')">
+          <span class="tap-card-title">6th grade and up</span>
+          <span class="tap-card-desc">Middle school floor. Late elementary stays out.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'min_age', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">A parent with multiple athletes</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Multiple children per parent">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_multi_kids', 'yes')">
+          <span class="tap-card-title">One parent account can manage multiple kids</span>
+          <span class="tap-card-desc">Sports families often have two or three athletes.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_multi_kids', 'no')">
+          <span class="tap-card-title">One parent, one athlete</span>
+          <span class="tap-card-desc">Separate parent accounts for each child.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_multi_kids', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Multiple parents or guardians per athlete</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Multiple guardians per athlete">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'athlete_multi_guardians', 'yes')">
+          <span class="tap-card-title">Yes, more than one adult can be linked</span>
+          <span class="tap-card-desc">Divorced parents, co-guardians, grandparents, etc.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'athlete_multi_guardians', 'no')">
+          <span class="tap-card-title">One guardian per athlete</span>
+          <span class="tap-card-desc">One adult holds the consent and the access.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'athlete_multi_guardians', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-family-notes">Anything else about family setup</label>
+      <textarea
+        id="field-family-notes"
+        class="textarea"
+        data-field="family_structure_notes"
+        placeholder="Edge cases like estranged parents, court orders, kids transferring guardians. Anything we should design for."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 1.2: Other v1 user roles ----- -->
+  <section class="screen section-screen" data-section="1" data-section-label="Your Users" id="screen-1-2">
+    <div class="section-eyebrow">Your Users · 2 of 2</div>
+    <h1 class="section-headline">Anyone else on the platform at launch?</h1>
+    <p class="section-sub">Your docs describe athletes and parents as users. We noticed coaches and scouts appear as <em>contacts</em> the Recruiter agent helps with, but not as platform users. Pick all that apply for v1.</p>
+
+    <div class="tap-cards" role="group" aria-label="Other user roles" data-multi-select="true">
+      <button type="button" class="tap-card" aria-pressed="false"
+              onclick="toggleTapCard(this, 'other_user_roles', 'coaches')">
+        <span class="tap-card-title">Coaches</span>
+        <span class="tap-card-desc">Club coaches, school coaches, private trainers. With their own login.</span>
+      </button>
+
+      <button type="button" class="tap-card" aria-pressed="false"
+              onclick="toggleTapCard(this, 'other_user_roles', 'trainers')">
+        <span class="tap-card-title">Real-world trainers and PTs</span>
+        <span class="tap-card-desc">The specialists the athlete works with in person.</span>
+      </button>
+
+      <button type="button" class="tap-card" aria-pressed="false"
+              onclick="toggleTapCard(this, 'other_user_roles', 'school_staff')">
+        <span class="tap-card-title">School or academy staff</span>
+        <span class="tap-card-desc">Athletic directors, academic advisors, counselors.</span>
+      </button>
+
+      <button type="button" class="tap-card" aria-pressed="false"
+              onclick="toggleTapCard(this, 'other_user_roles', 'scouts')">
+        <span class="tap-card-title">Scouts and recruiters</span>
+        <span class="tap-card-desc">College or pro scouts viewing athlete profiles directly.</span>
+      </button>
+
+      <button type="button" class="tap-card" aria-pressed="false"
+              onclick="toggleTapCard(this, 'other_user_roles', 'none')">
+        <span class="tap-card-title">No one else at launch</span>
+        <span class="tap-card-desc">Athletes and parents only. Other roles come post-v1.</span>
+      </button>
+    </div>
+
+    <div class="field-group" style="margin-top: 24px;">
+      <label class="field-label" for="field-other-roles-notes">If yes to any, what do they need to do in the app?</label>
+      <textarea
+        id="field-other-roles-notes"
+        class="textarea"
+        data-field="other_roles_notes"
+        placeholder="View progress, message the athlete, upload assessments, leave notes, etc."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue to Section 2
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 2: THE AGENTS =====================
+       5 sub-screens. Covers TBD landmines (MRIs, photo upload), Sports
+       Psych escalation, OMI routing UX, daily engagement, Recruiter scope.
+       ============================================================ -->
+
+  <!-- ----- 2.1: The TBDs (MRIs + Nutritionist photo upload) ----- -->
+  <section class="screen section-screen" data-section="2" data-section-label="The Agents" id="screen-2-1">
+    <div class="section-eyebrow">The Agents · 1 of 5</div>
+    <h1 class="section-headline">Two open questions from your brief.</h1>
+    <p class="section-sub">You flagged these as "needs to be confirmed." Let's lock them now since both meaningfully change the scope.</p>
+
+    <div class="field-group">
+      <label class="field-label">MRIs and medical imagery upload (Physical Therapist agent)</label>
+      <div class="tap-cards" role="radiogroup" aria-label="MRI upload scope">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'pt_mri_scope', 'in_v1')">
+          <span class="tap-card-title">In scope for v1</span>
+          <span class="tap-card-desc">Athletes can upload MRIs and the agent reviews them.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'pt_mri_scope', 'photos_only')">
+          <span class="tap-card-title">Photos and reports only, not MRIs</span>
+          <span class="tap-card-desc">Visible injuries, doctor's notes, etc. No medical imagery.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'pt_mri_scope', 'out_v1')">
+          <span class="tap-card-title">Out for v1, maybe later</span>
+          <span class="tap-card-desc">No uploads at launch. Revisit after v1.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'pt_mri_scope', 'out_permanent')">
+          <span class="tap-card-title">Out permanently</span>
+          <span class="tap-card-desc">The agent stays text-only. No image review ever.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'pt_mri_scope', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Photo upload to the Nutritionist (food photos)</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Nutritionist photo upload">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'nutri_photo_scope', 'in_v1')">
+          <span class="tap-card-title">In scope for v1</span>
+          <span class="tap-card-desc">Athletes photograph meals, the agent gives feedback.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'nutri_photo_scope', 'out_v1')">
+          <span class="tap-card-title">Out for v1, maybe later</span>
+          <span class="tap-card-desc">Text logging only at launch.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'nutri_photo_scope', 'out_permanent')">
+          <span class="tap-card-title">Out permanently</span>
+          <span class="tap-card-desc">The agent stays text and meal-plan only.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'nutri_photo_scope', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-tbd-notes">Anything to add about either decision</label>
+      <textarea
+        id="field-tbd-notes"
+        class="textarea"
+        data-field="agent_tbd_notes"
+        placeholder="Constraints, concerns, things we should know before scoping."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 2.2: Sports Psych escalation ----- -->
+  <section class="screen section-screen" data-section="2" data-section-label="The Agents" id="screen-2-2">
+    <div class="section-eyebrow">The Agents · 2 of 5</div>
+    <h1 class="section-headline">When the Sports Psych spots something serious.</h1>
+    <p class="section-sub">Your brief says the agent must refer out for depression, trauma, or self-harm. We need to know how the referral actually happens.</p>
+
+    <div class="field-group">
+      <label class="field-label">What the athlete sees in that moment</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Athlete-facing escalation">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_athlete_escalation', 'resource_list')">
+          <span class="tap-card-title">A list of resources</span>
+          <span class="tap-card-desc">Hotlines, websites, links the athlete can use themselves.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_athlete_escalation', 'one_tap')">
+          <span class="tap-card-title">One-tap to a hotline</span>
+          <span class="tap-card-desc">Direct call or text button to a vetted crisis line.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_athlete_escalation', 'human_handoff')">
+          <span class="tap-card-title">Handoff to a real counselor</span>
+          <span class="tap-card-desc">A live human takes over the conversation.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_athlete_escalation', 'all')">
+          <span class="tap-card-title">All of the above, tiered by severity</span>
+          <span class="tap-card-desc">Resources for mild signals, hotline for moderate, human handoff for severe.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_athlete_escalation', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Is the parent alerted automatically?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Parent alert">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_parent_alert', 'immediate')">
+          <span class="tap-card-title">Yes, immediately, every time</span>
+          <span class="tap-card-desc">Any flagged signal triggers a parent notification.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_parent_alert', 'with_notice')">
+          <span class="tap-card-title">Yes, but the athlete sees a notice first</span>
+          <span class="tap-card-desc">The athlete knows the parent is being looped in.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_parent_alert', 'severe_only')">
+          <span class="tap-card-title">Only for high-severity signals</span>
+          <span class="tap-card-desc">Mild signals stay between agent and athlete.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_parent_alert', 'never')">
+          <span class="tap-card-title">No automatic parent alert</span>
+          <span class="tap-card-desc">The athlete decides whether to involve the parent.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'psych_parent_alert', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-psych-notes">Anything else about this flow</label>
+      <textarea
+        id="field-psych-notes"
+        class="textarea"
+        data-field="psych_escalation_notes"
+        placeholder="Specific hotlines you have in mind, partnerships, age-tiered escalation rules, etc."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 2.3: OMI routing UX ----- -->
+  <section class="screen section-screen" data-section="2" data-section-label="The Agents" id="screen-2-3">
+    <div class="section-eyebrow">The Agents · 3 of 5</div>
+    <h1 class="section-headline">How does OMI hand off?</h1>
+    <p class="section-sub">Your brief says OMI routes the user to the right specialist. We need to know what that handoff feels like to the user.</p>
+
+    <div class="field-group">
+      <label class="field-label">When OMI passes the conversation to a specialist</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Handoff visibility">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_handoff_visibility', 'visible')">
+          <span class="tap-card-title">Visible and narrated</span>
+          <span class="tap-card-desc">"Let me bring in the Fitness Coach for this." The user sees the switch.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_handoff_visibility', 'invisible')">
+          <span class="tap-card-title">Invisible</span>
+          <span class="tap-card-desc">The user just sees the new agent's voice take over.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_handoff_visibility', 'first_time')">
+          <span class="tap-card-title">Visible only the first time</span>
+          <span class="tap-card-desc">First handoff is narrated. Later switches happen quietly.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_handoff_visibility', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">When the user moves between agents</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Conversation continuity">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_history_transfer', 'full_history')">
+          <span class="tap-card-title">Full conversation carries over</span>
+          <span class="tap-card-desc">The new agent sees everything that was just said.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_history_transfer', 'memory_only')">
+          <span class="tap-card-title">The new agent starts fresh</span>
+          <span class="tap-card-desc">No immediate context, but it can access the shared memory layer.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_history_transfer', 'summary')">
+          <span class="tap-card-title">A summary carries over</span>
+          <span class="tap-card-desc">The new agent gets a one-line "here's what was just discussed."</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'omi_history_transfer', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 2.4: Daily engagement (Q-of-day, check-ins, parent visibility) ----- -->
+  <section class="screen section-screen" data-section="2" data-section-label="The Agents" id="screen-2-4">
+    <div class="section-eyebrow">The Agents · 4 of 5</div>
+    <h1 class="section-headline">The daily questions and check-ins.</h1>
+    <p class="section-sub">Your brief calls these "Questions of the Day" and gamified check-ins. Let's calibrate where the content comes from and how it flows.</p>
+
+    <div class="field-group">
+      <label class="field-label">Where the daily questions come from</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Question source">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'qotd_source', 'curated')">
+          <span class="tap-card-title">A library you and your team author</span>
+          <span class="tap-card-desc">Hand-picked, vetted, reusable across users.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'qotd_source', 'ai_generated')">
+          <span class="tap-card-title">OMI generates them per user</span>
+          <span class="tap-card-desc">Tailored to the athlete's profile, sport, and history.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'qotd_source', 'mix')">
+          <span class="tap-card-title">A mix of both</span>
+          <span class="tap-card-desc">Curated questions weighted with AI-tailored ones.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'qotd_source', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Check-in cadence (weight, mood, sleep, etc.)</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Check-in cadence">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_cadence', 'on_login')">
+          <span class="tap-card-title">On every login</span>
+          <span class="tap-card-desc">First thing the athlete sees when they open the app.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_cadence', 'daily_push')">
+          <span class="tap-card-title">Daily, with a push notification</span>
+          <span class="tap-card-desc">Athletes are nudged once a day even if they don't log in.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_cadence', 'weekly')">
+          <span class="tap-card-title">Weekly</span>
+          <span class="tap-card-desc">A single weekly check-in summary instead of daily.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_cadence', 'configurable')">
+          <span class="tap-card-title">The user configures it</span>
+          <span class="tap-card-desc">Athletes (or parents) set their own cadence.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_cadence', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Are check-in answers shared with the parent?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Parent visibility of check-ins">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_parent_visibility', 'all')">
+          <span class="tap-card-title">All answers visible to the parent</span>
+          <span class="tap-card-desc">Full transparency. Parent sees what the athlete answered.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_parent_visibility', 'summary')">
+          <span class="tap-card-title">Summary only</span>
+          <span class="tap-card-desc">Parent sees trends and totals, not the raw answers.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_parent_visibility', 'flagged_only')">
+          <span class="tap-card-title">Only flagged answers</span>
+          <span class="tap-card-desc">If the Overseer flags something, the parent sees that. Nothing else.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_parent_visibility', 'private')">
+          <span class="tap-card-title">Private to the athlete</span>
+          <span class="tap-card-desc">Check-ins are between the athlete and the agents only.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'checkin_parent_visibility', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 2.5: Recruiter agent scope ----- -->
+  <section class="screen section-screen" data-section="2" data-section-label="The Agents" id="screen-2-5">
+    <div class="section-eyebrow">The Agents · 5 of 5</div>
+    <h1 class="section-headline">The Recruiter agent: how active does it get?</h1>
+    <p class="section-sub">Your brief says it helps the athlete communicate with coaches and scouts. We need to know how far that goes.</p>
+
+    <div class="field-group">
+      <label class="field-label">When the Recruiter drafts an outreach message to a coach</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Recruiter outreach send model">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'recruiter_send_model', 'athlete_sends')">
+          <span class="tap-card-title">The athlete copies and sends it themselves</span>
+          <span class="tap-card-desc">Outside the app. Through their own email or a coach's contact form.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'recruiter_send_model', 'platform_sends')">
+          <span class="tap-card-title">The platform sends it on the athlete's behalf</span>
+          <span class="tap-card-desc">The app handles delivery. Coaches reply through us.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'recruiter_send_model', 'both')">
+          <span class="tap-card-title">Both options available</span>
+          <span class="tap-card-desc">The athlete picks for each outreach.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'recruiter_send_model', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Beyond outreach drafts, what should the Recruiter help with at launch?</label>
+      <div class="tap-cards" role="group" aria-label="Recruiter capabilities" data-multi-select="true">
+        <button type="button" class="tap-card" aria-pressed="false"
+                onclick="toggleTapCard(this, 'recruiter_capabilities', 'profile_builder')">
+          <span class="tap-card-title">Build the athlete's recruiting profile</span>
+          <span class="tap-card-desc">Stats, video links, academics, the public-facing page.</span>
+        </button>
+
+        <button type="button" class="tap-card" aria-pressed="false"
+                onclick="toggleTapCard(this, 'recruiter_capabilities', 'tournament_finder')">
+          <span class="tap-card-title">Suggest showcases and tournaments</span>
+          <span class="tap-card-desc">Where to be seen by scouts at the athlete's level.</span>
+        </button>
+
+        <button type="button" class="tap-card" aria-pressed="false"
+                onclick="toggleTapCard(this, 'recruiter_capabilities', 'eligibility_tracker')">
+          <span class="tap-card-title">Track academic eligibility</span>
+          <span class="tap-card-desc">GPA, test scores, transcript review against program requirements.</span>
+        </button>
+
+        <button type="button" class="tap-card" aria-pressed="false"
+                onclick="toggleTapCard(this, 'recruiter_capabilities', 'scholarship_paths')">
+          <span class="tap-card-title">Suggest scholarship paths</span>
+          <span class="tap-card-desc">Which divisions, which programs, which scholarship tiers fit.</span>
+        </button>
+
+        <button type="button" class="tap-card" aria-pressed="false"
+                onclick="toggleTapCard(this, 'recruiter_capabilities', 'outreach_only')">
+          <span class="tap-card-title">Just outreach for now</span>
+          <span class="tap-card-desc">Everything else is post-v1.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 24px;">
+      <label class="field-label" for="field-recruiter-notes">Anything else about the Recruiter agent</label>
+      <textarea
+        id="field-recruiter-notes"
+        class="textarea"
+        data-field="recruiter_notes"
+        placeholder="Specific sports, program tiers, partnerships, anything else we should design for."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue to Section 3
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 3: SAFETY, MEMORY & USER DATA =====================
+       3 sub-screens. Overseer behavior, flag review policy, parent visibility,
+       and user data controls.
+       ============================================================ -->
+
+  <!-- ----- 3.1: Overseer escalation behavior ----- -->
+  <section class="screen section-screen" data-section="3" data-section-label="Safety & User Data" id="screen-3-1">
+    <div class="section-eyebrow">Safety & User Data · 1 of 3</div>
+    <h1 class="section-headline">When the Overseer flags something.</h1>
+    <p class="section-sub">Your brief says the Overseer watches everything for safety. We need to know how it actually responds when it flags something. This is broader than the Sports Psych flow we just covered.</p>
+
+    <div class="field-group">
+      <label class="field-label">Does the Overseer have one threshold or multiple severity tiers?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Overseer severity tiers">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_severity_tiers', 'single')">
+          <span class="tap-card-title">One threshold</span>
+          <span class="tap-card-desc">Content is either flagged or not. Same response every time.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_severity_tiers', 'two_tier')">
+          <span class="tap-card-title">Two tiers</span>
+          <span class="tap-card-desc">A warning level and a serious level.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_severity_tiers', 'three_plus')">
+          <span class="tap-card-title">Three or more tiers</span>
+          <span class="tap-card-desc">Mild, moderate, severe, with different responses for each.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_severity_tiers', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">What the user experiences when something is flagged</label>
+      <div class="tap-cards" role="radiogroup" aria-label="User-facing flag behavior">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'silent')">
+          <span class="tap-card-title">Silent</span>
+          <span class="tap-card-desc">The conversation continues. Only the admin is notified.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'soft_redirect')">
+          <span class="tap-card-title">A soft redirect</span>
+          <span class="tap-card-desc">The agent gently changes topic. No notice to the user.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'clear_notice')">
+          <span class="tap-card-title">A clear notice</span>
+          <span class="tap-card-desc">"This conversation has been flagged for review."</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'suspend')">
+          <span class="tap-card-title">Immediate session suspension</span>
+          <span class="tap-card-desc">The conversation ends. The user is locked out pending review.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'tiered')">
+          <span class="tap-card-title">Tiered by severity</span>
+          <span class="tap-card-desc">Soft redirect for mild, notice for moderate, suspension for severe.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'overseer_user_facing', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-overseer-notes">Anything to add about Overseer behavior</label>
+      <textarea
+        id="field-overseer-notes"
+        class="textarea"
+        data-field="overseer_notes"
+        placeholder="Specific categories you want it to catch, examples of flags, anything else."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 3.2: Flag review & storage ----- -->
+  <section class="screen section-screen" data-section="3" data-section-label="Safety & User Data" id="screen-3-2">
+    <div class="section-eyebrow">Safety & User Data · 2 of 3</div>
+    <h1 class="section-headline">Who reviews the flags, and for how long?</h1>
+    <p class="section-sub">When the Overseer flags a conversation, a human (often) has to look at it. We need to know who, and how long the record stays.</p>
+
+    <div class="field-group">
+      <label class="field-label">Who reviews flagged conversations?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Flag review owner">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_review_owner', 'internal')">
+          <span class="tap-card-title">Your internal team</span>
+          <span class="tap-card-desc">You hire and manage a moderation team in-house.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_review_owner', 'third_party')">
+          <span class="tap-card-title">A third-party moderation partner</span>
+          <span class="tap-card-desc">An outside firm handles all review.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_review_owner', 'mixed')">
+          <span class="tap-card-title">A mix</span>
+          <span class="tap-card-desc">You handle routine flags. A partner handles severe ones.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_review_owner', 'no_human')">
+          <span class="tap-card-title">No human review</span>
+          <span class="tap-card-desc">The Overseer's decision is final. Automated only.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_review_owner', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">How long are flagged conversations kept?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Flag retention">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_retention', 'permanent')">
+          <span class="tap-card-title">Permanently</span>
+          <span class="tap-card-desc">Full audit trail kept indefinitely.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_retention', 'twelve_months')">
+          <span class="tap-card-title">12 months</span>
+          <span class="tap-card-desc">Then auto-deleted, even if the flag was confirmed.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_retention', 'resolved_plus_90')">
+          <span class="tap-card-title">Until resolved, plus 90 days</span>
+          <span class="tap-card-desc">Closed flags clear out three months after resolution.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_retention', 'resolved_immediate')">
+          <span class="tap-card-title">Until resolved, then immediate</span>
+          <span class="tap-card-desc">Once a case is closed, the record is deleted.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'flag_retention', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-flag-policy-notes">Anything to add about flag review</label>
+      <textarea
+        id="field-flag-policy-notes"
+        class="textarea"
+        data-field="flag_policy_notes"
+        placeholder="SLA expectations, escalation chains, audit requirements, etc."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 3.3: Parent visibility + user data controls ----- -->
+  <section class="screen section-screen" data-section="3" data-section-label="Safety & User Data" id="screen-3-3">
+    <div class="section-eyebrow">Safety & User Data · 3 of 3</div>
+    <h1 class="section-headline">What can parents see, and what can users delete?</h1>
+    <p class="section-sub">The last four questions for this section. Each is short.</p>
+
+    <div class="field-group">
+      <label class="field-label">By default, what can a parent see about their athlete's activity?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Default parent visibility">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_default_visibility', 'full_transcripts')">
+          <span class="tap-card-title">Full conversation transcripts</span>
+          <span class="tap-card-desc">Parents read everything the athlete and agents discuss.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_default_visibility', 'summaries')">
+          <span class="tap-card-title">Summaries only</span>
+          <span class="tap-card-desc">Topics, themes, and progress. Not the raw conversations.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_default_visibility', 'flags_and_usage')">
+          <span class="tap-card-title">Flags and usage stats only</span>
+          <span class="tap-card-desc">Time spent, agents used, Overseer flags. Not content.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_default_visibility', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Does parent visibility change by athlete age?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Visibility by age">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'visibility_by_age', 'yes')">
+          <span class="tap-card-title">Yes</span>
+          <span class="tap-card-desc">More visibility for younger athletes, less for older.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'visibility_by_age', 'no')">
+          <span class="tap-card-title">No</span>
+          <span class="tap-card-desc">Same visibility regardless of age.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'visibility_by_age', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Can the athlete delete specific conversations on their own?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="User can delete">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'user_can_delete', 'yes_anytime')">
+          <span class="tap-card-title">Yes, anytime</span>
+          <span class="tap-card-desc">Athletes have full control over their own conversation history.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'user_can_delete', 'yes_with_approval')">
+          <span class="tap-card-title">Yes, but parents must approve if minor</span>
+          <span class="tap-card-desc">Deletion requests go through the linked parent first.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'user_can_delete', 'no')">
+          <span class="tap-card-title">No</span>
+          <span class="tap-card-desc">All conversations stay in the record. No user deletion.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'user_can_delete', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">How long are regular conversations kept by default?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Default retention">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'default_retention', 'forever')">
+          <span class="tap-card-title">Forever</span>
+          <span class="tap-card-desc">The full history is always available to the user.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'default_retention', '24_months')">
+          <span class="tap-card-title">24 months</span>
+          <span class="tap-card-desc">Two years of history, then rolling deletion.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'default_retention', '12_months')">
+          <span class="tap-card-title">12 months</span>
+          <span class="tap-card-desc">One year, then auto-delete.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'default_retention', '6_months')">
+          <span class="tap-card-title">6 months</span>
+          <span class="tap-card-desc">Short retention. Minimum data on file.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'default_retention', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-data-controls-notes">Anything to add about parent visibility or data controls</label>
+      <textarea
+        id="field-data-controls-notes"
+        class="textarea"
+        data-field="data_controls_notes"
+        placeholder="Edge cases, parental override rules, account closure flows, anything else."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue to Section 4
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 4: MONETIZATION & PARENTS =====================
+       2 sub-screens. Monetization model + parent dashboard actions
+       (messaging the child, interacting with agents). Brand questions
+       were dropped because (a) 3D characters already confirmed in docs,
+       (b) IP framing left for the scoping call.
+       ============================================================ -->
+
+  <!-- ----- 4.1: Monetization model ----- -->
+  <section class="screen section-screen" data-section="4" data-section-label="Monetization & Parents" id="screen-4-1">
+    <div class="section-eyebrow">Monetization & Parents · 1 of 2</div>
+    <h1 class="section-headline">How does it make money?</h1>
+    <p class="section-sub">Your brief is clear on what XEY.AI does. It's quiet on how it earns. This shapes the build more than you might think.</p>
+
+    <div class="field-group">
+      <label class="field-label">Primary revenue model</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Revenue model">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'revenue_model', 'subscription')">
+          <span class="tap-card-title">Subscription required</span>
+          <span class="tap-card-desc">No free tier. You pay to access at all.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'revenue_model', 'freemium')">
+          <span class="tap-card-title">Free with paid upgrade</span>
+          <span class="tap-card-desc">Core features free. Premium unlocks more agents or more usage.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'revenue_model', 'b2b')">
+          <span class="tap-card-title">Schools, clubs, or academies pay</span>
+          <span class="tap-card-desc">B2B model. The organization buys access for its athletes.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'revenue_model', 'free')">
+          <span class="tap-card-title">Free for everyone</span>
+          <span class="tap-card-desc">Revenue comes from somewhere else (sponsorship, partnerships).</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'revenue_model', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Who's the primary payer?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Primary payer">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'primary_payer', 'parents')">
+          <span class="tap-card-title">Parents</span>
+          <span class="tap-card-desc">The card on file belongs to the adult guardian.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'primary_payer', 'athletes')">
+          <span class="tap-card-title">Athletes themselves</span>
+          <span class="tap-card-desc">High school and college athletes pay directly.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'primary_payer', 'organizations')">
+          <span class="tap-card-title">Schools, clubs, or academies</span>
+          <span class="tap-card-desc">An institution buys seats and assigns them.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'primary_payer', 'mix')">
+          <span class="tap-card-title">A mix</span>
+          <span class="tap-card-desc">Different payers depending on the user type.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'primary_payer', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Feature tiering</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Feature tiering">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'feature_tiers', 'all_or_nothing')">
+          <span class="tap-card-title">All or nothing</span>
+          <span class="tap-card-desc">Whoever has access gets everything.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'feature_tiers', 'tiered_agents')">
+          <span class="tap-card-title">Some agents free, some premium</span>
+          <span class="tap-card-desc">Maybe the Trainer and Nutritionist are free, the Recruiter is paid.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'feature_tiers', 'usage_caps')">
+          <span class="tap-card-title">Free with usage caps</span>
+          <span class="tap-card-desc">Limited messages or sessions per month free. Pay for more.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'feature_tiers', 'trial')">
+          <span class="tap-card-title">Free trial, then paid</span>
+          <span class="tap-card-desc">Everyone gets a window. Then a paywall.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'feature_tiers', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-monetization-notes">Anything to add about pricing or business model</label>
+      <textarea
+        id="field-monetization-notes"
+        class="textarea"
+        data-field="monetization_notes"
+        placeholder="Specific price points in mind, partnerships, sponsor relationships, anything else."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" type="button" onclick="advance()">
+        Continue
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ----- 4.2: Parent dashboard actions ----- -->
+  <section class="screen section-screen" data-section="4" data-section-label="Monetization & Parents" id="screen-4-2">
+    <div class="section-eyebrow">Monetization & Parents · 2 of 2</div>
+    <h1 class="section-headline">What can parents <em>do</em>?</h1>
+    <p class="section-sub">We've covered what parents can see. Now: what actions can they take from inside the app?</p>
+
+    <div class="field-group">
+      <label class="field-label">Can parents message their athlete through the platform?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Parent messaging">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_can_message', 'yes')">
+          <span class="tap-card-title">Yes</span>
+          <span class="tap-card-desc">In-app messaging between parent and athlete.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_can_message', 'no')">
+          <span class="tap-card-title">No</span>
+          <span class="tap-card-desc">Parents and athletes talk through their own apps. Not ours.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_can_message', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label">Can parents talk to the agents themselves?</label>
+      <div class="tap-cards" role="radiogroup" aria-label="Parent agent access">
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_agent_access', 'about_child')">
+          <span class="tap-card-title">Yes, to ask about their child</span>
+          <span class="tap-card-desc">"How's my kid's training going?" The agent answers with what it knows.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_agent_access', 'for_themselves')">
+          <span class="tap-card-title">Yes, for themselves</span>
+          <span class="tap-card-desc">Parents are their own users of the agents too.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_agent_access', 'both')">
+          <span class="tap-card-title">Both</span>
+          <span class="tap-card-desc">Parents can ask about their kid and use the agents themselves.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_agent_access', 'no')">
+          <span class="tap-card-title">No</span>
+          <span class="tap-card-desc">Agents are athlete-only. Parents see reports, not conversations.</span>
+        </button>
+
+        <button type="button" class="tap-card" role="radio" aria-checked="false"
+                onclick="selectTapCard(this, 'parent_agent_access', 'undecided')">
+          <span class="tap-card-title">Still deciding</span>
+          <span class="tap-card-desc">We'll work this out together.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 32px;">
+      <label class="field-label" for="field-parent-actions-notes">Anything else about the parental experience</label>
+      <textarea
+        id="field-parent-actions-notes"
+        class="textarea"
+        data-field="parent_actions_notes"
+        placeholder="Specific use cases, things parents told you they wanted, edge cases."
+        style="min-height: 90px;"
+      ></textarea>
+    </div>
+
+    <div class="screen-nav">
+      <button class="btn btn-continue" id="submit-btn" type="button" onclick="submitBrief()">
+        <span class="btn-label">Submit brief</span>
+        <span class="spinner" aria-hidden="true"></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="submit-error" id="submit-error" role="alert"></div>
+  </section>
+
+  <!-- ===================== THANK-YOU STATE =====================
+       Shown after successful POST to backend.
+       ============================================================ -->
+  <section class="screen" data-section="4" data-section-label="Done" id="screen-thanks">
+
+    <div class="thanks-eyebrow">Brief Submitted</div>
+
+    <h1 class="thanks-headline">
+      We're already reading it<span class="accent">.</span>
+    </h1>
+
+    <p class="thanks-sub">
+      You'll hear back from us within 2 business days with a plan and a prototype direction.
+    </p>
+
+    <div class="thanks-meta">
+      <a href="https://startline.build" class="thanks-link">
+        Return to startline.build
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="footer">
+  <span>© Startline · startline.build</span>
+  <span><a href="mailto:hello@startline.build">hello@startline.build</a></span>
+</footer>
+
+<!-- =========================================================
+     SCRIPT: state + navigation framework.
+     This is the spine. Steps 2–5 hang off it.
+     ========================================================= -->
+<script>
+(function() {
+  'use strict';
+
+  /* ============================================================
+     STATE: every form answer lives here.
+     Section 1 (Your Users): primary_user, primary_user_notes,
+       min_age, ui_tier_model, tier_assignment,
+       parent_multi_kids, athlete_multi_guardians,
+       family_structure_notes, other_user_roles, other_roles_notes.
+     Sections 2-5 add their own fields.
+     ============================================================ */
+  const state = {};
+  window.briefState = state;
+
+  /* ============================================================
+     SCREEN INDEX: built from DOM order at startup.
+     This is the spine: advance() and goBack() walk this array.
+     ============================================================ */
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  const trackEl = document.getElementById('track');
+  const headerMetaEl = document.querySelector('.header-meta');
+  const backBtn = document.getElementById('btn-back');
+
+  let currentIndex = 0;
+
+  /* ============================================================
+     NAVIGATION
+     ============================================================ */
+  function showScreen(index) {
+    if (index < 0 || index >= screens.length) return;
+
+    // Hide current
+    const prev = document.querySelector('.screen.active');
+    if (prev) prev.classList.remove('active');
+
+    // Show next
+    const next = screens[index];
+    next.classList.add('active');
+
+    // Update progress track based on data-section
+    const section = next.getAttribute('data-section') || '0';
+    if (trackEl) trackEl.setAttribute('data-progress', section);
+
+    // Update header label
+    const label = next.getAttribute('data-section-label');
+    if (headerMetaEl) {
+      headerMetaEl.textContent = label || 'Project Brief';
+    }
+
+    // Show/hide back button (hidden on cover only)
+    if (backBtn) {
+      backBtn.style.display = (index === 0) ? 'none' : 'inline-flex';
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Focus management: focus the first input on the new screen
+    if (index !== 0) {
+      const firstInput = next.querySelector('input, textarea');
+      if (firstInput) {
+        setTimeout(() => firstInput.focus({ preventScroll: true }), 350);
+      }
+    }
+
+    currentIndex = index;
+  }
+
+  function advance() {
+    if (currentIndex < screens.length - 1) {
+      showScreen(currentIndex + 1);
+    }
+  }
+
+  function goBack() {
+    if (currentIndex > 0) {
+      showScreen(currentIndex - 1);
+    }
+  }
+
+  /* Legacy: jump to specific screen by index. Used by cover Begin button. */
+  function goToScreen(n) {
+    showScreen(n);
+  }
+
+  /* ============================================================
+     INPUT BINDING
+     Every input/textarea with [data-field] writes to state on
+     input. If [data-required] is set, the screen's Continue
+     button enables only when all required fields on that screen
+     are non-empty.
+     ============================================================ */
+  function bindInputs() {
+    document.querySelectorAll('[data-field]').forEach(input => {
+      const fieldName = input.getAttribute('data-field');
+
+      // Restore from state if user navigates back
+      if (state[fieldName] !== undefined) {
+        input.value = state[fieldName];
+      }
+
+      input.addEventListener('input', () => {
+        state[fieldName] = input.value.trim();
+        updateContinueState(input.closest('.screen'));
+      });
+
+      // Initial validation pass
+      updateContinueState(input.closest('.screen'));
+    });
+  }
+
+  function updateContinueState(screenEl) {
+    if (!screenEl) return;
+    const requiredFields = screenEl.querySelectorAll('[data-required="true"]');
+    const continueBtn = screenEl.querySelector('.btn-continue');
+    if (!continueBtn) return;
+
+    let allFilled = true;
+    requiredFields.forEach(field => {
+      const value = (field.value || '').trim();
+      if (!value) allFilled = false;
+    });
+
+    if (allFilled) {
+      continueBtn.removeAttribute('disabled');
+    } else {
+      continueBtn.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  /* ============================================================
+     TAP CARD selection (single-select group).
+     Use: onclick="selectTapCard(this, 'fieldName', 'value')"
+     ============================================================ */
+  function selectTapCard(button, fieldName, value) {
+    const group = button.parentElement;
+    group.querySelectorAll('.tap-card').forEach(card => {
+      card.classList.remove('selected');
+      card.setAttribute('aria-checked', 'false');
+    });
+    button.classList.add('selected');
+    button.setAttribute('aria-checked', 'true');
+    state[fieldName] = value;
+  }
+
+  /* ============================================================
+     TOGGLE TAP CARD (multi-select group).
+     Use: onclick="toggleTapCard(this, 'fieldName', 'value')"
+     Field becomes an array of selected values.
+     "none" is a mutually-exclusive sentinel: selecting it clears
+     all other selections, and selecting any other clears "none".
+     ============================================================ */
+  function toggleTapCard(button, fieldName, value) {
+    const group = button.parentElement;
+    if (!state[fieldName]) state[fieldName] = [];
+
+    const isNone = (value === 'none');
+    const wasSelected = button.classList.contains('selected');
+
+    if (isNone && !wasSelected) {
+      // Selecting "none": clear everything else and select only this
+      group.querySelectorAll('.tap-card').forEach(card => {
+        card.classList.remove('selected');
+        card.setAttribute('aria-pressed', 'false');
+      });
+      button.classList.add('selected');
+      button.setAttribute('aria-pressed', 'true');
+      state[fieldName] = ['none'];
+      return;
+    }
+
+    if (!isNone && !wasSelected) {
+      // Selecting a real option: clear "none" if it was set
+      const noneCard = Array.from(group.querySelectorAll('.tap-card')).find(c => {
+        const onclick = c.getAttribute('onclick') || '';
+        return onclick.includes("'none'");
+      });
+      if (noneCard && noneCard.classList.contains('selected')) {
+        noneCard.classList.remove('selected');
+        noneCard.setAttribute('aria-pressed', 'false');
+        state[fieldName] = state[fieldName].filter(v => v !== 'none');
+      }
+    }
+
+    // Toggle this card
+    if (wasSelected) {
+      button.classList.remove('selected');
+      button.setAttribute('aria-pressed', 'false');
+      state[fieldName] = state[fieldName].filter(v => v !== value);
+    } else {
+      button.classList.add('selected');
+      button.setAttribute('aria-pressed', 'true');
+      state[fieldName].push(value);
+    }
+  }
+
+  /* ============================================================
+     SUBMIT BRIEF: POST the state to the backend, then show
+     the thank-you screen. Handles loading and error states.
+     ============================================================
+     ENDPOINT: '/api/xeyai'. This is a relative URL. When the form is
+     served from startline.build/xeyai, this resolves to
+     startline.build/api/xeyai. To change, edit SUBMIT_ENDPOINT below.
+
+     BACKEND REQUIREMENT (Next.js App Router example):
+     Create a file at /app/api/xeyai/route.ts on startline.build:
+
+       import { Resend } from 'resend';
+       const resend = new Resend(process.env.RESEND_API_KEY);
+
+       export async function POST(req: Request) {
+         const data = await req.json();
+         // Format `data` (the brief state object) into a
+         // readable email body. Then send via Resend:
+         await resend.emails.send({
+           from: 'XEY.AI Brief <briefs@startline.build>',
+           to: 'sam@glostaffing.com',
+           subject: 'XEY.AI Brief Submitted',
+           text: JSON.stringify(data, null, 2)
+                 // or a prettier formatter, see below
+         });
+         return Response.json({ ok: true });
+       }
+
+     The backend should respond with HTTP 200 + JSON {ok: true}
+     on success, or HTTP 4xx/5xx on failure.
+     ============================================================ */
+  const SUBMIT_ENDPOINT = '/api/xeyai';
+
+  async function submitBrief() {
+    const submitBtn = document.getElementById('submit-btn');
+    const errorEl = document.getElementById('submit-error');
+    const btnLabel = submitBtn ? submitBtn.querySelector('.btn-label') : null;
+
+    // Clear any previous error
+    if (errorEl) {
+      errorEl.classList.remove('is-visible');
+      errorEl.textContent = '';
+    }
+
+    // Enter loading state
+    if (submitBtn) {
+      submitBtn.classList.add('is-loading');
+      submitBtn.setAttribute('aria-busy', 'true');
+      if (btnLabel) btnLabel.textContent = 'Submitting…';
+    }
+
+    try {
+      const response = await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          brief: state,
+          submittedAt: new Date().toISOString(),
+          project: 'XEY.AI'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Server returned ' + response.status);
+      }
+
+      // Success: advance to thank-you screen
+      showThanksScreen();
+
+    } catch (err) {
+      // Failure: surface the error inline, restore the button
+      console.error('Brief submission failed:', err);
+
+      if (submitBtn) {
+        submitBtn.classList.remove('is-loading');
+        submitBtn.removeAttribute('aria-busy');
+        if (btnLabel) btnLabel.textContent = 'Submit brief';
+      }
+
+      if (errorEl) {
+        errorEl.textContent =
+          "We couldn't submit the brief. Check your connection and try again, or email hello@startline.build directly.";
+        errorEl.classList.add('is-visible');
+      }
+    }
+  }
+
+  function showThanksScreen() {
+    const thanksScreen = document.getElementById('screen-thanks');
+    if (!thanksScreen) return;
+
+    const currentScreen = document.querySelector('.screen.active');
+    if (currentScreen) currentScreen.classList.remove('active');
+    thanksScreen.classList.add('active');
+
+    if (trackEl) trackEl.setAttribute('data-progress', '4');
+    if (backBtn) backBtn.style.display = 'none';
+    if (headerMetaEl) headerMetaEl.textContent = 'Done';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ============================================================
+     EXPOSE on window for inline onclick handlers.
+     ============================================================ */
+  window.advance = advance;
+  window.goBack = goBack;
+  window.goToScreen = goToScreen;
+  window.selectTapCard = selectTapCard;
+  window.toggleTapCard = toggleTapCard;
+  window.submitBrief = submitBrief;
+  window.getCurrentScreen = function() { return currentIndex; };
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', bindInputs);
+  // If DOM is already parsed (script at end of body), run now too.
+  if (document.readyState !== 'loading') bindInputs();
+
+})();
+</script>
+
+</body>
+</html>
